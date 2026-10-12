@@ -16,11 +16,11 @@ Fontes citadas neste arquivo:
 
 ## Checklist para agentes de IA
 
-- [ ] Legível por máquina: todo campo é texto simples sob um título previsível.
-- [ ] Estruturado: uma persona por seção H2, com firmografia, JTBD, gatilhos, dores, objeções e desqualificadores.
-- [ ] Fonte única: nenhum arquivo de ICP duplicado em outras pastas.
-- [ ] Versionado: data de "Última atualização" no topo.
-- [ ] Citável: toda saída de agente baseada neste arquivo inclui uma referência a `/01-icp/ICP.md`.
+- [x] Legível por máquina: todo campo é texto simples sob um título previsível.
+- [x] Estruturado: uma persona por seção H2, com firmografia, JTBD, gatilhos, dores, objeções e desqualificadores.
+- [x] Fonte única: nenhum arquivo de ICP duplicado em outras pastas.
+- [x] Versionado: data de "Última atualização" no topo.
+- [x] Citável: toda saída de agente baseada neste arquivo inclui uma referência a `/01-icp/ICP.md`.
 
 Última atualização: 2026-10-01
 Autor principal: Bruna Alves, marketing

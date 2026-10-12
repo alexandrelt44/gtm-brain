@@ -10,12 +10,12 @@
   "color": {
     "brand": {
       "primary": {
-        "value": "oklch(0.34 0.07 240)",
+        "value": "oklch(0.34 0.08 245)",
         "hex": "#0B3A5B",
         "role": "Topo da página, CTA principal, navegação principal"
       },
       "primaryHover": {
-        "value": "oklch(0.42 0.08 240)",
+        "value": "oklch(0.41 0.10 247)",
         "hex": "#124D7A",
         "role": "Estado hover da primária"
       },
@@ -25,12 +25,12 @@
         "role": "Texto sobre a primária"
       },
       "secondary": {
-        "value": "oklch(0.69 0.17 52)",
+        "value": "oklch(0.67 0.16 58)",
         "hex": "#D97706",
         "role": "Elementos de apoio, CTA secundário"
       },
       "secondaryHover": {
-        "value": "oklch(0.60 0.15 50)",
+        "value": "oklch(0.56 0.15 49)",
         "hex": "#B45309",
         "role": "Estado hover da secundária"
       },
@@ -42,26 +42,26 @@
     },
     "accent": {
       "one": {
-        "value": "oklch(0.71 0.17 162)",
+        "value": "oklch(0.70 0.15 162)",
         "hex": "#10B981",
         "role": "Realce, etiqueta, chamada"
       },
       "two": {
-        "value": "oklch(0.60 0.20 270)",
+        "value": "oklch(0.59 0.20 277)",
         "hex": "#6366F1",
         "role": "Série secundária de gráficos"
       }
     },
     "neutral": {
       "0": { "value": "oklch(1.00 0 0)", "hex": "#FFFFFF", "role": "Fundo da página" },
-      "50": { "value": "oklch(0.98 0.01 240)", "hex": "#F8FAFC", "role": "Fundo de card" },
-      "100": { "value": "oklch(0.96 0.01 240)", "hex": "#F1F5F9", "role": "Fundo de seção" },
-      "200": { "value": "oklch(0.92 0.02 240)", "hex": "#E2E8F0", "role": "Bordas, divisórias" },
-      "300": { "value": "oklch(0.85 0.02 240)", "hex": "#CBD5E1", "role": "Bordas sutis" },
-      "400": { "value": "oklch(0.72 0.03 240)", "hex": "#94A3B8", "role": "Placeholders" },
-      "500": { "value": "oklch(0.55 0.03 240)", "hex": "#64748B", "role": "Texto secundário" },
-      "700": { "value": "oklch(0.35 0.03 240)", "hex": "#334155", "role": "Texto corrido" },
-      "900": { "value": "oklch(0.17 0.03 240)", "hex": "#0F172A", "role": "Títulos" }
+      "50": { "value": "oklch(0.98 0.003 248)", "hex": "#F8FAFC", "role": "Fundo de card" },
+      "100": { "value": "oklch(0.97 0.01 248)", "hex": "#F1F5F9", "role": "Fundo de seção" },
+      "200": { "value": "oklch(0.93 0.01 256)", "hex": "#E2E8F0", "role": "Bordas, divisórias" },
+      "300": { "value": "oklch(0.87 0.02 253)", "hex": "#CBD5E1", "role": "Bordas sutis" },
+      "400": { "value": "oklch(0.71 0.04 257)", "hex": "#94A3B8", "role": "Placeholders" },
+      "500": { "value": "oklch(0.55 0.04 257)", "hex": "#64748B", "role": "Texto secundário" },
+      "700": { "value": "oklch(0.37 0.04 257)", "hex": "#334155", "role": "Texto corrido" },
+      "900": { "value": "oklch(0.21 0.04 266)", "hex": "#0F172A", "role": "Títulos" }
     },
     "semantic": {
       "success": { "hex": "#10B981", "role": "Estado de sucesso" },

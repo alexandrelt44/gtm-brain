@@ -45,7 +45,7 @@ Antes de produzir qualquer coisa, você lê e obedece os arquivos de referência
 ## 7. O que já dissemos
 - Leia /08-conteudo/BIBLIOTECA.md antes de escrever qualquer coisa. Não duplique conteúdo existente. Linke para ele.
 - Leia /08-conteudo/CALENDARIO.md para não conflitar com o que já está em produção.
-- Leia /08-conteudo/PROVAS.md quando precisar de prova. Nunca invente citação, nome ou número. Cite só itens com permissão registrada, pelo ID (CS-001, T-001, D-001).
+- Leia /08-conteudo/PROVAS.md quando precisar de prova. Nunca invente citação, nome ou número. Use só itens com permissão registrada. No rascunho interno, aponte a prova pelo ID (CS-001, T-001, D-001). No texto publicado, cite o que ela é (cliente pelo nome, citação, dado com fonte), nunca o ID.
 
 ## 8. O que medimos
 - Leia /09-dados/MEDICAO.md para as definições de KPI.

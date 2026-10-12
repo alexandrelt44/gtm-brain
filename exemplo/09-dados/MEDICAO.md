@@ -32,7 +32,7 @@ Nomeie cada ferramenta, para que serve e quem é o responsável.
 | Ferramenta | Função | Dados | Responsável | Status |
 | --- | --- | --- | --- | --- |
 | GA4 | Análise do site | Tráfego, aquisição, eventos de conversão | Bruna Alves | No ar |
-| Google Tag Manager | Gerenciador de tags | Disparo dos eventos `teste_iniciado`, `demonstracao_agendada`, `clique_whatsapp`, `download_material`, `newsletter_inscricao` | Tiago Ramos | No ar |
+| Google Tag Manager | Gerenciador de tags | Disparo dos eventos `trial_start`, `call_booked`, `whatsapp_click`, `lead_magnet_download`, `newsletter_subscribe` | Tiago Ramos | No ar |
 | RD Station CRM | CRM | Leads, demonstrações, negócios, origem do lead | Rafael Nunes | No ar |
 | RD Station Marketing | E-mail | Newsletter, sequências de nutrição, aberturas e cliques | Bruna Alves | No ar |
 | Painel interno da Cadência | Produto e cobrança | Assinaturas, MRR, churn, inadimplência dos estúdios clientes, uso de recursos `[PAINEL]` | Tiago Ramos | No ar |
@@ -65,7 +65,7 @@ Escolha uma métrica norte. Desdobre em métricas menores. Associe cada uma a um
 | Consideração | Tempo nas páginas pilar | 3 minutos ou mais | GA4 | Bruna Alves |
 | Decisão | Testes iniciados | 60 por mês | GA4 + painel interno | Tiago Ramos |
 | Decisão | Demonstrações agendadas (site e WhatsApp) | 24 por mês | RD Station CRM | Rafael Nunes |
-| Fechamento | Estúdios novos (assinatura paga) | 16 a 17 por mês | Painel interno | Rafael Nunes |
+| Fechamento | Estúdios novos (assinatura paga) | 17 por mês | Painel interno | Rafael Nunes |
 | Fechamento | Custo por estúdio novo | Abaixo de R$ 825 | Planilha de custos + painel interno | Rafael Nunes |
 | Retenção | Churn mensal | Abaixo de 2,1% (D-002) | Painel interno | Lívia Moraes |
 | Retenção | Indicações | 500 visitas por mês com código de indicação | Painel interno | Lívia Moraes |

@@ -39,24 +39,24 @@
    * biblioteca de origem.
    * ========================================================================= */
 
-  --ds-color-brand-primary:        oklch(0.34 0.07 240);
-  --ds-color-brand-primary-hover:  oklch(0.42 0.08 240);
+  --ds-color-brand-primary:        oklch(0.34 0.08 245);
+  --ds-color-brand-primary-hover:  oklch(0.41 0.10 247);
   --ds-color-brand-primary-fg:     oklch(1.00 0 0);
-  --ds-color-brand-secondary:      oklch(0.69 0.17 52);
-  --ds-color-brand-secondary-hover:oklch(0.60 0.15 50);
+  --ds-color-brand-secondary:      oklch(0.67 0.16 58);
+  --ds-color-brand-secondary-hover:oklch(0.56 0.15 49);
   --ds-color-brand-secondary-fg:   oklch(1.00 0 0);
-  --ds-color-accent-1:             oklch(0.71 0.17 162);
-  --ds-color-accent-2:             oklch(0.60 0.20 270);
+  --ds-color-accent-1:             oklch(0.70 0.15 162);
+  --ds-color-accent-2:             oklch(0.59 0.20 277);
 
   --ds-color-neutral-0:            oklch(1.00 0 0);
-  --ds-color-neutral-50:           oklch(0.98 0.01 240);
-  --ds-color-neutral-100:          oklch(0.96 0.01 240);
-  --ds-color-neutral-200:          oklch(0.92 0.02 240);
-  --ds-color-neutral-300:          oklch(0.85 0.02 240);
-  --ds-color-neutral-400:          oklch(0.72 0.03 240);
-  --ds-color-neutral-500:          oklch(0.55 0.03 240);
-  --ds-color-neutral-700:          oklch(0.35 0.03 240);
-  --ds-color-neutral-900:          oklch(0.17 0.03 240);
+  --ds-color-neutral-50:           oklch(0.98 0.003 248);
+  --ds-color-neutral-100:          oklch(0.97 0.01 248);
+  --ds-color-neutral-200:          oklch(0.93 0.01 256);
+  --ds-color-neutral-300:          oklch(0.87 0.02 253);
+  --ds-color-neutral-400:          oklch(0.71 0.04 257);
+  --ds-color-neutral-500:          oklch(0.55 0.04 257);
+  --ds-color-neutral-700:          oklch(0.37 0.04 257);
+  --ds-color-neutral-900:          oklch(0.21 0.04 266);
 
   --ds-color-success:              #10B981;
   --ds-color-warning:              #F59E0B;

@@ -8,7 +8,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { parseTree, parseFields, parseTables, descendants, fullLines, renderMd, esc } from './md.mjs'
 import {
-  RE_PROOF_ID, issueRe, RE_SOURCE_TAG, RE_SEAL, RE_PATH_REF, RE_PLACEHOLDER, RE_PENDING, RE_TENSION,
+  RE_PROOF_ID, issueRe, RE_SOURCE_TAG, RE_SEAL, RE_PATH_REF, RE_PLACEHOLDER, RE_PENDING, RE_TENSION, RE_INSTRUCTION,
   expandProofRanges, slugify, stripMd,
 } from './extract-brand.mjs'
 
@@ -204,7 +204,7 @@ export const SCHEMA = [
   { id: 'voice', label: 'Voz', icon: 'mic', color: '#0891B2', desc: 'Como a marca soa: atributos, regras de escrita, termos e limites.', groups: [
     { label: 'Atributos', heading: { file: F.voice, level: 3, under: /^(Voice Attributes|Atributos de voz)/i }, kind: 'attribute' },
     { docs: [
-      { id: 'regras-de-escrita', title: 'Regras de escrita', sections: [[F.voice, /^(Tone Modulation|Tom por canal)/i], [F.voice, /^(Reading Level|Nível de leitura)/i], [F.voice, /^(Sentence-Length|Tamanho de frase)/i], [F.voice, /^(Punctuation|Pontuação)/i], [F.voice, /^(Formatting|Formatação)/i], [F.voice, /^CTA/i], [F.voice, /^Emoji/i], [F.voice, /^(Banned sentence|Formatos de frase proibidos)/i], [F.voice, /^(Worked example|Exemplo)/i]] },
+      { id: 'regras-de-escrita', title: 'Regras de escrita', sections: [[F.voice, /^(Tone Modulation|Tom por canal)/i], [F.voice, /^(Reading Level|Nível de leitura)/i], [F.voice, /^(Sentence-Length|Tamanho de frase)/i], [F.voice, /^(Punctuation|Pontuação)/i], [F.voice, /^(Formatting|Formatação)/i], [F.voice, /^CTA/i], [F.voice, /^Emoji/i], [F.voice, /^(Banned sentence|Formatos de frase proibidos|Frases proibidas)/i], [F.voice, /^(Worked example|Exemplo)/i]] },
       { id: 'terminologia', title: 'Terminologia', file: F.terms, all: true },
       { id: 'compliance', title: 'Compliance e limites de afirmação', file: F.compliance, all: true },
     ] },
@@ -532,9 +532,8 @@ function toField(f) {
   const plain = stripMd(text).replace(/[—–-]/g, '').trim()
   // A field that is only bracketed instructions ("[1 a 9 / 10 a 49 funcionários]") is still template.
   // Instructions have lowercase letters; seals and source tags ([COMPROVADO], [ENTREVISTAS]) do not.
-  const RE_INSTRUCTION = /\[[^\]]*[a-zà-ÿ][^\]]*\](?!\()/
-  const residue = stripMd(text.replace(/\*\*[^*]+\*\*:?/g, ' ').replace(/`[^`]*`/g, ' ').replace(new RegExp(RE_INSTRUCTION.source, 'g'), ' ')).replace(/[^\p{L}\p{N}]+/gu, '')
-  const templateOnly = RE_INSTRUCTION.test(text) && residue.length < 12
+  const residue = stripMd(text.replace(/\*\*[^*]+\*\*:?/g, ' ').replace(/`[^`]*`/g, ' ').replace(RE_INSTRUCTION, ' ')).replace(/[^\p{L}\p{N}]+/gu, '')
+  const templateOnly = (text.match(RE_INSTRUCTION) || []).length > 0 && residue.length < 12
   const status = !plain ? 'empty' : templateOnly || RE_PLACEHOLDER.test(text) || RE_PENDING.test(text) ? 'pending' : 'ok'
   RE_PLACEHOLDER.lastIndex = 0
   const seals = [...(f.label + ' ' + text.split('\n')[0]).matchAll(RE_SEAL)].map((m) => m[1])

@@ -110,28 +110,28 @@ Os nomes dos tokens ficam em inglês, como no código. Exemplos:
 
 | Token | OKLCH | Hex |
 | --- | --- | --- |
-| `color.brand.primary` | `oklch(0.34 0.07 240)` | `#0B3A5B` |
-| `color.brand.primary.hover` | `oklch(0.42 0.08 240)` | `#124D7A` |
+| `color.brand.primary` | `oklch(0.34 0.08 245)` | `#0B3A5B` |
+| `color.brand.primary.hover` | `oklch(0.41 0.10 247)` | `#124D7A` |
 | `color.brand.primary.fg` | `oklch(1.00 0 0)` | `#FFFFFF` |
-| `color.brand.secondary` | `oklch(0.69 0.17 52)` | `#D97706` |
-| `color.brand.secondary.hover` | `oklch(0.60 0.15 50)` | `#B45309` |
+| `color.brand.secondary` | `oklch(0.67 0.16 58)` | `#D97706` |
+| `color.brand.secondary.hover` | `oklch(0.56 0.15 49)` | `#B45309` |
 | `color.brand.secondary.fg` | `oklch(1.00 0 0)` | `#FFFFFF` |
-| `color.accent.1` | `oklch(0.71 0.17 162)` | `#10B981` |
-| `color.accent.2` | `oklch(0.60 0.20 270)` | `#6366F1` |
+| `color.accent.1` | `oklch(0.70 0.15 162)` | `#10B981` |
+| `color.accent.2` | `oklch(0.59 0.20 277)` | `#6366F1` |
 
 ### Neutras
 
 | Token | OKLCH | Hex |
 | --- | --- | --- |
 | `color.neutral.0` | `oklch(1.00 0 0)` | `#FFFFFF` |
-| `color.neutral.50` | `oklch(0.98 0.01 240)` | `#F8FAFC` |
-| `color.neutral.100` | `oklch(0.96 0.01 240)` | `#F1F5F9` |
-| `color.neutral.200` | `oklch(0.92 0.02 240)` | `#E2E8F0` |
-| `color.neutral.300` | `oklch(0.85 0.02 240)` | `#CBD5E1` |
-| `color.neutral.400` | `oklch(0.72 0.03 240)` | `#94A3B8` |
-| `color.neutral.500` | `oklch(0.55 0.03 240)` | `#64748B` |
-| `color.neutral.700` | `oklch(0.35 0.03 240)` | `#334155` |
-| `color.neutral.900` | `oklch(0.17 0.03 240)` | `#0F172A` |
+| `color.neutral.50` | `oklch(0.98 0.003 248)` | `#F8FAFC` |
+| `color.neutral.100` | `oklch(0.97 0.01 248)` | `#F1F5F9` |
+| `color.neutral.200` | `oklch(0.93 0.01 256)` | `#E2E8F0` |
+| `color.neutral.300` | `oklch(0.87 0.02 253)` | `#CBD5E1` |
+| `color.neutral.400` | `oklch(0.71 0.04 257)` | `#94A3B8` |
+| `color.neutral.500` | `oklch(0.55 0.04 257)` | `#64748B` |
+| `color.neutral.700` | `oklch(0.37 0.04 257)` | `#334155` |
+| `color.neutral.900` | `oklch(0.21 0.04 266)` | `#0F172A` |
 
 ### Semânticas
 
@@ -222,20 +222,20 @@ Cole na folha de estilo global de qualquer projeto web. Os nomes dos tokens corr
 
 ```css
 :root {
-  --color-brand-primary: oklch(0.34 0.07 240);
-  --color-brand-primary-hover: oklch(0.42 0.08 240);
+  --color-brand-primary: oklch(0.34 0.08 245);
+  --color-brand-primary-hover: oklch(0.41 0.10 247);
   --color-brand-primary-fg: oklch(1.00 0 0);
-  --color-brand-secondary: oklch(0.69 0.17 52);
-  --color-accent-1: oklch(0.71 0.17 162);
-  --color-accent-2: oklch(0.60 0.20 270);
+  --color-brand-secondary: oklch(0.67 0.16 58);
+  --color-accent-1: oklch(0.70 0.15 162);
+  --color-accent-2: oklch(0.59 0.20 277);
 
   --color-neutral-0: oklch(1.00 0 0);
-  --color-neutral-50: oklch(0.98 0.01 240);
-  --color-neutral-100: oklch(0.96 0.01 240);
-  --color-neutral-200: oklch(0.92 0.02 240);
-  --color-neutral-500: oklch(0.55 0.03 240);
-  --color-neutral-700: oklch(0.35 0.03 240);
-  --color-neutral-900: oklch(0.17 0.03 240);
+  --color-neutral-50: oklch(0.98 0.003 248);
+  --color-neutral-100: oklch(0.97 0.01 248);
+  --color-neutral-200: oklch(0.93 0.01 256);
+  --color-neutral-500: oklch(0.55 0.04 257);
+  --color-neutral-700: oklch(0.37 0.04 257);
+  --color-neutral-900: oklch(0.21 0.04 266);
 
   --color-semantic-success: #10B981;
   --color-semantic-warning: #F59E0B;

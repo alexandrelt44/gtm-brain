@@ -16,11 +16,11 @@ Fontes citadas neste arquivo:
 
 ## Checklist para agentes de IA
 
-- [ ] Legível por máquina: um concorrente por H2, sempre com os mesmos campos.
-- [ ] Estruturado: mapa, análise por concorrente, battle cards, notas de como ganhamos.
-- [ ] Fonte única da verdade: nenhuma outra tabela de concorrentes no notebook de um vendedor.
-- [ ] Versionado: data da última atualização em cada concorrente.
-- [ ] Citável: os agentes citam `/05-oferta/CONCORRENCIA.md` ao escrever conteúdo que menciona a concorrência.
+- [x] Legível por máquina: um concorrente por H2, sempre com os mesmos campos.
+- [x] Estruturado: mapa, análise por concorrente, battle cards, notas de como ganhamos.
+- [x] Fonte única da verdade: nenhuma outra tabela de concorrentes no notebook de um vendedor.
+- [x] Versionado: data da última atualização em cada concorrente.
+- [x] Citável: os agentes citam `/05-oferta/CONCORRENCIA.md` ao escrever conteúdo que menciona a concorrência.
 
 Última atualização: 2026-10-01
 
@@ -361,6 +361,7 @@ Ao escrever:
 2. Use apenas afirmações sustentadas pelas provas deste arquivo.
 3. Siga o roteiro do battle card quando a peça for uma resposta direta a uma menção de concorrente.
 4. Sinalize para revisão humana qualquer conteúdo que faça afirmação sobre o preço de um concorrente com nome.
+5. A "Prova preferida" de cada battle card está em IDs de /08-conteudo/PROVAS.md, para achar a prova. Na peça ou na conversa, cite o que a prova é (o cliente pelo nome, só com permissão registrada, ou o dado com a fonte), nunca o ID.
 
 Cite /05-oferta/CONCORRENCIA.md em todo conteúdo que mencione a concorrência.
 ```

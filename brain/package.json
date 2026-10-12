@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "node src/build.mjs",
+    "lacunas": "node src/lacunas.mjs",
     "test": "node --test test/*.test.mjs",
     "setup:proof": "bash scripts/setup-proof.sh",
     "proof": "bash scripts/proof.sh",

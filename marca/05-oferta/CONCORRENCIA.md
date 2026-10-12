@@ -110,7 +110,7 @@
 4. Prove. "Este cliente trocou [Concorrente A] pela gente. Veja o que mudou."
 5. Feche. "Ajuda se eu marcar uma conversa com esse cliente ainda esta semana?"
 
-**Prova preferida:** [link para o case certo em `/08-conteudo/PROVAS.md`]
+**Prova preferida:** [ID do case ou do dado certo em `/08-conteudo/PROVAS.md`, ex.: CS-001. O ID fica neste arquivo: no roteiro e na peça, cite o cliente pelo nome, com permissão]
 
 **Não diga:**
 
@@ -188,6 +188,7 @@ Ao escrever:
 2. Use apenas afirmações sustentadas pelas provas deste arquivo.
 3. Siga o roteiro do battle card quando a peça for uma resposta direta a uma menção de concorrente.
 4. Sinalize para revisão humana qualquer conteúdo que faça afirmação sobre o preço de um concorrente com nome.
+5. A "Prova preferida" de cada battle card está em IDs de /08-conteudo/PROVAS.md, para achar a prova. Na peça ou na conversa, cite o que a prova é (o cliente pelo nome, só com permissão registrada, ou o dado com a fonte), nunca o ID.
 
 Cite /05-oferta/CONCORRENCIA.md em todo conteúdo que mencione a concorrência.
 ```

@@ -70,7 +70,7 @@ Um registro por depoimento. Mantenha a citação literal (`[LITERAL]`).
 
 ## Índice de cases
 
-Aponte para os cases completos. O texto detalhado fica em `/cases/`. O resumo de cada case, com antes, mudança, resultado e permissão, vem logo depois da tabela.
+Aponte para os cases completos. O texto completo de cada case fica na página do case no site (coluna URL, ver `/07-site/MAPA-DO-SITE.md`). O resumo de cada case, com antes, mudança, resultado e permissão, vem logo depois da tabela.
 
 | ID | Cliente | Segmento | Serviço | Métrica principal | URL | Status |
 | --- | --- | --- | --- | --- | --- | --- |

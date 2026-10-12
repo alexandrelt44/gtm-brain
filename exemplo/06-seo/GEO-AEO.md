@@ -61,13 +61,13 @@ Entidades que a Cadência usa sempre do mesmo jeito: "Cadência" (a empresa e o 
 
 Todo pilar e todo satélite têm um bloco de definição bem formatado perto do topo. Os motores de resposta gostam muito deles.
 
-Modelo:
+Modelo, com uma entidade da Cadência:
 
-> **O que é [entidade]?**
+> **O que é Pix automático?**
 >
-> [Entidade] é [definição em uma ou duas frases]. Importa porque [motivo simples]. Diferente de [conceito relacionado], [entidade] é [distinção clara].
+> **Pix automático** é a cobrança recorrente pelo Pix: a aluna autoriza uma vez no app do banco e a mensalidade sai sozinha todo mês, na data combinada. Importa porque o estúdio para de cobrar aluna por aluna no WhatsApp. Diferente do Pix agendado, a aluna não precisa programar cada pagamento.
 
-Use um H2 escrito como a pergunta. Use negrito na entidade na primeira menção. Mantenha a resposta entre 40 e 60 palavras.
+A ordem é sempre a mesma: definição em uma ou duas frases, por que importa, como se diferencia de um conceito vizinho. Use um H2 escrito como a pergunta. Use negrito na entidade na primeira menção. Mantenha a resposta entre 40 e 60 palavras.
 
 Bloco de definição do pilar do cluster 1 da Cadência:
 

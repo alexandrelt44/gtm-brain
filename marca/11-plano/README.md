@@ -6,12 +6,14 @@ A 11ª camada da marca. As outras dez dizem para quem você vende, como fala, o 
 
 Esta pasta transforma um número, a receita que você precisa de clientes novos nos próximos 12 meses, num plano que cabe em uma página. Você trabalha de trás para frente a partir desse número:
 
-1. Meta de receita ÷ quanto um cliente novo vale no primeiro ano = clientes de que você precisa.
-2. Clientes ÷ sua taxa de fechamento = leads de que você precisa.
-3. Leads ÷ a taxa de conversão do seu site = visitas de que você precisa.
-4. Visitas divididas entre poucos canais, cada um com meta mensal e uma pessoa responsável.
-5. Um teto de orçamento definido pelo que um cliente vale, não por um percentual do faturamento.
-6. Quatro números que você confere uma vez por mês: visitas, leads, clientes e custo por cliente.
+1. Meta de receita total menos o que os clientes atuais já pagam = meta de receita de clientes novos.
+2. Meta de receita de clientes novos ÷ quanto um cliente novo vale no primeiro ano = clientes de que você precisa.
+3. Clientes ÷ sua taxa de fechamento = leads de que você precisa.
+4. Leads ÷ a taxa de conversão do seu site = visitas de que você precisa.
+5. Visitas divididas entre poucos canais, cada um com meta mensal e uma pessoa responsável.
+6. Um teto de orçamento definido pelo que um cliente vale, não por um percentual do faturamento.
+
+Os números da lista são os passos da [`CONTA-DO-CLIENTE.md`](CONTA-DO-CLIENTE.md). Depois dos seis passos vem o placar: quatro números que você confere uma vez por mês (visitas, leads, clientes e custo por cliente), com as metas dos passos 4, 3, 2 e 6.
 
 Cada linha da página pronta volta ao número da receita. Quando um canal falha, você sabe quantos clientes essa falha custa.
 

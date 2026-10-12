@@ -13,7 +13,7 @@ Copie o bloco abaixo para um documento, um app de notas ou o seu próprio reposi
 
 ## Como preencher
 
-- **Cada linha vem do passo com o mesmo número.** As linhas de META vêm dos passos 1 e 2, as de CONTA dos passos 3 e 4, e assim por diante. A [`CONTA-DO-CLIENTE.md`](CONTA-DO-CLIENTE.md) explica cada passo com a fórmula.
+- **Cada linha vem do passo com o mesmo número.** As linhas de META vêm dos passos 1 e 2, as de CONTA dos passos 3 e 4, e assim por diante até o ORÇAMENTO, no passo 6. O PLACAR não é um passo novo: repete por mês as metas dos passos 2, 3, 4 e 6, arredondadas para cima. A [`CONTA-DO-CLIENTE.md`](CONTA-DO-CLIENTE.md) explica cada passo com a fórmula.
 - **Preencha de cima para baixo.** Cada seção usa as respostas da seção anterior.
 - **Marque os provisórios.** Se sua taxa de fechamento ou de conversão é um chute, marque a caixa de provisório e escreva a data em que vai trocar por um número medido. Um chute rotulado não tem problema. Um chute sem rótulo vira fato sem ninguém perceber.
 - **Coloque um nome ao lado de cada canal.** Uma pessoa, não um departamento. Canal sem dono não é trabalhado.
@@ -53,10 +53,10 @@ Teto de orçamento (custo aceitável × clientes necessários):    R$ 165.000 po
 Custo estimado dos canais (dinheiro + horas a R$ 50/h):        R$ 12.650 por mês   [x] cabe no teto (apertado: 92%)  [ ] precisa mudar
                                                                (horas da Marina a R$ 100/h)
 
-PLACAR (passo 7)                 Meta/mês        Real (M1)     Real (M2)     Real (M3)
+PLACAR (passos 2, 3, 4 e 6)      Meta/mês        Real (M1)     Real (M2)     Real (M3)
 Visitas às páginas que vendem    3.334           a medir       a medir       a medir
 Leads                            84              a medir       a medir       a medir
-Clientes novos                   16 a 17         a medir       a medir       a medir
+Clientes novos                   17              a medir       a medir       a medir
 Custo por cliente                R$ 825          a medir       a medir       a medir
 
 REVISÃO

@@ -24,6 +24,7 @@ Os arquivos continuam sendo a fonte de verdade: markdown no seu repositório, ve
 | [`marca/`](marca/) | O template em branco: as 11 camadas para você preencher |
 | [`exemplo/`](exemplo/) | A **Cadência**, uma startup fictícia com as camadas preenchidas, para ver o GTM Brain funcionando |
 | [`brain/`](brain/) | O app: leitura dos arquivos, fichas, grafo, servidor e editor colaborativo |
+| [`skills/`](skills/) | Skills para um agente de IA preencher a marca com você |
 | [`docs/`](docs/) | Convenções que o GTM Brain entende |
 
 ## As 11 camadas
@@ -77,7 +78,26 @@ Abra http://127.0.0.1:3348. Em qualquer ficha, **Editar com IA** abre o arquivo 
 
 Sem `--write`, o servidor fica em modo leitura: dá para editar e ver as mudanças, mas nada vai para o disco.
 
-**4. Usar com qualquer agente de IA**
+**4. Preencher com um agente**
+
+As skills de [`skills/`](skills/) conduzem o preenchimento com você. O agente lê as fontes que você indicar (site, transcrições de calls, CRM, avaliações, notas), pergunta só o que elas não respondem, poucas perguntas por vez e cada uma com uma resposta recomendada, e escreve nos arquivos com selo e fonte em cada afirmação, sem inventar número. O que ele não souber fica marcado como pendente.
+
+No Claude Code, abra o repositório e peça "preencher a marca", ou instale as skills como plugin para usar em qualquer pasta:
+
+```
+/plugin marketplace add alexandrelt44/gtm-brain
+/plugin install gtm-brain@gtm-brain
+```
+
+Em outros agentes (Codex, Cursor…), aponte para [`AGENTS.md`](AGENTS.md).
+
+Para ver o que falta e qual skill usar em cada arquivo:
+
+```sh
+npm run lacunas -- --marca ../marca
+```
+
+**5. Usar com qualquer agente de IA**
 
 Cole `10-cerebro/CEREBRO.md` como system prompt e siga a ordem de carga que ele indica. Com o servidor rodando, `GET /api/brain` devolve todas as fichas em JSON.
 

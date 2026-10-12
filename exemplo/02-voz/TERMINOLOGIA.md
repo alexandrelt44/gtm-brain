@@ -16,10 +16,10 @@ Fontes citadas neste arquivo:
 ## Checklist para agentes de IA
 
 - [ ] Legível por máquina: tabelas em ordem alfabética, com colunas de termo preferido e de termo proibido.
-- [ ] Estruturado: categorias claras (produto, serviço, setor, empresa, público).
-- [ ] Fonte única: o único documento de terminologia que a empresa publica.
-- [ ] Versionado: data da última atualização e histórico de mudanças no fim.
-- [ ] Citável: os agentes citam `/02-voz/TERMINOLOGIA.md` quando corrigem uma palavra.
+- [x] Estruturado: categorias claras (produto, serviço, setor, empresa, público).
+- [x] Fonte única: o único documento de terminologia que a empresa publica.
+- [x] Versionado: data da última atualização e histórico de mudanças no fim.
+- [x] Citável: os agentes citam `/02-voz/TERMINOLOGIA.md` quando corrigem uma palavra.
 
 Última atualização: 2026-10-01
 

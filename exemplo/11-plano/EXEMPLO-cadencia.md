@@ -37,7 +37,7 @@ A empresa tem 16 pessoas e é tocada por Marina Duarte (CEO, ex-dona de estúdio
 |---|---|
 | Visitas às páginas de planos, de modalidade e de teste grátis | 3.334 |
 | Leads (testes iniciados e demonstrações agendadas) | 84 (1.000 ÷ 12, arredondado para cima) |
-| Estúdios novos | 16 a 17 |
+| Estúdios novos | 17 (200 ÷ 12, arredondado para cima) |
 | Custo por estúdio | abaixo de R$ 825 |
 
 | REVISÃO | |
@@ -50,7 +50,7 @@ A empresa tem 16 pessoas e é tocada por Marina Duarte (CEO, ex-dona de estúdio
 - **Receita de clientes novos (R$ 660.000):** a meta de receita dos próximos 12 meses menos o que a base atual deve pagar no período. Para a base, Tiago projetou o MRR de R$ 118 mil mês a mês descontando o churn de 2,1% e não contou expansão (estúdio que sobe de plano), para não inflar a conta.
 - **Valor do primeiro ano (R$ 3.300):** Tiago puxa do sistema de cobrança os estúdios que entraram nos últimos 24 meses e soma o que cada um pagou nos primeiros 12: mensalidades, upgrades e a implantação assistida de R$ 990 para quem contratou. O número já embute os estúdios que cancelaram no primeiro ano, por isso fica abaixo de 12 mensalidades cheias.
 - **Taxa de fechamento (20%):** o CRM, nos últimos seis meses, com a mesma definição de lead todo mês. A taxa é realista para quem chega por indicação ou pela busca "sistema para estúdio de pilates" e otimista para quem chega por anúncio de teste grátis, que traz muita gente só olhando.
-- **Taxa de conversão (2,5%):** eventos principais do GA4 (`teste_iniciado` e `demonstracao_agendada`) divididos pelas sessões nas páginas de planos, de modalidade e de teste grátis. O blog fica de fora. Quem chama no WhatsApp e agenda demonstração por lá conta como demonstração agendada, então o clique no botão de WhatsApp também é evento principal.
+- **Taxa de conversão (2,5%):** eventos principais do GA4 (`trial_start` e `call_booked`) divididos pelas sessões nas páginas de planos, de modalidade e de teste grátis. O blog fica de fora. Quem chama no WhatsApp e agenda demonstração por lá conta como demonstração agendada, então o clique no botão de WhatsApp (`whatsapp_click`) também é evento principal.
 - **Metas por canal:** a coluna "Como a Cadência mede" acima. Cada número sai de um relatório que a empresa já tem.
 - **Teto de orçamento (R$ 165.000):** 25% do valor do primeiro ano vezes 200 estúdios. Cobre a mídia paga, as ferramentas, os eventos e as horas da equipe a um valor real, que é a linha mais fácil de esquecer.
 
@@ -104,11 +104,12 @@ Toda linha deste plano vai estar errada de algum jeito no fim do primeiro trimes
 ## A caixa "atualizado em", preenchida
 
 ```
-ATUALIZADO EM: 2026-10-05
+ATUALIZADO EM: 2026-10-01
 
 Referências usadas (valor, fonte, janela de dados):  Custo por teste iniciado R$ 120 (contas de anúncio próprias, abr. a set. 2026);
-                                                     taxa de fechamento 20% (CRM próprio, abr. a set. 2026)
-Ferramentas de medição:                              GA4, Google Search Console, Google Meu Negócio, CRM, sistema de cobrança da própria Cadência
+                                                     taxa de fechamento 20% (CRM próprio, abr. a set. 2026);
+                                                     churn mensal 2,1% (painel interno, média de abr. a set. 2026)
+Ferramentas de medição:                              GA4, Google Search Console, Google Meu Negócio, RD Station CRM, painel interno da Cadência
 Canais no plano:                                     Google e Google Meu Negócio, indicações e avaliações, e-mail e WhatsApp, mídia paga, Instagram, eventos
 ```
 

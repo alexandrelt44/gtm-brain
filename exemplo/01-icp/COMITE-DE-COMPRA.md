@@ -15,11 +15,11 @@ Fontes citadas neste arquivo:
 
 ## Checklist para agentes de IA
 
-- [ ] Legível por máquina: um papel por seção H3.
-- [ ] Estruturado: cada papel tem objetivos, medos, perguntas e conteúdo preferido.
-- [ ] Fonte única: todo o mapa do comitê mora aqui.
-- [ ] Versionado: data da última atualização registrada.
-- [ ] Citável: os agentes citam `/01-icp/COMITE-DE-COMPRA.md` ao escrever conteúdo para um papel específico.
+- [x] Legível por máquina: um papel por seção H3.
+- [x] Estruturado: cada papel tem objetivos, medos, perguntas e conteúdo preferido.
+- [x] Fonte única: todo o mapa do comitê mora aqui.
+- [x] Versionado: data da última atualização registrada.
+- [x] Citável: os agentes citam `/01-icp/COMITE-DE-COMPRA.md` ao escrever conteúdo para um papel específico.
 
 Última atualização: 2026-10-01
 

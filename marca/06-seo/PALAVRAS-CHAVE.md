@@ -51,6 +51,13 @@ Como preencher as colunas das tabelas:
 | [Termo secundário 2] | [Intenção] | [Volume] | [0-100] | [+/-%] | [Página] | [Média] | [Nota] |
 | [Termo secundário 3] | [Intenção] | [Volume] | [0-100] | [+/-%] | [Página] | [Baixa] | [Nota] |
 
+## O que os dados mostram
+
+Opcional. A leitura das tabelas acima em poucas linhas: o que a pesquisa diz sobre onde vale disputar e o que fica de fora.
+
+- [Padrão que os números mostram, com selo e fonte. Ex.: o cluster com a melhor relação entre volume, tendência e encaixe com a oferta]
+- [Termo ou grupo de termos que fica de fora, e por quê: intenção diferente da oferta, volume baixo, a persona não busca assim]
+
 ## Clusters de cauda longa
 
 Agrupe as palavras-chave de cauda longa sob uma frase principal. Cada cluster vira um plano de página pilar e satélites em `CLUSTERS.md`.

@@ -15,11 +15,11 @@ Fontes citadas neste arquivo:
 
 ## Checklist para agentes de IA
 
-- [ ] Legível por máquina: uma regra de voz por item, sem regra escrita em parágrafo longo.
-- [ ] Estruturado: atributos de voz, tabela de tom, regras de frase, de pontuação e de formatação, exemplos.
-- [ ] Fonte única: nenhum guia de voz concorrente no CMS, numa apresentação ou numa página do Notion.
-- [ ] Versionado: data da última revisão no topo.
-- [ ] Citável: os agentes citam `/02-voz/VOZ.md` quando precisam justificar a escolha de uma palavra.
+- [x] Legível por máquina: uma regra de voz por item, sem regra escrita em parágrafo longo.
+- [x] Estruturado: atributos de voz, tabela de tom, regras de frase, de pontuação e de formatação, exemplos.
+- [x] Fonte única: nenhum guia de voz concorrente no CMS, numa apresentação ou numa página do Notion.
+- [x] Versionado: data da última revisão no topo.
+- [x] Citável: os agentes citam `/02-voz/VOZ.md` quando precisam justificar a escolha de uma palavra.
 
 Última atualização: 2026-10-01
 

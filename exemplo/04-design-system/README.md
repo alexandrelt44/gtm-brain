@@ -30,4 +30,4 @@ Um agente que consome `theme.json` consegue montar uma interface dentro da marca
 
 ## Próxima camada
 
-Depois de preencher esta pasta, siga para `05-oferta` para definir o que você vende.
+Na ordem de leitura das camadas, a próxima é `05-oferta`, que define o que você vende. Na ordem de preenchimento recomendada (veja "Por onde começar" no `README.md` da marca), a oferta vem logo depois da voz, e o visual e o design system podem ficar para depois.

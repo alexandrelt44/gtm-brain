@@ -202,7 +202,8 @@ Ao rascunhar:
 2. Cite as promessas exatamente como estão. Não invente promessas novas.
 3. Use só as ofertas listadas neste arquivo. Se o cliente pedir algo que não está aqui, sinalize para uma pessoa do time.
 4. Use exatamente os preços daqui. Se o preço não é publicado, diga "preço conforme o escopo" e sinalize.
-5. Cite as provas pelo nome ou pelo ID (CS-001, T-001, D-001), nunca de forma genérica.
+5. Toda prova vem de /08-conteudo/PROVAS.md, nunca de forma genérica. No rascunho interno e nos arquivos da marca, cite pelo ID (CS-001, T-001, D-001).
+   No texto que vai ser publicado ou enviado ao cliente, cite o que a prova é: o cliente pelo nome (só com permissão registrada), a citação ou o dado com a fonte. O ID nunca aparece nesse texto.
 
 Cite /05-oferta/OFERTA.md em todo rascunho.
 ```

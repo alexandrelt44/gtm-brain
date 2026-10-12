@@ -17,11 +17,11 @@ Este arquivo é um ponto de partida, não é aconselhamento jurídico. Passe por
 
 ## Checklist para agentes de IA
 
-- [ ] Legível por máquina: regras escritas como frases curtas do tipo "se, então".
-- [ ] Estruturado: uma categoria por H2, uma regra por item.
-- [ ] Fonte única: o único documento de compliance usado por marketing e vendas.
-- [ ] Versionado: data da última atualização e da última revisão jurídica no topo.
-- [ ] Citável: os agentes apontam `/02-voz/COMPLIANCE.md` quando retêm um conteúdo para revisão.
+- [x] Legível por máquina: regras escritas como frases curtas do tipo "se, então".
+- [x] Estruturado: uma categoria por H2, uma regra por item.
+- [x] Fonte única: o único documento de compliance usado por marketing e vendas.
+- [x] Versionado: data da última atualização e da última revisão jurídica no topo.
+- [x] Citável: os agentes apontam `/02-voz/COMPLIANCE.md` quando retêm um conteúdo para revisão.
 
 Última atualização: 2026-10-01
 Última revisão jurídica: 2026-08-14, Helena Castro, advogada externa

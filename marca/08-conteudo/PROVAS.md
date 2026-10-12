@@ -49,12 +49,25 @@ Repita o formato.
 
 ## Índice de cases
 
-Aponte para os cases completos. Guarde o texto detalhado em `/cases/`.
+Aponte para os cases completos. O texto completo de cada case fica na página do case no site (coluna URL, ver `/07-site/MAPA-DO-SITE.md`). O resumo de cada case, com antes, mudança, resultado e permissão, vem logo depois da tabela, num registro por case.
 
 | ID | Cliente | Segmento | Serviço | Métrica principal | URL | Status |
 | --- | --- | --- | --- | --- | --- | --- |
 | CS-001 | [Cliente] | [Segmento] | [Serviço] | [Métrica] | [/cases/slug] | [No ar] |
 | CS-002 | [Cliente] | [Segmento] | [Serviço] | [Métrica] | [/cases/slug] | [No ar] |
+
+### CS-001 · [Cliente, cidade (UF)]
+
+- **Cliente:** [Nome do cliente, quem fala por ele, porte]
+- **Antes:** [Como era o problema antes, com número se houver e a fonte]
+- **O que mudou:** [O que o cliente passou a fazer com o produto ou serviço. Cite a capacidade (CAP-) quando houver]
+- **Resultado:** [Métrica de antes para depois, em quanto tempo, com a fonte. Sem número medido, escreva (pendente)]
+- **Permissão:** [Data do termo assinado e o que ele autoriza: nome, números, logo]
+- **Depoimento ligado:** [T-001, ou "nenhum por enquanto"]
+
+### CS-002 · [Cliente, cidade (UF)]
+
+Repita o formato.
 
 ## Avaliações
 
@@ -81,14 +94,22 @@ Conteúdo gerado por clientes e aprovado para uso.
 | --- | --- | --- | --- | --- |
 | [Instagram] | [URL] | [Nome, @perfil] | [Data] | [Usos] |
 
+## Prova de capacidade
+
+O que a empresa já construiu e opera, ligado à prova que mostra que funciona.
+
+| ID | O quê | Prova | Uso |
+| --- | --- | --- | --- |
+| CAP-001 | [O que a empresa faz ou opera, em uma frase concreta] | [IDs das provas que mostram que funciona: CS-, D-, T-] | [Páginas, demonstrações e arquivos onde a capacidade aparece] |
+
 ## Dados e benchmarks
 
 Números que publicamos, cada um com fonte nomeada e data. Dado sem fonte não entra.
 
-| ID | Dado | Valor | Fonte | Data | Link |
+| ID | Afirmação | Valor | Fonte | Data | Uso |
 | --- | --- | --- | --- | --- | --- |
-| D-001 | [Frase do dado] | [Número] | [Nome da fonte] | [Data] | [URL] |
-| D-002 | [Frase do dado] | [Número] | [Nome da fonte] | [Data] | [URL] |
+| D-001 | [Frase da afirmação que o número sustenta] | [Número, com período e base] | [Nome da fonte, com link quando houver] | [AAAA-MM-DD] | [Onde o dado aparece, ou "Uso interno. Não publicar"] |
+| D-002 | [Frase da afirmação que o número sustenta] | [Número, com período e base] | [Nome da fonte, com link quando houver] | [AAAA-MM-DD] | [Onde o dado aparece, ou "Uso interno. Não publicar"] |
 
 ## Logos
 

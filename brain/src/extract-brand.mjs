@@ -53,6 +53,9 @@ export const RE_EXPLICIT = /\[(CONTRADIZ|PENDENTE|DERIVA):\s*([^\]]+)\]/g
 // Words that flag something still owed
 export const RE_PENDING = /(\(pendente\)|\[PENDENTE:|⬜|\bem definição|a confirmar|não registrad|verificar antes|ainda não adaptad)/i
 // A banner in the first lines saying the file is still the upstream template.
+// A template instruction left in place: a bracket with lowercase text ("[1 a 9 funcionários]").
+// Seals and source tags are all caps, even with a pointer ([CASES, Hypnos]); checklist marks ([x]) and explicit marks ([PENDENTE: /05-oferta/…]) are content.
+export const RE_INSTRUCTION = /\[(?![xX]\]|(?:PENDENTE|CONTRADIZ|DERIVA):|[A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-ZÁÉÍÓÚÂÊÔÃÕÇ0-9-]{1,20}[ ,§])[^\]\n]*[a-zà-ÿ][^\]\n]*\](?!\()/g
 export const RE_NOT_ADAPTED = /(ainda não adaptad|não são da marca|not yet adapted)/i
 
 // The brand's own data files, in the English template and in the GTM Brain template.
@@ -74,7 +77,7 @@ const NOT_SOURCES = new Set([
   'URL', 'SUBJECT', 'STYLE', 'LIGHTING', 'SETTING', 'MOOD', 'COMPOSITION', 'PALETTE',
   'PAA', 'MIT', 'GTM', 'GSC', 'DPA', 'CTA', 'YYYY-MM-DD', 'AAAA-MM-DD',
   'ASSUNTO', 'ESTILO', 'LUZ', 'CENÁRIO', 'CLIMA', 'COMPOSIÇÃO', 'PALETA', 'NOME', 'CARGO', 'EMPRESA', 'CLIENTE',
-  'LGPD', 'CNPJ', 'PIX', 'SEO', 'GEO', 'AEO', 'FAQ', 'UTM', 'CRM', 'SAAS', 'B2B', 'B2C', 'KPI', 'ICP', 'TODO', 'OK',
+  'LGPD', 'CNPJ', 'PIX', 'SEO', 'GEO', 'AEO', 'FAQ', 'UTM', 'SAAS', 'B2B', 'B2C', 'KPI', 'ICP', 'TODO', 'OK',
 ])
 
 // Proof id prefix → human kind
@@ -162,7 +165,7 @@ export function findProofDefinitions(text) {
   const defs = new Map()
   const lines = text.split('\n')
   lines.forEach((line, i) => {
-    let m = /^#{2,4}\s+((?:CS|CAP|D|T)-\d{3})\b\s*[·:-]?\s*(.*)$/.exec(line)
+    let m = /^#{2,4}\s+(?:(?:Depoimento|Testimonial|Case|Dado|Data)\s+)?((?:CS|CAP|D|T)-\d{3})\b\s*[·:-]?\s*(.*)$/.exec(line)
     if (m) {
       defs.set(m[1], { line: i + 1, label: m[2].trim() || m[1] })
       return
@@ -314,10 +317,6 @@ export function extractBrand(root, opts = {}) {
 
   // An undefined [TAG] counts as a source only when the corpus uses it on 3+ lines;
   // one-off capitals in brackets are usually prompt slots, not sources.
-  const tagLines = new Map()
-  for (const text of texts.values()) for (const line of text.split('\n')) {
-    for (const t of new Set([...line.matchAll(RE_SOURCE_TAG)].map((m) => m[1]))) tagLines.set(t, (tagLines.get(t) || 0) + 1)
-  }
   const RE_ISSUE = issueRe(opts.issues)
 
   // Implicit aliases: "CS-001 · Acme, …" lets a bare "Acme" point at CS-001.
@@ -335,11 +334,12 @@ export function extractBrand(root, opts = {}) {
     const placeholders = (text.match(RE_PLACEHOLDER) || []).length
     const isReadme = /(^|\/)README\.md$/.test(f) || /(^|\/)(examples|exemplos)\//.test(f) || /(EXAMPLE|EXEMPLO)-/.test(f)
     const isRepoMeta = !/^\d{2}-/.test(f)
-    // Filled: names the brand near the top, or is one of the brand's own data files (not a
-    // README, scaffold or example) with no placeholder and (almost) no bracketed instruction left.
-    const instructions = (text.match(/\[[^\]\n]*[a-zà-ÿ][^\]\n]*\](?!\()/g) || []).length
-    const looksFilled = RE_CANONICAL.test(f) && placeholders === 0 && instructions <= 2
-    const filled = ((brand && head.includes(brand)) || looksFilled) && !RE_NOT_ADAPTED.test(head)
+    // Filled: names the brand near the top or is one of the brand's own data files (not a README,
+    // scaffold or example), AND has no placeholder and (almost) no bracketed instruction left.
+    // Naming the brand in the title alone does not fill a template.
+    const instructions = (text.replace(/`[^`\n]*`/g, '').match(RE_INSTRUCTION) || []).length
+    const clean = placeholders === 0 && instructions <= 6
+    const filled = ((brand && head.includes(brand)) || RE_CANONICAL.test(f)) && clean && !RE_NOT_ADAPTED.test(head)
     let status
     // READMEs and worked examples never count as brand data, even when they name the brand.
     if (isReadme || isRepoMeta) status = 'meta'
@@ -365,6 +365,15 @@ export function extractBrand(root, opts = {}) {
   for (const [f, text] of texts) {
     const info = classify(f, text)
     fileInfo.set(f, info)
+  }
+  // Sources come from the brand's filled files only: the template's own examples are not sources.
+  for (const [tag, d] of [...sourceDefs]) if (fileInfo.get(d.file)?.status !== 'filled') sourceDefs.delete(tag)
+  const tagLines = new Map()
+  for (const [f, text] of texts) {
+    if (fileInfo.get(f).status !== 'filled') continue
+    for (const line of text.split('\n')) {
+      for (const t of new Set([...line.matchAll(RE_SOURCE_TAG)].map((m) => m[1]))) tagLines.set(t, (tagLines.get(t) || 0) + 1)
+    }
   }
   const keep = (f) => opts.includeKit || ['filled', 'template'].includes(fileInfo.get(f).status) || f === bbPath
 

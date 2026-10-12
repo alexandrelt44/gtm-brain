@@ -15,11 +15,11 @@ Fontes citadas neste arquivo:
 
 ## Checklist para agentes de IA
 
-- [ ] Legível por máquina: toda citação sob um título de fonte identificado.
-- [ ] Estruturado: uma citação por item, com fonte, data e contexto.
-- [ ] Fonte única: toda a voz do cliente mora aqui, não em conversa de WhatsApp ou documento solto.
-- [ ] Versionado: data da revisão trimestral registrada no topo.
-- [ ] Citável: os agentes citam `/01-icp/VOZ-DO-CLIENTE.md` quando aproveitam uma expressão.
+- [x] Legível por máquina: toda citação sob um título de fonte identificado.
+- [x] Estruturado: uma citação por item, com fonte, data e contexto.
+- [x] Fonte única: toda a voz do cliente mora aqui, não em conversa de WhatsApp ou documento solto.
+- [x] Versionado: data da revisão trimestral registrada no topo.
+- [x] Citável: os agentes citam `/01-icp/VOZ-DO-CLIENTE.md` quando aproveitam uma expressão.
 
 Última revisão: 2026-10-01
 

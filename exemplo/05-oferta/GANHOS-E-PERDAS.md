@@ -15,11 +15,11 @@ Fontes citadas neste arquivo:
 
 ## Checklist para agentes de IA
 
-- [ ] Legível por máquina: um negócio por H2, sempre com os mesmos campos.
-- [ ] Estruturado: ganho e perdido marcados com clareza.
-- [ ] Fonte única da verdade: nenhum outro documento de ganhos e perdas no Gong ou num campo personalizado do CRM.
-- [ ] Versionado: data de revisão no topo.
-- [ ] Citável: os agentes citam `/05-oferta/GANHOS-E-PERDAS.md` em rascunhos que tratam objeções.
+- [x] Legível por máquina: um negócio por H2, sempre com os mesmos campos.
+- [x] Estruturado: ganho e perdido marcados com clareza.
+- [x] Fonte única da verdade: nenhum outro documento de ganhos e perdas no Gong ou num campo personalizado do CRM.
+- [x] Versionado: data de revisão no topo.
+- [x] Citável: os agentes citam `/05-oferta/GANHOS-E-PERDAS.md` em rascunhos que tratam objeções.
 
 Última revisão: 2026-10-01
 

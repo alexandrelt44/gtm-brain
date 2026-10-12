@@ -69,36 +69,38 @@ Use tokens. Toda cor tem uma função. Não invente novos valores hex.
 
 | Token | Função | Hex | RGB | HSL | OKLCH |
 | --- | --- | --- | --- | --- | --- |
-| `--color-brand-primary` | Elementos de destaque do topo, CTA principal | `#0B3A5B` | `11, 58, 91` | `207, 78%, 20%` | `oklch(0.34 0.07 240)` |
-| `--color-brand-primary-hover` | Estado hover da primária | `#124D7A` | `18, 77, 122` | `209, 74%, 27%` | `oklch(0.42 0.08 240)` |
+| `--color-brand-primary` | Elementos de destaque do topo, CTA principal | `#0B3A5B` | `11, 58, 91` | `205, 78%, 20%` | `oklch(0.34 0.08 245)` |
+| `--color-brand-primary-hover` | Estado hover da primária | `#124D7A` | `18, 77, 122` | `206, 74%, 27%` | `oklch(0.41 0.10 247)` |
 | `--color-brand-primary-fg` | Texto sobre a primária | `#FFFFFF` | `255, 255, 255` | `0, 0%, 100%` | `oklch(1.00 0 0)` |
 
 ### Secundária
 
 | Token | Função | Hex | RGB | HSL | OKLCH |
 | --- | --- | --- | --- | --- | --- |
-| `--color-brand-secondary` | Elementos de apoio | `#D97706` | `217, 119, 6` | `31, 95%, 44%` | `oklch(0.69 0.17 52)` |
-| `--color-brand-secondary-hover` | Estado hover da secundária | `#B45309` | `180, 83, 9` | `29, 91%, 37%` | `oklch(0.60 0.15 50)` |
+| `--color-brand-secondary` | Elementos de apoio | `#D97706` | `217, 119, 6` | `32, 95%, 44%` | `oklch(0.67 0.16 58)` |
+| `--color-brand-secondary-hover` | Estado hover da secundária | `#B45309` | `180, 83, 9` | `26, 90%, 37%` | `oklch(0.56 0.15 49)` |
 | `--color-brand-secondary-fg` | Texto sobre a secundária | `#FFFFFF` | `255, 255, 255` | `0, 0%, 100%` | `oklch(1.00 0 0)` |
 
 ### Destaque
 
 | Token | Função | Hex | RGB | HSL | OKLCH |
 | --- | --- | --- | --- | --- | --- |
-| `--color-accent-1` | Realce, etiqueta, chamada | `#10B981` | `16, 185, 129` | `160, 84%, 39%` | `oklch(0.71 0.17 162)` |
-| `--color-accent-2` | Série secundária de gráficos | `#6366F1` | `99, 102, 241` | `239, 84%, 67%` | `oklch(0.60 0.20 270)` |
+| `--color-accent-1` | Realce, etiqueta, chamada | `#10B981` | `16, 185, 129` | `160, 84%, 39%` | `oklch(0.70 0.15 162)` |
+| `--color-accent-2` | Série secundária de gráficos | `#6366F1` | `99, 102, 241` | `239, 84%, 67%` | `oklch(0.59 0.20 277)` |
 
 ### Neutras
 
 | Token | Função | Hex | RGB | OKLCH |
 | --- | --- | --- | --- | --- |
 | `--color-neutral-0` | Fundo da página | `#FFFFFF` | `255, 255, 255` | `oklch(1.00 0 0)` |
-| `--color-neutral-50` | Fundo de card | `#F8FAFC` | `248, 250, 252` | `oklch(0.98 0.01 240)` |
-| `--color-neutral-100` | Fundo de seção | `#F1F5F9` | `241, 245, 249` | `oklch(0.96 0.01 240)` |
-| `--color-neutral-200` | Bordas, divisórias | `#E2E8F0` | `226, 232, 240` | `oklch(0.92 0.02 240)` |
-| `--color-neutral-500` | Texto secundário | `#64748B` | `100, 116, 139` | `oklch(0.55 0.03 240)` |
-| `--color-neutral-700` | Texto corrido | `#334155` | `51, 65, 85` | `oklch(0.35 0.03 240)` |
-| `--color-neutral-900` | Títulos | `#0F172A` | `15, 23, 42` | `oklch(0.17 0.03 240)` |
+| `--color-neutral-50` | Fundo de card | `#F8FAFC` | `248, 250, 252` | `oklch(0.98 0.003 248)` |
+| `--color-neutral-100` | Fundo de seção | `#F1F5F9` | `241, 245, 249` | `oklch(0.97 0.01 248)` |
+| `--color-neutral-200` | Bordas, divisórias | `#E2E8F0` | `226, 232, 240` | `oklch(0.93 0.01 256)` |
+| `--color-neutral-300` | Bordas sutis | `#CBD5E1` | `203, 213, 225` | `oklch(0.87 0.02 253)` |
+| `--color-neutral-400` | Placeholders | `#94A3B8` | `148, 163, 184` | `oklch(0.71 0.04 257)` |
+| `--color-neutral-500` | Texto secundário | `#64748B` | `100, 116, 139` | `oklch(0.55 0.04 257)` |
+| `--color-neutral-700` | Texto corrido | `#334155` | `51, 65, 85` | `oklch(0.37 0.04 257)` |
+| `--color-neutral-900` | Títulos | `#0F172A` | `15, 23, 42` | `oklch(0.21 0.04 266)` |
 
 ### Semânticas
 

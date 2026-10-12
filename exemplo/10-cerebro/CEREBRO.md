@@ -215,7 +215,7 @@ Como aparecemos na busca:
 Como medimos sucesso:
 - Métrica norte (north star): MRR novo vindo de estúdios gerados pelo marketing, por mês.
 - KPI principal de marketing: leads dentro do ICP por mês (testes iniciados mais demonstrações agendadas), meta de 84.
-- Eventos de conversão: teste_iniciado, demonstracao_agendada, clique_whatsapp, download_material, newsletter_inscricao.
+- Eventos de conversão: trial_start, call_booked, whatsapp_click, lead_magnet_download, newsletter_subscribe.
 - Modelo de atribuição: primeiro toque para reconhecimento, último toque não direto para pipeline, multitoque para receita.
 
 Regras para tudo o que você produzir:

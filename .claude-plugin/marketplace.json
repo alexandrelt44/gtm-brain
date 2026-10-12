@@ -1,0 +1,17 @@
+{
+  "$schema": "https://code.claude.com/schemas/marketplace.json",
+  "name": "gtm-brain",
+  "owner": {
+    "name": "Alexandre Leite"
+  },
+  "metadata": {
+    "description": "GTM Brain: o cérebro de go-to-market da marca em markdown"
+  },
+  "plugins": [
+    {
+      "name": "gtm-brain",
+      "source": "./",
+      "description": "Skills para preencher as 11 camadas do GTM Brain com um agente"
+    }
+  ]
+}

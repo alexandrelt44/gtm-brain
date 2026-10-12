@@ -11,6 +11,7 @@ npm run build -- --marca ../exemplo       # gera out/gtm-brain.html (abre por fi
 npm run dev -- --marca ../marca           # editor (porta 4000) + GTM Brain ao vivo (porta 3348), modo leitura
 npm run dev -- --marca ../marca --write   # grava as edições nos arquivos
 npm run dev -- --marca ../marca --commit  # grava e faz um commit por salvamento (a pasta precisa ser um repo git)
+npm run lacunas -- --marca ../marca       # o que falta preencher, em ordem, e qual skill usar
 npm run setup:proof                       # uma vez: baixa o Proof SDK numa versão fixa e prepara o editor
 npm test                                  # testes com fixtures sintéticas
 ```
@@ -54,6 +55,7 @@ Opções do build e do servidor:
 - `src/extract-brand.mjs`: lê os markdowns e monta o grafo de arquivos, seções, provas, fontes e referências
 - `src/brain-model.mjs`: a camada de interpretação: o esquema das categorias, os registros, a completude e os links
 - `src/md.mjs`, `src/md-merge.mjs`: markdown como dados, e a gravação sem reformatar
+- `src/lacunas.mjs`: o relatório de lacunas que as skills de `../skills/` usam
 - `src/server.mjs`: servidor ao vivo e sessões arquivo ↔ documento do editor
 - `src/brain.html`, `src/viewer.html`: o GTM Brain e o explorador técnico
 - `proof-skin/`: tradução e visual do editor, injetados por `scripts/proof.sh`

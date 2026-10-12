@@ -30,4 +30,4 @@ Sem estes arquivos, cada peça soa como quem escreveu por último. Com eles, tud
 
 ## Próxima camada
 
-Depois de preencher esta pasta, vá para `03-visual` e defina como a marca aparece.
+Na ordem de leitura das camadas, a próxima é `03-visual`, que define como a marca aparece. Na ordem de preenchimento recomendada (veja "Por onde começar" no `README.md` da marca), vá antes para `05-oferta` e defina o que você vende.
