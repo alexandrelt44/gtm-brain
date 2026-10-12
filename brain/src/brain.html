@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FFFFFF; --side: #F7F6F3; --hover: #EFEDE8; --line: #ECE9E4; --line-2: #DCD8D0;
+  --text: #24142A; --text-2: #4A3F50; --muted: #7A7180; --faint: #A39BA8;
+  --accent: #7C3AED; --accent-soft: #F1EAFE; --accent-line: #DCCBFB; --focus: #3B82F6;
+  --ok: #0F766E; --ok-bg: #EEF9F7; --ok-line: #A7DCD5;
+  --warn: #B45309; --warn-bg: #FFF7ED; --warn-line: #F6D3A8;
+  --bad: #DC2626; --bad-bg: #FEF2F2; --bad-line: #F7C0C0;
+  --pend: #DB2777; --pend-bg: #FDF2F7; --pend-line: #F5C2D9;
+  --sans: Outfit, ui-sans-serif, system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--side); color: var(--text); font: 14px/1.5 var(--sans); overflow: hidden; }
+button { font: inherit; color: inherit; }
+a { color: inherit; }
+.app { display: grid; grid-template-columns: 252px 1fr; height: 100vh; }
+
+/* ---------------------------------------------------------------- sidebar */
+aside.side { display: flex; flex-direction: column; min-height: 0; padding: 14px 8px 0; }
+.brand { display: flex; align-items: baseline; gap: 8px; padding: 0 8px 12px; }
+.brand h1 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+.brand h1 b { color: var(--accent); font-weight: 700; }
+.brand span { color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.search { position: relative; margin: 0 2px 10px; }
+.search input { width: 100%; background: var(--bg); border: 1px solid var(--line-2); border-radius: 8px; color: var(--text); padding: 7px 34px 7px 30px; font: 13px var(--sans); outline: none; }
+.search input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.search svg { position: absolute; left: 9px; top: 9px; color: var(--muted); }
+.search kbd { position: absolute; right: 7px; top: 6px; font: 10px var(--mono); color: var(--faint); border: 1px solid var(--line-2); border-radius: 4px; padding: 1px 5px; background: var(--side); }
+nav { overflow-y: auto; flex: 1; padding-bottom: 12px; }
+.nrow { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 7px; cursor: pointer; color: var(--text-2); white-space: nowrap; user-select: none; }
+.nrow:hover { background: var(--hover); }
+.nrow.sel { background: var(--accent-soft); color: var(--text); }
+.nrow .t { overflow: hidden; text-overflow: ellipsis; flex: 1; }
+.nrow .n { font: 11px var(--mono); color: var(--faint); }
+.nrow .chev { width: 14px; height: 14px; flex: none; color: var(--faint); transition: transform .12s; }
+.nrow .chev.open { transform: rotate(90deg); }
+.nrow .chev.none { visibility: hidden; }
+.nrow svg.ic { flex: none; }
+.nrow.top { font-weight: 500; color: var(--text); }
+.nlabel { font: 500 10px var(--mono); letter-spacing: .09em; text-transform: uppercase; color: var(--faint); padding: 14px 10px 4px; }
+.nsub { font: 500 10px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--faint); padding: 6px 10px 2px 44px; }
+.nrow.item { padding-left: 44px; font-size: 13px; }
+.nrow.subcat { padding-left: 26px; }
+.nrow.item .dot { width: 6px; height: 6px; border-radius: 50%; flex: none; }
+.foot { border-top: 1px solid var(--line); padding: 9px 10px 12px; font: 10.5px/1.6 var(--mono); color: var(--faint); }
+.foot a { color: var(--muted); }
+
+/* ---------------------------------------------------------------- main */
+main { margin: 8px 8px 8px 0; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; display: flex; flex-direction: column; min-width: 0; min-height: 0; overflow: hidden; box-shadow: 0 1px 2px rgba(36,20,42,.04); }
+.top { display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 14px; border-bottom: 1px solid var(--line); flex: none; }
+.top .title { font-weight: 500; }
+.top .sp { flex: 1; }
+.top .stat { font: 11px var(--mono); color: var(--faint); }
+.btn { display: inline-flex; align-items: center; gap: 6px; background: var(--bg); border: 1px solid var(--line-2); border-radius: 7px; padding: 4px 10px; font-size: 12.5px; cursor: pointer; color: var(--text-2); text-decoration: none; }
+.btn:hover { background: var(--side); }
+.body { flex: 1; display: grid; grid-template-columns: 1fr; grid-template-rows: 100%; min-height: 0; }
+.body.open { grid-template-columns: minmax(420px, 48%) 1fr; }
+.doc { overflow-y: auto; border-right: 1px solid var(--line); min-width: 0; }
+.body:not(.open) .doc { display: none; }
+.canvas { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+#graph { position: absolute; inset: 0; }
+.zoom { position: absolute; right: 12px; bottom: 12px; display: flex; flex-direction: column; background: var(--bg); border: 1px solid var(--line-2); border-radius: 8px; overflow: hidden; z-index: 2; }
+.zoom button { background: none; border: 0; width: 30px; height: 28px; cursor: pointer; color: var(--muted); font-size: 15px; }
+.zoom button:hover { background: var(--side); color: var(--text); }
+.gclose { position: absolute; right: 12px; top: 10px; z-index: 2; }
+.toast { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); background: var(--text); color: var(--bg); border-radius: 999px; padding: 5px 14px; font-size: 12px; z-index: 3; }
+.hint { position: absolute; left: 14px; bottom: 12px; font-size: 11.5px; color: var(--faint); z-index: 2; pointer-events: none; }
+
+/* ---------------------------------------------------------------- document */
+.dwrap { max-width: 760px; margin: 0 auto; padding: 22px 30px 60px; }
+.crumb { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted); }
+.crumb a { cursor: pointer; text-decoration: none; }
+.crumb a:hover { color: var(--text); }
+.crumb .sep { color: var(--faint); }
+.crumb .cur { color: var(--text); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 320px; }
+.crumb .sp { flex: 1; }
+.crumb .x { background: none; border: 0; cursor: pointer; color: var(--muted); font-size: 20px; line-height: 1; padding: 0 2px; }
+.dicon { width: 38px; height: 38px; border-radius: 9px; display: grid; place-items: center; margin: 22px 0 12px; }
+.dtitle { font-size: 26px; font-weight: 600; letter-spacing: -.015em; line-height: 1.2; margin: 0; }
+.ddesc { color: var(--muted); font-size: 13.5px; margin: 6px 0 0; }
+.pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+.pill { display: inline-flex; align-items: center; gap: 4px; font: 11px var(--mono); padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--muted); background: var(--bg); white-space: nowrap; }
+.pill.ok { color: var(--ok); border-color: var(--ok-line); background: var(--ok-bg); }
+.pill.warn { color: var(--warn); border-color: var(--warn-line); background: var(--warn-bg); }
+.pill.bad { color: var(--bad); border-color: var(--bad-line); background: var(--bad-bg); }
+.pill.pend { color: var(--pend); border-color: var(--pend-line); background: var(--pend-bg); }
+.pill.code { color: var(--text-2); background: var(--side); }
+.meter { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); }
+.meter i { display: block; width: 46px; height: 4px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.meter i b { display: block; height: 100%; background: var(--ok); }
+.fchips { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 0; }
+.fchip { font-size: 12px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--text-2); cursor: pointer; background: var(--bg); }
+.fchip:hover { border-color: var(--accent-line); color: var(--accent); }
+.fchip.pending { border-color: var(--pend-line); color: var(--pend); }
+.fchip.missing { border-style: dashed; color: var(--faint); cursor: default; }
+hr.sep { border: 0; border-top: 1px solid var(--line); margin: 20px 0 6px; }
+.lead { color: var(--text-2); margin: 14px 0 0; }
+.field { padding: 14px 0 2px; scroll-margin-top: 12px; }
+.field h4 { margin: 0 0 4px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.field h4 .tag { font: 500 10px var(--mono); padding: 0 6px; border-radius: 4px; border: 1px solid; }
+.field h4 .tag.pending { color: var(--pend); border-color: var(--pend-line); background: var(--pend-bg); }
+.field.flash { animation: flash 1.2s ease; }
+@keyframes flash { 0%, 40% { background: var(--accent-soft); } 100% { background: transparent; } }
+.fgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin: 16px 0 6px; }
+.fgrid > div { background: var(--bg); padding: 9px 12px; scroll-margin-top: 12px; box-shadow: 0 0 0 .5px var(--line); }
+.fgrid dt { font: 500 10px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--faint); }
+.fgrid dd { margin: 2px 0 0; font-size: 14px; font-weight: 500; }
+.fgrid > div.flash { animation: flash 1.2s ease; }
+.missing-box { margin-top: 18px; padding: 10px 12px; border: 1px dashed var(--line-2); border-radius: 9px; font-size: 12.5px; color: var(--muted); }
+.missing-box b { font-weight: 600; color: var(--text-2); }
+
+/* rendered markdown */
+.md { color: var(--text); font-size: 14px; }
+.md p { margin: 4px 0 8px; }
+.md ul, .md ol { margin: 4px 0 8px; padding-left: 20px; }
+.md li { margin: 3px 0; }
+.md li::marker { color: var(--faint); }
+.md h5 { font-size: 12.5px; font-weight: 600; color: var(--text-2); margin: 12px 0 4px; }
+.md blockquote { margin: 6px 0; padding: 4px 12px; border-left: 3px solid var(--accent-line); color: var(--text-2); }
+.md pre { background: var(--side); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font: 12px/1.5 var(--mono); white-space: pre-wrap; max-height: 320px; overflow: auto; }
+.md code { font: 12.5px var(--mono); background: var(--side); border-radius: 4px; padding: 0 4px; }
+.md .tbl { overflow-x: auto; margin: 6px 0 10px; border: 1px solid var(--line); border-radius: 8px; }
+.md table { border-collapse: collapse; font-size: 12.5px; width: 100%; }
+.md th { text-align: left; font-weight: 600; background: var(--side); color: var(--text-2); }
+.md th, .md td { padding: 6px 9px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.md tr:last-child td { border-bottom: 0; }
+.ref { display: inline-flex; align-items: baseline; gap: 3px; font: 500 11.5px var(--mono); padding: 0 5px; border-radius: 4px; text-decoration: none; white-space: nowrap; cursor: pointer; }
+.ref i { font-style: normal; opacity: .7; }
+.ref.proof { color: var(--ok); background: var(--ok-bg); }
+.ref.proof.missing { color: var(--bad); background: var(--bad-bg); cursor: help; }
+.ref.src { color: #92400E; background: #FEF3C7; }
+.ref.doc { color: var(--accent); background: var(--accent-soft); font-family: var(--sans); font-size: 12.5px; }
+.ref.file { color: var(--muted); background: var(--side); cursor: default; }
+.ref.issue { color: var(--text-2); background: var(--side); }
+.ref:hover { filter: brightness(.95); }
+.seal { font: 500 10px var(--mono); padding: 0 5px; border-radius: 4px; text-transform: uppercase; letter-spacing: .03em; color: var(--muted); background: var(--side); }
+.seal.ok { color: var(--ok); background: var(--ok-bg); }
+.seal.warn { color: var(--warn); background: var(--warn-bg); }
+
+/* lists in documents */
+.list { margin-top: 18px; }
+.list h3 { font: 500 10.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint); margin: 20px 0 4px; display: flex; gap: 6px; }
+.lrow { display: grid; grid-template-columns: 22px 1fr auto; gap: 10px; align-items: center; padding: 10px 6px; border-top: 1px solid var(--line); cursor: pointer; }
+.lrow:last-child { border-bottom: 1px solid var(--line); }
+.lrow:hover { background: var(--side); }
+.lrow .lt { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lrow .ls { font-size: 12px; color: var(--muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 1px; }
+.lrow .go { color: var(--faint); }
+.lrow .bul { width: 9px; height: 9px; border-radius: 50%; justify-self: center; }
+.links { margin-top: 26px; }
+.links h3 { font: 500 10.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint); margin: 18px 0 6px; }
+.lk { display: flex; align-items: center; gap: 8px; padding: 4px 6px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.lk:hover { background: var(--side); }
+.lk .bul { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.lk .lc { color: var(--faint); font-size: 11.5px; margin-left: auto; white-space: nowrap; }
+.lk .lt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+details.origin { margin-top: 30px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; }
+details.origin summary { cursor: pointer; color: var(--faint); font: 500 10.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+details.origin .o { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+details.origin code { font: 11.5px var(--mono); }
+.empty { color: var(--faint); font-size: 13px; padding: 6px; }
+
+/* live editing (server mode) */
+.body.open.editing { grid-template-columns: minmax(600px, 1fr) minmax(240px, 28%); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover { background: #6D28D9; }
+.btn[disabled] { opacity: .45; cursor: not-allowed; }
+.btn.edit { margin-left: 6px; }
+.editor { display: flex; flex-direction: column; height: 100%; }
+.edbar { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.edbar .edt { display: flex; flex-direction: column; min-width: 120px; flex: 1 1 160px; line-height: 1.25; overflow: hidden; }
+.edbar .edt b { font-weight: 600; font-size: 13.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.edbar .edt span { font-size: 11.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.edstat { font: 11px var(--mono); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px; }
+.edstat.dirty { color: var(--warn); }
+.edstat.bad { color: var(--bad); }
+.edstat.ok { color: var(--ok); }
+.edframe { flex: 1; border: 0; width: 100%; background: #fff; }
+.edpane { flex: 1; overflow-y: auto; padding: 14px 18px; }
+.agentbox pre { white-space: pre-wrap; font: 11.5px/1.5 var(--mono); background: var(--side); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.agentbox p { color: var(--text-2); margin: 0 0 10px; }
+.diffrow { font: 12px/1.55 var(--mono); white-space: pre-wrap; padding: 0 8px; border-left: 3px solid transparent; }
+.diffrow.add { background: #ECFDF5; border-color: #10B981; }
+.diffrow.del { background: #FEF2F2; border-color: #EF4444; text-decoration: line-through; color: #7F1D1D; }
+.diffrow.gap { color: var(--faint); }
+.diffrow i { display: inline-block; width: 42px; color: var(--faint); font-style: normal; }
+.edmsg { margin: 10px 12px; padding: 9px 12px; border-radius: 8px; font-size: 12.5px; }
+.edmsg.bad { background: var(--bad-bg); color: var(--bad); border: 1px solid var(--bad-line); }
+
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  aside.side { display: none; }
+  main { margin: 0; border-radius: 0; }
+  .body.open { grid-template-columns: 1fr; }
+  .body.open .canvas { display: none; }
+  .dwrap { padding: 18px 16px 50px; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><h1>GTM <b>Brain</b></h1><span id="brandname"></span></div>
+    <div class="search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" placeholder="Buscar no brain…" autocomplete="off" spellcheck="false">
+      <kbd>/</kbd>
+    </div>
+    <nav id="nav"></nav>
+    <div class="foot" id="foot"></div>
+  </aside>
+  <main>
+    <div class="top">
+      <span class="title">Brain</span>
+      <span class="sp"></span>
+      <span class="stat" id="stat"></span>
+      <a class="btn" id="explorer" href="gtm-brain-explorer.html" target="_blank" title="Grafo de arquivos, seções e regex (para depurar a extração)">Explorador técnico</a>
+    </div>
+    <div class="body" id="body">
+      <section class="doc" id="doc"><div class="dwrap" id="dwrap"></div></section>
+      <div class="canvas" id="canvas">
+        <div id="graph"></div>
+        <div class="hint">Arraste um nó para reorganizar · ↻ solta todos</div>
+        <div class="zoom">
+          <button id="zin" title="Aproximar">+</button><button id="zout" title="Afastar">−</button><button id="zfit" title="Enquadrar">⤢</button><button id="zre" title="Reorganizar (solta os nós fixados)">↻</button>
+        </div>
+        <div class="toast" id="toast" hidden></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/force-graph@1.49.6/dist/force-graph.min.js"></script>
+<script>
+const BRAIN = /*__BRAIN__*/null;
+// Set only when served by src/server.mjs: enables editing through Proof.
+const LIVE = /*__LIVE__*/null;
+
+// ---------------------------------------------------------------- vocabulary
+const ICONS = {
+  target: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  network: '<rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/>',
+  package: '<path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/>',
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/>',
+  crosshair: '<circle cx="12" cy="12" r="10"/><path d="M22 12h-4M6 12H2M12 6V2M12 22v-4"/>',
+  trend: '<path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>',
+  quote: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/>',
+  mic: '<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/>',
+  search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+  palette: '<circle cx="13.5" cy="6.5" r="1"/><circle cx="17.5" cy="10.5" r="1"/><circle cx="8.5" cy="7.5" r="1"/><circle cx="6.5" cy="12.5" r="1"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.6-.7 1.6-1.7 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.7-1.7 1.7-1.7h2c3 0 5.5-2.5 5.5-5.5C22 6 17.5 2 12 2z"/>',
+  book: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+  graph: '<circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><circle cx="18" cy="6" r="3"/><path d="M8.6 7.4 15.4 16.6M9 6h6"/>',
+  doc: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/>',
+  arrow: '<path d="M7 17 17 7M7 7h10v10"/>',
+  key: '<circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/>',
+};
+const icon = (name, size = 16, color = 'currentColor', sw = 1.8) => `<svg class="ic" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">${ICONS[name] || ICONS.doc}</svg>`;
+const REF = {
+  proves:   { label: 'Provas',        color: '#0D9488' },
+  derives:  { label: 'Fontes',        color: '#CA8A04' },
+  cites:    { label: 'Cita',          color: '#7C3AED' },
+  mentions: { label: 'Menciona',      color: '#0D9488', dash: [2, 3] },
+  pending:  { label: 'Depende de (pendente)', color: '#DB2777', dash: [4, 3] },
+};
+const ROOT = '#2A1631';
+
+// ---------------------------------------------------------------- model
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const items = new Map(BRAIN.items.map((i) => [i.id, i]));
+const cats = new Map(BRAIN.categories.map((c) => [c.id, c]));
+const catOf = (id) => (id.startsWith('cat:') ? cats.get(id.slice(4)) : items.get(id) ? cats.get(items.get(id).cat) : null);
+const slug = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-');
+function mix(hex, amt) {
+  const n = parseInt(hex.slice(1), 16);
+  const ch = (v) => Math.round(v + (255 - v) * amt);
+  return `rgb(${ch(n >> 16)},${ch((n >> 8) & 255)},${ch(n & 255)})`;
+}
+const colorOf = (id) => {
+  if (id === 'root') return ROOT;
+  const c = catOf(id) || (id.startsWith('grp:') ? cats.get(id.split(':')[1]) : null);
+  if (!c) return '#999';
+  return id.startsWith('cat:') || id.startsWith('grp:') ? c.color : mix(c.color, 0.32);
+};
+const titleOf = (id) => (id === 'root' ? BRAIN.meta.brand || 'Brain' : id.startsWith('cat:') ? cats.get(id.slice(4))?.label : id.startsWith('grp:') ? grpLabel.get(id) : items.get(id)?.title) || id;
+
+// backlinks and outgoing links (only to things that exist)
+const exists = (id) => items.has(id) || (id.startsWith('cat:') && cats.has(id.slice(4)));
+const backlinks = new Map();
+for (const i of BRAIN.items) {
+  i.refs = i.refs.filter((r) => exists(r.to));
+  for (const r of i.refs) (backlinks.get(r.to) || backlinks.set(r.to, []).get(r.to)).push({ from: i.id, type: r.type, n: r.n });
+}
+
+// graph data: root → category → (group) → record, plus record links
+const grpLabel = new Map();
+const nodes = [{ id: 'root', kind: 'root' }];
+const links = [];
+for (const c of BRAIN.categories) {
+  nodes.push({ id: 'cat:' + c.id, kind: 'cat' });
+  // a sub-category (e.g. Palavras-chave) hangs from its parent category, not from the brand
+  links.push({ source: c.parent && BRAIN.categories.some((x) => x.id === c.parent) ? 'cat:' + c.parent : 'root', target: 'cat:' + c.id, type: 'tree' });
+  const labeled = c.groups.filter((g) => g.label).length > 1;
+  for (const g of c.groups) {
+    let parent = 'cat:' + c.id;
+    if (labeled && g.label) {
+      parent = `grp:${c.id}:${slug(g.label)}`;
+      grpLabel.set(parent, g.label);
+      nodes.push({ id: parent, kind: 'grp' });
+      links.push({ source: 'cat:' + c.id, target: parent, type: 'tree' });
+    }
+    for (const id of g.items) {
+      nodes.push({ id, kind: 'item' });
+      links.push({ source: parent, target: id, type: 'tree' });
+    }
+  }
+}
+for (const i of BRAIN.items) for (const r of i.refs) if (!r.to.startsWith('cat:') || true) links.push({ source: i.id, target: r.to, type: r.type, n: r.n });
+const parentOf = new Map(links.filter((l) => l.type === 'tree').map((l) => [l.target, l.source]));
+const deg = new Map();
+for (const l of links) if (l.type !== 'tree') { deg.set(l.source, (deg.get(l.source) || 0) + 1); deg.set(l.target, (deg.get(l.target) || 0) + 1); }
+
+// ---------------------------------------------------------------- state
+const st = { sel: null, hover: null, q: '', open: new Set(), edit: null };
+try { const s = JSON.parse(localStorage.getItem('gtm-brain-v2') || 'null'); if (s) st.open = new Set(s.open || []); } catch (e) {}
+const persist = () => { try { localStorage.setItem('gtm-brain-v2', JSON.stringify({ open: [...st.open] })); } catch (e) {} };
+
+// ---------------------------------------------------------------- sidebar
+function renderNav() {
+  const nav = document.getElementById('nav');
+  const q = st.q.trim().toLowerCase();
+  if (q) {
+    const hits = BRAIN.items.filter((i) => [i.title, i.code, i.text].some((v) => v && v.toLowerCase().includes(q)))
+      .sort((a, b) => (b.title.toLowerCase().includes(q) - a.title.toLowerCase().includes(q))).slice(0, 60);
+    nav.innerHTML = `<div class="nlabel">Resultados · ${hits.length}</div>` + (hits.map((i) => `<div class="nrow ${i.id === st.sel ? 'sel' : ''}" data-go="${esc(i.id)}"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:${colorOf(i.id)}"></span><span class="t">${esc(i.title)}</span><span class="n">${esc(cats.get(i.cat).label)}</span></div>`).join('') || '<div class="empty">Nada encontrado.</div>');
+    return;
+  }
+  const selCat = st.sel ? catOf(st.sel) : null;
+  let h = `<div class="nrow top ${st.sel === null ? 'sel' : ''}" data-go="root">${icon('graph', 15)}<span class="t">Visão geral do brain</span></div><div class="nlabel">Conhecimento</div>`;
+  for (const c of BRAIN.categories) {
+    const own = (x) => x.groups.reduce((a, g) => a + g.items.length, 0);
+    const n = own(c) + BRAIN.categories.filter((x) => x.parent === c.id).reduce((a, x) => a + own(x), 0);
+    const open = st.open.has(c.id);
+    h += `<div class="nrow ${c.parent ? 'subcat' : ''} ${st.sel === 'cat:' + c.id ? 'sel' : ''}" data-go="cat:${c.id}"><svg class="chev ${open ? 'open' : ''}" data-toggle="${c.id}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>${icon(c.icon, 15, c.color)}<span class="t">${esc(c.label)}</span><span class="n">${n}</span></div>`;
+    if (open) for (const g of c.groups) {
+      const labeled = c.groups.filter((x) => x.label).length > 1;
+      if (g.label && labeled) h += `<div class="nsub">${esc(g.label)}</div>`;
+      else if (!g.label && g.kind === 'docs' && labeled) h += `<div class="nsub">Documentos</div>`;
+      for (const id of g.items) {
+        const i = items.get(id);
+        h += `<div class="nrow item ${st.sel === id ? 'sel' : ''}" data-go="${esc(id)}" title="${esc(i.title)}"><span class="dot" style="background:${colorOf(id)}"></span><span class="t">${esc(i.title)}</span></div>`;
+      }
+    }
+  }
+  nav.innerHTML = h;
+  const s = nav.querySelector('.nrow.item.sel');
+  if (s) s.scrollIntoView({ block: 'nearest' });
+}
+
+// ---------------------------------------------------------------- document panel
+const pillHtml = (p) => `<span class="pill ${p.cls || ''}">${esc(p.t)}</span>`;
+function meter(i) {
+  if (i.total == null) return '';
+  return `<span class="meter"><i><b style="width:${Math.round((i.filled / i.total) * 100)}%"></b></i>${i.filled} de ${i.total} preenchidos</span>`;
+}
+function subline(i) {
+  const bits = [];
+  if (i.sub) bits.push(i.sub);
+  if (i.total != null && i.kind !== 'keyword') bits.push(`${i.filled} de ${i.total} seções preenchidas`);
+  if (i.kind === 'voc' && i.flags.quotes) bits.push(`${i.flags.quotes} citações literais`);
+  if (i.kind === 'source') bits.push(`usada por ${(backlinks.get(i.id) || []).length} registros`);
+  if (i.kind === 'doc' && i.total == null) bits.push(`${i.fields.length} seções`);
+  return bits.join(' · ');
+}
+function rowPills(i) {
+  const ps = [];
+  if (i.code) ps.push({ t: i.code, cls: 'code' });
+  for (const p of i.pills) ps.push(p);
+  if (i.flags.pending) ps.push({ t: `${i.flags.pending} pendente${i.flags.pending > 1 ? 's' : ''}`, cls: 'pend' });
+  if (i.status === 'template') ps.push({ t: 'template', cls: 'warn' });
+  return ps.map(pillHtml).join('');
+}
+function crumbs(parts, item) {
+  // Only markdown opens in the editor; records from research CSVs are read-only here.
+  const edit = LIVE && item && item.origin && item.origin.file.endsWith('.md') ? `<button class="btn edit" data-edit="${esc(item.id)}" title="Abre ${esc(item.origin.file)} no Proof para editar com humanos e agentes">${icon('doc', 14)}Editar com IA</button>` : '';
+  return `<div class="crumb"><a data-go="root">Brain</a>${parts.map((p, k) => `<span class="sep">›</span>${k === parts.length - 1 ? `<span class="cur">${esc(p.t)}</span>` : `<a data-go="${esc(p.go)}">${esc(p.t)}</a>`}`).join('')}<span class="sp"></span>${edit}<button class="x" data-go="root" title="Fechar (Esc)">×</button></div>`;
+}
+function renderDoc() {
+  const body = document.getElementById('body');
+  const w = document.getElementById('dwrap');
+  if (!st.sel) { body.classList.remove('open', 'editing'); stopPoll(); return; }
+  body.classList.add('open');
+  body.classList.toggle('editing', !!st.edit);
+  if (st.edit) return renderEditor();
+  stopPoll();
+  const docEl = document.getElementById('doc');
+  if (st.sel.startsWith('cat:')) {
+    const c = cats.get(st.sel.slice(4));
+    const pc = c.parent ? cats.get(c.parent) : null;
+    const subs = BRAIN.categories.filter((x) => x.parent === c.id);
+    let h = crumbs([...(pc ? [{ t: pc.label, go: 'cat:' + pc.id }] : []), { t: c.label }]) +
+      `<div class="dicon" style="background:${mix(c.color, 0.88)}">${icon(c.icon, 20, c.color)}</div><h2 class="dtitle">${esc(c.label)}</h2><p class="ddesc">${esc(c.desc)}</p><div class="list">` +
+      (subs.length ? `<h3>Subcategorias</h3>` + subs.map((x) => `<div class="lrow" data-go="cat:${esc(x.id)}">${icon(x.icon, 17, x.color)}<div style="min-width:0"><div class="lt">${esc(x.label)}</div><div class="ls">${((n) => n + (n === 1 ? ' registro' : ' registros'))(x.groups.reduce((a, g) => a + g.items.length, 0))} · ${esc(x.desc)}</div></div><span class="go">${icon('arrow', 15)}</span></div>`).join('') : '');
+    for (const g of c.groups) {
+      const title = g.kind === 'docs' ? 'Documentos' : g.label;
+      if (title && c.groups.length > 1) h += `<h3>${esc(title)}<span>· ${g.items.length}</span></h3>`;
+      h += g.items.map((id) => {
+        const i = items.get(id);
+        return `<div class="lrow" data-go="${esc(id)}">${i.kind === 'doc' ? icon('doc', 17, c.color) : `<span class="bul" style="background:${colorOf(id)}"></span>`}<div style="min-width:0"><div class="lt">${esc(i.title)}</div><div class="ls">${esc(subline(i))}${rowPills(i)}</div></div><span class="go">${icon('arrow', 15)}</span></div>`;
+      }).join('');
+    }
+    w.innerHTML = h + '</div>';
+    docEl.scrollTop = 0;
+    return;
+  }
+  const i = items.get(st.sel);
+  const c = cats.get(i.cat);
+  const ps = [];
+  if (i.code) ps.push({ t: i.code, cls: 'code' });
+  ps.push(...i.pills);
+  if (i.status === 'template') ps.push({ t: 'template', cls: 'warn' });
+  if (i.flags.hypothesis) ps.push({ t: `${i.flags.hypothesis}× hipótese/proposta`, cls: 'warn' });
+  if (i.flags.tension) ps.push({ t: `${i.flags.tension} tensão`, cls: 'bad' });
+  const fchips = i.fields.map((f) => `<span class="fchip ${f.status === 'pending' ? 'pending' : ''}" data-field="${esc(f.key)}">${esc(f.label)}</span>`).join('') +
+    (i.missing || []).map((m) => `<span class="fchip missing" title="Não preenchido">${esc(m)}</span>`).join('');
+  // Short values (numbers, a word or two) read better as a compact grid than as sections.
+  const isShort = (f) => f.status === 'ok' && !f.seals.length && f.html.length < 160 && !/<(ul|ol|table|blockquote|pre|h5)/.test(f.html) && f.html.replace(/<[^>]+>/g, '').length < 48;
+  const short = i.fields.filter(isShort);
+  const useGrid = short.length >= 3;
+  const grid = useGrid ? `<dl class="fgrid">${short.map((f) => `<div id="f-${esc(f.key)}"><dt>${esc(f.label)}</dt><dd>${f.html.replace(/^<p>|<\/p>$/g, '')}</dd></div>`).join('')}</dl>` : '';
+  const fields = grid + i.fields.filter((f) => !(useGrid && isShort(f))).map((f) => `<section class="field" id="f-${esc(f.key)}"><h4>${esc(f.label)}${f.status === 'pending' ? '<span class="tag pending">pendente</span>' : ''}${f.seals.map((s) => `<span class="seal ${/COMPROVADO|LITERAL/.test(s) ? 'ok' : /HIPÓTESE|PROPOSTA/.test(s) ? 'warn' : ''}">${esc(s.toLowerCase())}</span>`).join('')}</h4><div class="md">${f.html || '<span class="empty">—</span>'}</div></section>`).join('');
+  const missing = (i.missing || []).length ? `<div class="missing-box"><b>Não preenchido (${i.missing.length}):</b> ${i.missing.map(esc).join(' · ')}</div>` : '';
+  const pc = c.parent ? cats.get(c.parent) : null;
+  w.innerHTML = crumbs([...(pc ? [{ t: pc.label, go: 'cat:' + pc.id }] : []), { t: c.label, go: 'cat:' + c.id }, { t: i.title }], i) +
+    `<div class="dicon" style="background:${mix(c.color, 0.88)}">${icon(i.kind === 'doc' ? 'doc' : c.icon, 20, c.color)}</div>` +
+    `<h2 class="dtitle">${esc(i.title)}</h2><p class="ddesc">${esc(c.desc)}</p>` +
+    `<div class="pills">${ps.map(pillHtml).join('')}${meter(i)}</div>` +
+    (i.fields.length > 1 || (i.missing || []).length ? `<div class="fchips">${fchips}</div>` : '') +
+    `<hr class="sep">` +
+    (i.lead ? `<div class="md lead">${i.lead}</div>` : '') +
+    fields + missing + linksHtml(i) + originHtml(i);
+  docEl.scrollTop = 0;
+}
+function linkRow(id, extra = '') {
+  const c = catOf(id);
+  return `<div class="lk" data-go="${esc(id)}"><span class="bul" style="background:${colorOf(id)}"></span><span class="lt">${esc(titleOf(id))}</span><span class="lc">${extra}${c && !id.startsWith('cat:') ? esc(c.label) : 'categoria'}</span></div>`;
+}
+function linksHtml(i) {
+  const out = [];
+  const byType = {};
+  for (const r of i.refs) (byType[r.type] = byType[r.type] || []).push(r);
+  const back = backlinks.get(i.id) || [];
+  const backHtml = back.length ? `<h3>Citado por · ${back.length}</h3>` + back.sort((a, b) => b.n - a.n).map((b) => linkRow(b.from, b.n > 1 ? `×${b.n} · ` : '')).join('') : '';
+  if (i.kind === 'source') out.push(backHtml);
+  for (const t of ['pending', 'proves', 'derives', 'cites', 'mentions']) {
+    const rs = byType[t];
+    if (!rs) continue;
+    out.push(`<h3>${REF[t].label} · ${rs.length}</h3>` + rs.sort((a, b) => b.n - a.n).map((r) => linkRow(r.to, r.n > 1 ? `×${r.n} · ` : '')).join(''));
+  }
+  if (i.kind !== 'source') out.push(backHtml);
+  const html = out.filter(Boolean).join('');
+  return html ? `<div class="links">${html}</div>` : '';
+}
+function originHtml(i) {
+  if (!i.origin) return '';
+  const o = i.origin;
+  const abs = BRAIN.meta.root + '/' + o.file;
+  const lines = o.whole ? 'arquivo inteiro' : o.end && o.end !== o.line ? `linhas ${o.line}–${o.end}` : `linha ${o.line}`;
+  return `<details class="origin"><summary>Origem</summary><div class="o"><code>${esc(o.file)}</code><span>${lines}</span><a class="btn" href="vscode://file/${encodeURI(abs)}:${o.line}">Abrir no VS Code</a><button class="btn" data-copy="${esc(abs)}">Copiar caminho</button>${i.obsidian ? `<a class="btn" href="obsidian://open?vault=obsidian-vault&file=${encodeURIComponent(i.obsidian.replace(/\.md$/, ''))}">Abrir no Obsidian</a>` : ''}</div></details>`;
+}
+
+// ---------------------------------------------------------------- live editing (Proof)
+// The record's source file opens as a Proof document. People and agents edit
+// there (agents through Proof's HTTP bridge, as suggestions a person accepts);
+// "Salvar no arquivo" writes back only the lines whose meaning changed.
+let poll = null;
+const stopPoll = () => { clearInterval(poll); poll = null; };
+async function api(path, opts = {}) {
+  const res = await fetch(LIVE.api + path, { headers: { 'content-type': 'application/json' }, ...opts });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body.error || res.statusText);
+  return body;
+}
+async function startEdit(id) {
+  const i = items.get(id);
+  st.edit = { id, file: i.origin.file, title: i.title, session: null, error: null, pane: 'editor', status: null };
+  renderDoc();
+  try {
+    // The document is the whole file, so it is named by what the file feeds, not by this record.
+    st.edit.session = await api('/docs/open', { method: 'POST', body: JSON.stringify({ file: i.origin.file, title: docTitle(i.origin.file) }) });
+  } catch (e) { st.edit.error = e.message; }
+  renderDoc();
+}
+function docTitle(file) {
+  const hits = BRAIN.items.filter((x) => x.origin && x.origin.file === file);
+  const main = hits.find((x) => x.kind !== 'doc' && x.kind !== 'source') || hits[0];
+  if (!main) return file;
+  return main.kind === 'doc' ? main.title : cats.get(main.cat).label;
+}
+function fileLabel(file) {
+  const hits = BRAIN.items.filter((x) => x.origin && x.origin.file === file);
+  const main = hits.find((x) => x.kind !== 'doc' && x.kind !== 'source') || hits[0];
+  const cat = main ? cats.get(main.cat) : null;
+  return hits.length > 1 ? `${cat.label} · ${hits.length} registros vêm deste documento` : cat ? cat.label : '';
+}
+function renderEditor() {
+  const w = document.getElementById('dwrap');
+  const e = st.edit;
+  const s = e.session;
+  w.style.maxWidth = 'none'; w.style.padding = '0'; w.style.height = '100%';
+  const write = LIVE.write;
+  const stat = !s ? (e.error ? '' : 'abrindo…') : '';
+  w.innerHTML = `<div class="editor">
+    <div class="edbar">
+      <button class="btn" data-act="back" title="Voltar à ficha">←</button>
+      <div class="edt"><b>${esc(e.title)}</b><span>${esc(fileLabel(e.file))}</span></div>
+      <span class="edstat" id="edstat">${stat}</span>
+      <button class="btn" data-act="pane:diff" ${s ? '' : 'disabled'}>Ver mudanças</button>
+      <button class="btn" data-act="pane:agent" ${s ? '' : 'disabled'}>Chamar agente</button>
+      <button class="btn primary" data-act="save" ${s && write ? '' : 'disabled'} title="${write ? 'Grava no arquivo da marca só as linhas alteradas' + (LIVE.commit ? ' e commita' : '') : 'Servidor em modo leitura: reinicie com --write'}">Salvar no arquivo</button>
+      ${s ? `<a class="btn" href="${esc(s.editorUrl)}" target="_blank" rel="noopener" title="Abrir o editor em nova aba">↗</a>` : ''}
+    </div>
+    ${e.error ? `<div class="edmsg bad">${esc(e.error)}</div>` : ''}
+    ${s && e.pane === 'editor' ? `<iframe class="edframe" src="${esc(s.editorUrl)}" title="Editor Proof"></iframe>` : ''}
+    ${s && e.pane !== 'editor' ? `<div class="edpane" id="edpane"></div>` : ''}
+  </div>`;
+  if (s && e.pane === 'agent') renderAgentPane();
+  if (s && e.pane === 'diff') renderDiffPane();
+  if (s && !poll) { refreshStatus(); poll = setInterval(refreshStatus, 4000); }
+  else if (s) paintStatus();
+}
+async function refreshStatus() {
+  if (!st.edit || !st.edit.session) return stopPoll();
+  try { st.edit.status = await api('/docs/status?file=' + encodeURIComponent(st.edit.file)); } catch (e) { st.edit.status = { error: e.message }; }
+  paintStatus();
+}
+function paintStatus() {
+  const el2 = document.getElementById('edstat');
+  if (!el2 || !st.edit) return;
+  const x = st.edit.status;
+  if (!x) return;
+  if (st.edit.saved) { el2.className = 'edstat ok'; el2.innerHTML = `salvo · <a href="#" data-act="reload">atualizar brain ↻</a>`; if (!x.dirty) return; }
+  if (x.error) { el2.className = 'edstat bad'; el2.textContent = x.error; return; }
+  if (x.conflict) { el2.className = 'edstat bad'; el2.textContent = 'arquivo mudou fora do editor'; return; }
+  el2.className = 'edstat' + (x.dirty ? ' dirty' : '');
+  el2.textContent = x.dirty ? `${x.changed} linha${x.changed > 1 ? 's' : ''} alterada${x.changed > 1 ? 's' : ''} · não salvo` : 'sem alterações';
+}
+async function renderDiffPane() {
+  const pane = document.getElementById('edpane');
+  pane.innerHTML = '<div class="empty">Comparando…</div>';
+  try {
+    const d = await api('/docs/diff?file=' + encodeURIComponent(st.edit.file));
+    if (!d.rows.length) { pane.innerHTML = `<p class="empty">Nenhuma mudança em relação ao arquivo. <a href="#" data-act="pane:editor">Voltar ao editor</a></p>`; return; }
+    pane.innerHTML = `<p style="margin:0 0 10px;color:var(--muted);font-size:12.5px">${d.changed} linha(s) mudam em <code>${esc(d.file)}</code>. O resto do arquivo fica byte a byte igual. <a href="#" data-act="pane:editor">Voltar ao editor</a></p>` +
+      d.rows.map((r) => r.type === '…' ? '<div class="diffrow gap">⋯</div>' : `<div class="diffrow ${r.type === '+' ? 'add' : r.type === '-' ? 'del' : ''}"><i>${r.line ?? ''}</i>${esc(r.text) || ' '}</div>`).join('');
+  } catch (e) { pane.innerHTML = `<div class="edmsg bad">${esc(e.message)}</div>`; }
+}
+function agentPrompt() {
+  const e = st.edit, a = e.session.agent;
+  return `Você vai colaborar no GTM Brain (${BRAIN.meta.brand || 'marca'}), documento "${e.title}" (${e.file}).
+O documento está aberto no Proof: ${a.docUrl}
+Ler (markdown + comentários): GET ${a.state}
+  Header: Authorization: Bearer ${a.token}
+Propor mudança (a pessoa aceita ou rejeita no editor):
+  POST ${a.ops}
+  {"type":"suggestion.add","by":"ai:<seu-nome>","kind":"replace","quote":"<trecho atual exato>","content":"<texto novo>"}
+Comentar:
+  POST ${a.ops}
+  {"type":"comment.add","by":"ai:<seu-nome>","quote":"<trecho>","text":"<comentário>"}
+Regras da marca: preserve selos ([COMPROVADO], [HIPÓTESE], [PROPOSTA]…), tags de fonte (\`[PLAYBOOK §5]\`) e IDs de prova (CS-001). Não invente prova nem número. Prefira sugestão a edição direta.
+Referência da API: ${a.docs}`;
+}
+function renderAgentPane() {
+  const pane = document.getElementById('edpane');
+  pane.innerHTML = `<div class="agentbox"><p>Cole isto no seu agente (Claude Code, Codex…). Ele lê o documento e propõe mudanças como <b>sugestões</b>; você aceita ou rejeita no editor, e nada vai para o arquivo até você clicar em <b>Salvar no arquivo</b>.</p>
+    <p><button class="btn" data-act="copy-agent">Copiar instruções</button> <a href="#" data-act="pane:editor">Voltar ao editor</a></p><pre>${esc(agentPrompt())}</pre></div>`;
+}
+async function saveEdit() {
+  const el2 = document.getElementById('edstat');
+  if (el2) { el2.className = 'edstat'; el2.textContent = 'salvando…'; }
+  try {
+    const r = await api('/docs/save', { method: 'POST', body: JSON.stringify({ file: st.edit.file }) });
+    st.edit.saved = r.saved;
+    toast(r.saved ? `Salvo: ${r.changed} linha(s)${r.commit ? ' · commit ' + r.commit : ''}` : 'Nada para salvar');
+    await refreshStatus();
+  } catch (e) { if (el2) { el2.className = 'edstat bad'; el2.textContent = e.message; } }
+}
+
+// ---------------------------------------------------------------- graph
+const el = document.getElementById('graph');
+const nodeObj = new Map(nodes.map((n) => [n.id, n]));
+let dragging = false;
+const pinned = new Set();
+function radius(n) {
+  if (n.kind === 'root') return 9;
+  if (n.kind === 'cat') return 6.5;
+  if (n.kind === 'grp') return 4.5;
+  return 3 + Math.min(3.5, Math.sqrt(deg.get(n.id) || 0) * 0.55);
+}
+function focusId() { return st.hover || st.sel; }
+// Focus set: the node, its path to the root, its children and its record links.
+let focusSet = null;
+function computeFocus() {
+  const f = focusId();
+  if (!f || f === 'root') { focusSet = null; return; }
+  focusSet = new Set([f]);
+  for (let p = parentOf.get(f); p; p = parentOf.get(p)) focusSet.add(p);
+  for (const l of links) {
+    const s = idOf(l.source), t = idOf(l.target);
+    if (s === f) focusSet.add(t);
+    else if (t === f) focusSet.add(s);
+  }
+}
+const idOf = (x) => (typeof x === 'object' ? x.id : x);
+function linkFocused(l) {
+  const f = focusId();
+  if (!f || !focusSet) return false;
+  const s = idOf(l.source), t = idOf(l.target);
+  if (s === f || t === f) return true;
+  return l.type === 'tree' && focusSet.has(s) && focusSet.has(t) && (parentOf.get(f) === t || isAncestor(t, f));
+}
+function isAncestor(a, id) { for (let p = parentOf.get(id); p; p = parentOf.get(p)) if (p === a) return true; return false; }
+
+const fg = new ForceGraph(el)
+  .backgroundColor('#FFFFFF')
+  .graphData({ nodes, links })
+  .nodeId('id')
+  .nodeVal((n) => radius(n))
+  .nodeLabel(() => '')
+  .linkColor((l) => {
+    const on = linkFocused(l);
+    if (l.type === 'tree') return on ? 'rgba(59,130,246,.9)' : focusSet ? 'rgba(42,22,49,.05)' : 'rgba(42,22,49,.12)';
+    const c = REF[l.type].color;
+    return on ? c : focusSet ? 'rgba(42,22,49,.02)' : 'rgba(42,22,49,.045)';
+  })
+  .linkWidth((l) => (linkFocused(l) ? 1.6 : 0.8))
+  .linkLineDash((l) => (linkFocused(l) && REF[l.type] ? REF[l.type].dash || null : null))
+  .linkDirectionalParticles((l) => (linkFocused(l) && l.type !== 'tree' ? 2 : 0))
+  .linkDirectionalParticleWidth(2)
+  .linkDirectionalParticleColor((l) => (REF[l.type] ? REF[l.type].color : '#3B82F6'))
+  .nodeCanvasObject(drawNode)
+  .nodePointerAreaPaint((n, color, ctx) => { ctx.fillStyle = color; ctx.beginPath(); ctx.arc(n.x, n.y, radius(n) + 3, 0, 2 * Math.PI); ctx.fill(); })
+  .onNodeHover((n) => { st.hover = n ? n.id : null; computeFocus(); if (!dragging) el.style.cursor = n ? 'grab' : 'default'; })
+  .onNodeClick((n) => select(n.kind === 'grp' ? 'cat:' + n.id.split(':')[1] : n.id === 'root' ? null : n.id, { center: false }))
+  .onBackgroundClick(() => select(null))
+  // Dragging keeps the simulation hot, so the graph rearranges around the node; the drop pins it.
+  .enableNodeDrag(true)
+  .onNodeDrag((n) => { if (!dragging) { dragging = true; el.style.cursor = 'grabbing'; } })
+  .onNodeDragEnd((n) => { dragging = false; n.fx = n.x; n.fy = n.y; pinned.add(n.id); el.style.cursor = 'grab'; })
+  .autoPauseRedraw(false)
+  .warmupTicks(200)
+  .cooldownTicks(240)
+  .d3VelocityDecay(0.3);
+fg.d3Force('charge').strength((n) => (n.kind === 'root' ? -700 : n.kind === 'cat' ? -380 : n.kind === 'grp' ? -160 : -60));
+fg.d3Force('link')
+  .distance((l) => (l.type !== 'tree' ? 140 : idOf(l.source) === 'root' ? 95 : nodeObj.get(idOf(l.target)).kind === 'cat' ? 70 : nodeObj.get(idOf(l.target)).kind === 'grp' ? 45 : 38))
+  .strength((l) => (l.type === 'tree' ? 0.7 : 0.012));
+fg.d3Force('gravity', (() => { let ns = []; const f = (a) => { for (const n of ns) { n.vx -= n.x * 0.01 * a; n.vy -= n.y * 0.01 * a; } }; f.initialize = (x) => { ns = x; }; return f; })());
+
+function drawNode(n, ctx, scale) {
+  const r = radius(n);
+  const dim = focusSet && !focusSet.has(n.id);
+  ctx.globalAlpha = dim ? 0.18 : 1;
+  const color = colorOf(n.id);
+  const it = items.get(n.id);
+  const hollow = it && it.status === 'template';
+  ctx.beginPath();
+  ctx.arc(n.x, n.y, r, 0, 2 * Math.PI);
+  ctx.fillStyle = hollow ? '#FFFFFF' : color;
+  ctx.fill();
+  ctx.lineWidth = 1 / Math.max(scale, 0.6);
+  ctx.strokeStyle = hollow ? color : '#FFFFFF';
+  ctx.stroke();
+  if (n.id === st.sel) {
+    ctx.beginPath(); ctx.arc(n.x, n.y, r + 2.5, 0, 2 * Math.PI); ctx.strokeStyle = '#FFFFFF'; ctx.lineWidth = 2 / scale; ctx.stroke();
+    ctx.beginPath(); ctx.arc(n.x, n.y, r + 3.6, 0, 2 * Math.PI); ctx.strokeStyle = '#6D28D9'; ctx.lineWidth = 1.6 / scale; ctx.stroke();
+  }
+  if (it && it.flags.pending) { ctx.beginPath(); ctx.arc(n.x + r * 0.75, n.y - r * 0.75, Math.max(1.1, r * 0.32), 0, 2 * Math.PI); ctx.fillStyle = '#DB2777'; ctx.fill(); }
+  if (pinned.has(n.id)) { ctx.beginPath(); ctx.arc(n.x, n.y, Math.max(1, r * 0.3), 0, 2 * Math.PI); ctx.fillStyle = '#FFFFFF'; ctx.fill(); }
+  const focusOn = focusSet && focusSet.has(n.id);
+  const show = n.kind !== 'item' || focusOn || scale > 2.6 || (scale > 1.5 && (deg.get(n.id) || 0) > 6);
+  if (show && !dim) {
+    let label = titleOf(n.id);
+    if (label.length > 42) label = label.slice(0, 40) + '…';
+    const fs = Math.max((n.kind === 'item' ? 10 : 11.5) / scale, n.kind === 'root' ? 4.4 : 3);
+    ctx.font = `${n.kind === 'item' ? 400 : n.kind === 'root' ? 600 : 500} ${fs}px Outfit, system-ui, sans-serif`;
+    ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+    ctx.lineJoin = 'round'; ctx.strokeStyle = 'rgba(255,255,255,.92)'; ctx.lineWidth = 3 / scale;
+    ctx.strokeText(label, n.x + r + 4 / scale + 1, n.y);
+    ctx.fillStyle = n.kind === 'item' ? '#4A3F50' : '#24142A';
+    ctx.fillText(label, n.x + r + 4 / scale + 1, n.y);
+  }
+  ctx.globalAlpha = 1;
+}
+function releaseAll() {
+  for (const id of pinned) { const n = nodeObj.get(id); if (n) { n.fx = undefined; n.fy = undefined; } }
+  pinned.clear();
+  fg.d3ReheatSimulation();
+}
+
+// ---------------------------------------------------------------- actions
+function resetWrap() { const w = document.getElementById('dwrap'); w.style.maxWidth = ''; w.style.padding = ''; w.style.height = ''; }
+function select(id, { center = true } = {}) {
+  if (id === 'root') id = null;
+  if (st.edit && id !== st.edit.id) { st.edit = null; resetWrap(); }
+  if (id && !items.has(id) && !(id.startsWith('cat:') && cats.has(id.slice(4)))) return;
+  st.sel = id;
+  if (id) {
+    const c = catOf(id);
+    if (c && !id.startsWith('cat:')) { st.open.add(c.id); persist(); }
+    history.replaceState(null, '', '#i=' + encodeURIComponent(id));
+  } else history.replaceState(null, '', location.pathname + location.search);
+  computeFocus();
+  renderNav(); renderDoc();
+  // The canvas width changes when the document opens; recenter after the resize.
+  setTimeout(() => {
+    if (!id) { if (center) fg.zoomToFit(500, 50); return; }
+    const n = nodeObj.get(id);
+    if (n && n.x !== undefined && center) { fg.centerAt(n.x, n.y, 500); if (fg.zoom() < 1.6) fg.zoom(1.8, 500); }
+  }, 80);
+}
+function toast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => (t.hidden = true), 1600); }
+
+document.getElementById('nav').onclick = (e) => {
+  const tg = e.target.closest('[data-toggle]');
+  if (tg) { const id = tg.dataset.toggle; st.open.has(id) ? st.open.delete(id) : st.open.add(id); persist(); renderNav(); return; }
+  const r = e.target.closest('[data-go]');
+  if (!r) return;
+  const go = r.dataset.go;
+  if (go.startsWith('cat:')) { st.open.add(go.slice(4)); persist(); }
+  select(go);
+};
+document.getElementById('dwrap').onclick = (e) => {
+  const ed = e.target.closest('[data-edit]');
+  if (ed) { startEdit(ed.dataset.edit); return; }
+  const act = e.target.closest('[data-act]');
+  if (act) {
+    e.preventDefault();
+    const a = act.dataset.act;
+    if (a === 'back') { st.edit = null; resetWrap(); renderDoc(); }
+    else if (a.startsWith('pane:')) { st.edit.pane = st.edit.pane === a.slice(5) ? 'editor' : a.slice(5); renderEditor(); }
+    else if (a === 'save') saveEdit();
+    else if (a === 'copy-agent') navigator.clipboard && navigator.clipboard.writeText(agentPrompt()).then(() => toast('Instruções copiadas'));
+    else if (a === 'reload') { location.hash = '#i=' + encodeURIComponent(st.sel); location.reload(); }
+    return;
+  }
+  const fc = e.target.closest('[data-field]');
+  if (fc) { const s = document.getElementById('f-' + fc.dataset.field); if (s) { s.scrollIntoView({ behavior: 'smooth', block: 'start' }); s.classList.remove('flash'); void s.offsetWidth; s.classList.add('flash'); } return; }
+  const cp = e.target.closest('[data-copy]');
+  if (cp) { navigator.clipboard && navigator.clipboard.writeText(cp.dataset.copy).then(() => toast('Caminho copiado')); return; }
+  const r = e.target.closest('[data-go]');
+  if (r) { e.preventDefault(); select(r.dataset.go); }
+};
+const q = document.getElementById('q');
+q.oninput = () => { st.q = q.value; renderNav(); };
+document.addEventListener('keydown', (e) => {
+  if (e.key === '/' && document.activeElement !== q) { e.preventDefault(); q.focus(); q.select(); }
+  else if (e.key === 'Escape') { if (document.activeElement === q && q.value) { q.value = ''; st.q = ''; renderNav(); } else { q.blur(); select(null); } }
+});
+document.getElementById('zin').onclick = () => fg.zoom(fg.zoom() * 1.4, 250);
+document.getElementById('zout').onclick = () => fg.zoom(fg.zoom() / 1.4, 250);
+document.getElementById('zfit').onclick = () => fg.zoomToFit(400, 40);
+document.getElementById('zre').onclick = () => { releaseAll(); toast('Layout reorganizado'); };
+new ResizeObserver(() => fg.width(el.clientWidth).height(el.clientHeight)).observe(el);
+
+// ---------------------------------------------------------------- boot
+const m = BRAIN.meta;
+if (LIVE) document.getElementById('explorer').href = '/explorer';
+document.getElementById('brandname').textContent = m.brand || '';
+const nRecords = BRAIN.items.filter((i) => i.kind !== 'doc').length;
+const nDocs = BRAIN.items.length - nRecords;
+const pend = BRAIN.items.reduce((a, i) => a + i.flags.pending, 0);
+document.getElementById('stat').textContent = `${nRecords} registros · ${nDocs} documentos · ${pend} pendências`;
+document.getElementById('foot').innerHTML = `${BRAIN.categories.length} categorias · gerado ${esc((m.generatedAt || '').slice(0, 16).replace('T', ' '))}<br>lido de <span title="${esc(m.root)}">${esc((m.root || '').split('/').slice(-2).join('/'))}</span>, sem alterar`;
+const fromHash = decodeURIComponent((location.hash.match(/i=([^&]+)/) || [])[1] || '');
+renderNav();
+if (fromHash) select(fromHash, { center: false });
+let fitted = false;
+const fitOnce = () => {
+  if (fitted) return;
+  fitted = true;
+  const n = st.sel && nodeObj.get(st.sel);
+  if (n) { fg.centerAt(n.x, n.y, 400); fg.zoom(1.8, 400); } else fg.zoomToFit(500, 50);
+};
+fg.onEngineStop(fitOnce);
+setTimeout(fitOnce, 2500);
+</script>
+</body>
+</html>

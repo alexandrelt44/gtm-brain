@@ -1,0 +1,76 @@
+/* GTM Brain skin for the Proof SDK editor. Injected by scripts/proof.sh into the
+   editor's index.html; the SDK itself is not modified. Palette and type follow
+   src/brain.html (light, Outfit, purple accent). */
+:root,
+:root[data-theme] {
+  --font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
+  --font-size: 15.5px;
+  --line-height: 1.6;
+  --bg-color: #FFFFFF;
+  --text-color: #24142A;
+  --code-bg: #F7F6F3;
+  --pre-bg: #F7F6F3;
+  --pre-color: #24142A;
+  --blockquote-border: #DCCBFB;
+  --blockquote-color: #4A3F50;
+  --heading-weight: 600;
+  /* provenance: people in teal, AI in purple (same hues as the brain) */
+  --human-color: #99E1D9;
+  --ai-color: #C4B5FD;
+  --mixed-color: #7C3AED;
+  /* attestation gutter, a0 (unreviewed) → a4 (fully reviewed): from faint to full purple */
+  --a0-color: rgba(124, 58, 237, 0.06);
+  --a1-color: rgba(124, 58, 237, 0.10);
+  --a2-color: rgba(124, 58, 237, 0.16);
+  --a3-color: rgba(124, 58, 237, 0.22);
+  --a4-color: rgba(124, 58, 237, 0.28);
+  --gtm-accent: #7C3AED;
+  --gtm-accent-soft: #F1EAFE;
+  --gtm-plum: #2A1631;
+  --gtm-line: #E6E3DD;
+  --gtm-side: #F7F6F3;
+}
+
+/* !important beats the SDK's inline font-family on tooltips, menus and dialogs */
+body *:not(code):not(pre):not(kbd):not(samp):not(pre *):not(code *),
+body, button, input, textarea, select {
+  font-family: Outfit, ui-sans-serif, system-ui, sans-serif !important;
+}
+code, pre, kbd, samp, .ProseMirror code, .ProseMirror pre {
+  font-family: "JetBrains Mono", ui-monospace, Menlo, monospace !important;
+}
+
+.ProseMirror { color: #24142A; }
+.ProseMirror h1, .ProseMirror h2, .ProseMirror h3, .ProseMirror h4 { letter-spacing: -0.01em; color: #24142A; }
+.ProseMirror h1 { font-weight: 700; }
+.ProseMirror a { color: var(--gtm-accent); }
+.ProseMirror blockquote { border-left-width: 3px; }
+.ProseMirror table { border-collapse: collapse; font-size: 13.5px; }
+.ProseMirror th { background: var(--gtm-side); font-weight: 600; }
+.ProseMirror th, .ProseMirror td { border: 1px solid var(--gtm-line) !important; }
+.ProseMirror :not(pre) > code { border-radius: 4px; padding: 0 4px; }
+::selection { background: #E4D7FD; }
+
+/* inputs */
+input:focus, textarea:focus {
+  outline: none !important;
+  border-color: var(--gtm-accent) !important;
+  box-shadow: 0 0 0 3px var(--gtm-accent-soft) !important;
+}
+
+/* top pill: lighter border, same rhythm as the brain's toolbar */
+.share-pill-title { color: #4A3F50 !important; font-weight: 500; }
+
+/* provenance in the brain's palette. The SDK writes these colors inline, so match on them:
+   gutter bars (human mint → teal, AI lavender → purple) and in-text highlights
+   (human text stays clean, AI text gets a faint purple wash). */
+.gutter-segment[style*="110, 231, 183"] { background-color: #5EC4B6 !important; }
+.gutter-segment[style*="165, 180, 252"] { background-color: #A78BFA !important; }
+[style*="rgba(110, 231, 183, 0.08)"] { background-color: transparent !important; }
+[style*="rgba(165, 180, 252, 0.12)"] { background-color: rgba(124, 58, 237, 0.09) !important; }
+
+/* elements recolored by gtm-skin.js */
+.gtm-primary { background: var(--gtm-accent) !important; border-color: var(--gtm-accent) !important; color: #fff !important; }
+.gtm-primary:hover { background: #6D28D9 !important; }
+.gtm-dark { background: var(--gtm-plum) !important; }
+.gtm-hidden { display: none !important; }

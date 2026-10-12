@@ -1,0 +1,5 @@
+node_modules/
+brain/.proof-sdk/
+brain/.gtm-brain/
+brain/out/
+.DS_Store

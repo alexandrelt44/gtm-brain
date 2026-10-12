@@ -1,0 +1,11 @@
+# URLs sintéticas ou de exemplo usadas nos modelos.
+# São andaime de documentação, não endereços reais.
+
+https://suaempresa\.com\.br.*
+https://seusite\.com\.br.*
+https://exemplo\.com\.br.*
+https://yourcompany\.com.*
+https://example\.com.*
+
+# Domínios da Cadência, a startup fictícia dos exemplos.
+https://(www\.)?cadencia\.(app|com\.br).*
