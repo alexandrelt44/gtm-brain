@@ -86,7 +86,7 @@ No Claude Code, abra o repositório e peça "preencher a marca", ou instale as s
 
 ```
 /plugin marketplace add alexandrelt44/gtm-brain
-/plugin install gtm-brain@gtm-brain
+/plugin install gtm-brain@colaborato.rio
 ```
 
 Em outros agentes (Codex, Cursor…), aponte para [`AGENTS.md`](AGENTS.md).
