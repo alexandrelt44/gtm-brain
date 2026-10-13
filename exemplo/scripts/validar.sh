@@ -79,6 +79,7 @@ CANONICAL_FILES=(
   "11-plano/PLANO-DE-UMA-PAGINA.md"
   "11-plano/EXEMPLO-cadencia.md"
   "11-plano/CONTA-DO-CLIENTE.md"
+  "11-plano/CANAIS.md"
   "11-plano/REVISAO-MENSAL.md"
   "11-plano/PROMPTS.md"
   "11-plano/HISTORICO.md"

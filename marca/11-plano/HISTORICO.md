@@ -2,6 +2,12 @@
 
 Mudanças desta pasta, da mais recente para a mais antiga. Se você mantém o seu plano aqui, registre cada mudança trimestral: a data, o que mudou e por quê.
 
+## 0.2.0 — canais e leads diretos
+
+- `CANAIS.md`: novo. A escolha de canais pela Bullseye Framework do *Traction* (Weinberg e Mares): fase e gargalo, uma ideia para cada um dos 19 canais do livro e de mais cinco que ele não cobre, a classificação em três colunas, os três canais do círculo central, o registro de testes e o canal principal com os sinais de saturação.
+- `CONTA-DO-CLIENTE.md`: o passo 4 desconta os leads que entram direto, sem passar pelo site (N). O passo 5 divide os leads, não as visitas: cada canal entra como visitas ou como leads, e o total fecha em leads.
+- `PLANO-DE-UMA-PAGINA.md`, `REVISAO-MENSAL.md` e `EXEMPLO-cadencia.md`: a tabela de canais ganha "Entra como" e o total em leads.
+
 ## 0.1.0 — primeira versão em português
 
 - `README.md`: o que a pasta faz, os arquivos, três jeitos de usar (à mão, numa planilha, com um agente de IA) e como manter o plano atualizado.

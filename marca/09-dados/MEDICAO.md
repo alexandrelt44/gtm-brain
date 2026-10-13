@@ -56,6 +56,7 @@ Escolha uma métrica norte. Desdobre em métricas menores. Associe cada uma a um
 | Consideração | Tempo nas páginas pilar | [Meta] | [GA4] | [Responsável] |
 | Decisão | Pedidos de demonstração | [Meta] | [CRM] | [Responsável] |
 | Decisão | Reuniões agendadas | [Meta] | [Ferramenta de agenda] | [Responsável] |
+| Decisão | Leads diretos (venda direta, parceria, evento), dos canais que não passam pelo site | [Meta] | [CRM, campo de origem] | [Responsável] |
 | Fechamento | MQOs | [Meta] | [CRM] | [Responsável] |
 | Fechamento | Valor anual dos contratos ganhos (ACV) | [Meta] | [CRM] | [Responsável] |
 | Retenção | Retenção líquida de receita (NRR) | [Meta] | [CRM + financeiro] | [Responsável] |

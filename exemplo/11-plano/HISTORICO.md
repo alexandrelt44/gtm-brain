@@ -2,6 +2,12 @@
 
 Mudanças desta pasta, da mais recente para a mais antiga. Se você mantém o seu plano aqui, registre cada mudança trimestral: a data, o que mudou e por quê.
 
+## 2026-10-13: canais da Cadência
+
+- `CANAIS.md`: fase II, gargalo de distribuição, uma ideia para cada um dos 24 canais, a classificação em três colunas, os três canais do círculo central (parcerias com escolas de formação, vendas diretas para redes, busca e respostas de IA), os três testes de 2026-10-19 a 2026-12-11 e o Instagram como canal principal, com os sinais de saturação.
+- `CONTA-DO-CLIENTE.md`: as fatias passam a ser dos leads, e cada canal entra como visitas ou como leads. Eventos (5%), parcerias (3%) e vendas para redes (2%) entram como leads: N = 100 leads diretos por ano, G = 36.000 e H = 3.000 visitas. Instagram de 30% para 25%. M = R$ 13.150 (96% de L, apertado), com 10 h a mais para o Rafael e para a Lívia e 5 h a menos para a Marina. A, B, C, D, E, F, J, K e L não mudaram.
+- `PLANO-DE-UMA-PAGINA.md`, `EXEMPLO-cadencia.md` e `REVISAO-MENSAL.md`: tabela de canais com "Entra como", total fechando em leads (75 do site + 9 diretos = 84 por mês) e meta de visitas de 3.000.
+
 ## 2026-10-13: plano da Cadência
 
 - `CONTA-DO-CLIENTE.md`: os passos 1 a 6 com a conta da Cadência para out. de 2026 a set. de 2027 e a fonte de cada número. A = R$ 660.000, B = R$ 3.300, C = 200 estúdios, D = 20% e F = 2,5% medidas, E = 1.000 leads, G = 40.000 e H = 3.334 visitas, J = R$ 825, K = R$ 165.000, L = R$ 13.750, M = R$ 12.650 (92% de L, apertado).

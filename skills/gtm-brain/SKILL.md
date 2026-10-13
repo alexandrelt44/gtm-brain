@@ -19,6 +19,7 @@ Leia antes: [`referencias/regras.md`](referencias/regras.md). Valem para todas a
 | `mapear-concorrencia` | `05-oferta/CONCORRENCIA.md` e `GANHOS-E-PERDAS.md` |
 | `registrar-provas` | `08-conteudo/PROVAS.md`: cases, depoimentos, dados, capacidade, permissões |
 | `pesquisar-palavras-chave` | `06-seo/` e `07-site/`: palavras-chave, clusters, GEO/AEO, mapa do site |
+| `escolher-canais` | `11-plano/CANAIS.md`: fase e gargalo, uma ideia por canal, três canais em teste, canal principal e sinais de saturação |
 | `montar-plano` | `11-plano/`, `09-dados/` e o calendário: conta do cliente, plano de uma página, medição |
 | `fechar-lacunas` | qualquer arquivo: fichas incompletas, pendências e contradições; também visual, design system e biblioteca de conteúdo |
 
@@ -37,7 +38,7 @@ Se `10-cerebro/CEREBRO.md` ainda não tem o nome da marca, faça uma rodada de p
 1. **Nome da marca e o que ela vende**, numa frase.
 2. **Fontes disponíveis** (múltipla escolha): site da marca; transcrições ou gravações de calls de venda; export do CRM; pesquisa ou entrevistas com clientes; avaliações públicas (Google, Reclame Aqui, G2, App Store); pasta de notas (Obsidian, Notion, Drive); propostas e contratos; métricas do produto ou do site.
 3. **Quem responde** as perguntas: a própria pessoa, ou ela vai consultar sócios, vendas, sucesso do cliente.
-4. **Por onde começar**: a ordem recomendada (ICP → voz → oferta → provas → concorrência → palavras-chave → plano) ou a camada que a pessoa precisa primeiro, por exemplo "vou lançar um site, comece pelo SEO".
+4. **Por onde começar**: a ordem recomendada (ICP → voz → oferta → provas → concorrência → palavras-chave → canais e plano) ou a camada que a pessoa precisa primeiro, por exemplo "vou lançar um site, comece pelo SEO".
 
 Grave o nome no título do `CEREBRO.md` (`# Cérebro da marca — <Nome>`) e anote as fontes que a pessoa deu numa lista `Fontes da marca:` logo abaixo do título, uma por linha, no formato `` - `[TAG]` descrição, período `` (regras, seção 4). Essa lista é o registro de tags da marca: as skills de camada leem as fontes ali, reutilizam as tags e acrescentam ali cada fonte nova.
 
@@ -47,6 +48,8 @@ Grave o nome no título do `CEREBRO.md` (`# Cérebro da marca — <Nome>`) e ano
 2. Quando ela terminar, rode `lacunas` de novo.
 3. Atualize `## Status das camadas` no `CEREBRO.md`: uma linha por camada; camada com parte dos arquivos feita fica `🟡 parcial (o que falta)` (regras, seção 6).
 4. Pergunte se segue para a próxima ou se a pessoa quer revisar antes. Se ela quiser commitar, um commit por camada.
+
+**No plano**, a ordem é: `montar-plano` até a rodada 2 (meta e taxas, passos 1 a 3 da conta), depois `escolher-canais` (`11-plano/CANAIS.md`), depois a `montar-plano` de novo, da rodada 3 em diante. A escolha de canais diz quais canais entram no plano e se cada um entra em visitas ou em leads. Quando o canal principal saturar, chame `escolher-canais` de novo, sem refazer a conta inteira.
 
 **Depois de `registrar-provas`**, volte às promessas de `/05-oferta/OFERTA.md` e às objeções de `/01-icp/ICP.md`: o que estava `[HIPÓTESE]`, "sem prova" ou `[PENDENTE: /08-conteudo/PROVAS.md]` pode ter prova agora. A própria `registrar-provas` propõe essas mudanças no passo de verificar; confira que ela fez.
 

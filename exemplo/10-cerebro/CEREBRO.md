@@ -124,6 +124,7 @@ exemplo/  (pasta da marca Cadência)
 └── 11-plano/
     ├── PLANO-DE-UMA-PAGINA.md
     ├── CONTA-DO-CLIENTE.md
+    ├── CANAIS.md
     └── REVISAO-MENSAL.md
 ```
 
@@ -162,6 +163,7 @@ exemplo/  (pasta da marca Cadência)
 | Gosto | `/10-cerebro/contexto-criativo/gosto.md` |
 | Plano de uma página | `/11-plano/PLANO-DE-UMA-PAGINA.md` |
 | Conta do cliente | `/11-plano/CONTA-DO-CLIENTE.md` |
+| Canais e testes | `/11-plano/CANAIS.md` |
 | Revisão mensal | `/11-plano/REVISAO-MENSAL.md` |
 
 ## Ordem de carga

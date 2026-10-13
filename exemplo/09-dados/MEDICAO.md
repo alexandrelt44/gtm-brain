@@ -58,7 +58,7 @@ Escolha uma métrica norte. Desdobre em métricas menores. Associe cada uma a um
 
 | Etapa | Métrica | Meta | Ferramenta | Responsável |
 | --- | --- | --- | --- | --- |
-| Descoberta | Visitas às páginas que vendem (modalidade, `/agenda`, `/cobranca`, `/rede`, `/precos` e `/teste-gratis`) | 3.334 por mês | GA4 | Bruna Alves |
+| Descoberta | Visitas às páginas que vendem (modalidade, `/agenda`, `/cobranca`, `/rede`, `/precos` e `/teste-gratis`) | 3.000 por mês | GA4 | Bruna Alves |
 | Descoberta | Sessões orgânicas no blog | 6.000 por mês | GA4 | Bruna Alves |
 | Descoberta | Impressões de buscas pela marca | Acompanhar, sem meta | Google Search Console | Bruna Alves |
 | Descoberta | Alcance no Instagram (Cadência e Marina) | 120 mil contas por mês | Instagram | Marina Duarte |
@@ -67,6 +67,7 @@ Escolha uma métrica norte. Desdobre em métricas menores. Associe cada uma a um
 | Consideração | Tempo nas páginas pilar | 3 minutos ou mais | GA4 | Bruna Alves |
 | Decisão | Testes iniciados | 60 por mês | GA4 + painel interno | Tiago Ramos |
 | Decisão | Demonstrações agendadas (site e WhatsApp) | 24 por mês | RD Station CRM | Rafael Nunes |
+| Decisão | Leads diretos: eventos, parcerias com escolas de formação e vendas diretas para redes (`/11-plano/CANAIS.md`) | 9 por mês, dentro dos 84 | RD Station CRM, origem `evento`, `parceria` e `prospeccao` | Rafael Nunes |
 | Fechamento | Estúdios novos (assinatura paga) | 17 por mês | Painel interno | Rafael Nunes |
 | Fechamento | Custo por estúdio novo | Abaixo de R$ 825 | Planilha de custos + painel interno | Rafael Nunes |
 | Retenção | Churn mensal | Abaixo de 2,1% (D-002) | Painel interno | Lívia Moraes |

@@ -7,7 +7,7 @@ Plano que ninguém confere é desejo. Esta revisão mantém o seu vivo em 30 min
 | Número | De onde vem | Meta mensal |
 |---|---|---|
 | Visitas às páginas que vendem | Relatório de página de destino do GA4, filtrado para páginas de serviço ou produto, preços, contato e agendamento | do passo 4 |
-| Leads | Formulários enviados + ligações e cliques no WhatsApp rastreados + agendamentos (eventos principais do GA4 ou seu CRM) | do passo 3 |
+| Leads | Formulários enviados + ligações e cliques no WhatsApp rastreados + agendamentos (eventos principais do GA4 ou seu CRM), mais os leads dos canais que entram direto, pela origem no CRM | do passo 3 |
 | Clientes | Negócios ganhos no CRM, ou o sistema de cobrança e nota fiscal | do passo 2 |
 | Custo por cliente | Gasto total de marketing (dinheiro + horas a um valor por hora) ÷ clientes novos | do passo 6 |
 
@@ -22,7 +22,7 @@ Quatro números, não um painel com quarenta. Se quiser um quinto, que seja a ta
 | Primeira falha | O que costuma significar | Onde olhar |
 |---|---|---|
 | Visitas | Um problema de canal | A tabela de canais diz com qual dono conversar |
-| Leads (visitas bateram) | Um problema de site | As páginas onde as pessoas chegam: o próximo passo, o formulário, o botão de WhatsApp, a prova |
+| Leads (visitas bateram) | Um problema de site ou de um canal de leads | Primeiro os leads diretos de cada canal, pela origem no CRM: se um ficou abaixo da meta, a conversa é com o dono dele. Se bateram, as páginas onde as pessoas chegam: o próximo passo, o formulário, o botão de WhatsApp, a prova |
 | Clientes (leads bateram) | Um problema de venda ou de tempo de resposta | Com que rapidez e qualidade cada lead recebe resposta |
 | Custo por cliente (clientes bateram) | Um problema de combinação de canais | Quais canais custam mais por cliente que produzem |
 | Nada falhou | O plano está funcionando | Siga em frente e resista à vontade de mudar coisas |
@@ -37,7 +37,7 @@ Uma vez por trimestre, acrescente mais 30 minutos:
 
 1. Confira a caixa "atualizado em" do plano e troque qualquer referência, ferramenta ou canal que mudou.
 2. Refaça a conta do cliente inteira com as taxas de fechamento e de conversão medidas no lugar dos provisórios.
-3. Reequilibre a tabela de canais para que ela continue somando a meta mensal de visitas.
+3. Reequilibre a tabela de canais: as visitas continuam somando a meta mensal de visitas, e as visitas vezes a taxa de conversão, mais os leads diretos, continuam alcançando a meta mensal de leads. Traga o resultado dos testes de [`CANAIS.md`](CANAIS.md): canal que passou no teste ganha fatia, canal que falhou devolve a dele.
 4. Acrescente uma linha ao histórico do plano: data, o que mudou, por quê.
 
 Os números do primeiro trimestre vão estar errados. Tudo bem. O plano é uma previsão que melhora a cada trimestre, não uma profecia.

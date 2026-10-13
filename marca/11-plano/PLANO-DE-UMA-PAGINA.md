@@ -8,7 +8,8 @@ Copie o bloco abaixo para um documento, um app de notas ou o seu próprio reposi
 - **Preencha de cima para baixo.** Cada seção usa as respostas da seção anterior.
 - **Marque os provisórios.** Se sua taxa de fechamento ou de conversão é um chute, marque a caixa de provisório e escreva a data em que vai trocar por um número medido. Um chute rotulado não tem problema. Um chute sem rótulo vira fato sem ninguém perceber.
 - **Coloque um nome ao lado de cada canal.** Uma pessoa, não um departamento. Canal sem dono não é trabalhado.
-- **O TOTAL dos canais tem que ser igual às visitas necessárias por mês.**
+- **Diga como cada canal entra na conta.** Canal que gera visita ao site entra em visitas e passa pela taxa de conversão. Canal que gera lead direto (venda direta, prospecção, parceria, evento, feira, palestra) entra em leads. Os canais e o jeito de cada um entrar vêm de [`CANAIS.md`](CANAIS.md).
+- **O TOTAL fecha em leads.** As visitas dos canais de visita somam as visitas necessárias por mês, e essas visitas vezes a taxa de conversão, mais os leads diretos, alcançam os leads necessários por mês.
 - **Travou numa linha?** Compare com o plano preenchido em [`EXEMPLO-cadencia.md`](EXEMPLO-cadencia.md).
 
 ## O plano
@@ -22,19 +23,22 @@ Valor de um cliente novo no primeiro ano:                   R$__________
 Clientes novos necessários (receita ÷ valor):                 __________
 
 CONTA (passos 3 e 4)
-Taxa de fechamento (clientes ÷ leads):                        _______%   → Leads necessários: __________
+Taxa de fechamento (clientes ÷ leads):                        _______%   → Leads necessários: __________ por ano
+Leads que entram direto, sem passar pelo site (____% de E):              __________ por ano
 Taxa de conversão do site (leads ÷ visitas):                  _______%   → Visitas necessárias: __________ por ano, __________ por mês
 [ ] Taxa de fechamento medida     [ ] Taxa de fechamento provisória até ________ (data)
 [ ] Taxa de conversão medida      [ ] Taxa de conversão provisória até ________ (data)
 
-CANAIS E DONOS (passo 5)                             Visitas/mês    Dono         Como medimos
-Google (busca, Google Meu Negócio, respostas de IA)  __________     _________    ______________________
-Avaliações e indicações                              __________     _________    ______________________
-E-mail e WhatsApp                                    __________     _________    ______________________
-Mídia paga (busca e redes sociais)                   __________     _________    ______________________
-Conteúdo e redes sociais                             __________     _________    ______________________
-Outro: ______________                                __________     _________    ______________________
-                                              TOTAL  __________  (tem que ser igual às visitas necessárias por mês)
+CANAIS E DONOS (passo 5)                    Fatia  Entra como  Meta/mês      Leads/mês  Dono       Como medimos
+Google (busca, Google Meu Negócio, IA)      ____%  visitas     ______        ______     ________   ______________________
+Avaliações e indicações                     ____%  visitas     ______        ______     ________   ______________________
+E-mail e WhatsApp                           ____%  visitas     ______        ______     ________   ______________________
+Mídia paga (busca e redes sociais)          ____%  visitas     ______        ______     ________   ______________________
+Conteúdo e redes sociais                    ____%  visitas     ______        ______     ________   ______________________
+Vendas diretas, parcerias ou eventos        ____%  leads       ______        ______     ________   ______________________
+Outro: ______________                       ____%  ________    ______        ______     ________   ______________________
+                                     TOTAL  100%   ______ visitas × ____% = ______ leads + ______ leads diretos = ______ leads por mês
+                                                   (as visitas somam as visitas necessárias por mês; o total de leads alcança E ÷ 12)
 
 ORÇAMENTO (passo 6)
 Custo aceitável por cliente (____% do valor do primeiro ano):  R$__________
@@ -43,7 +47,7 @@ Custo estimado dos canais (dinheiro + horas a R$____/h):       R$__________ por 
 
 PLACAR (passos 2, 3, 4 e 6)      Meta/mês        Real (M1)     Real (M2)     Real (M3)
 Visitas às páginas que vendem    __________      _________     _________     _________
-Leads                            __________      _________     _________     _________
+Leads (site + diretos)           __________      _________     _________     _________
 Clientes novos                   __________      _________     _________     _________
 Custo por cliente                R$________      _________     _________     _________
 

@@ -50,38 +50,49 @@ Leads necessários = C ÷ D, arredondado para cima       (E)     __________
 
 Cadência (fictícia): um lead é um teste grátis iniciado ou uma demonstração agendada, e 20% deles viram assinatura. 200 ÷ 0,20 = **1.000 leads**.
 
-## Passo 4: taxa de conversão e visitas necessárias
+## Passo 4: taxa de conversão, leads diretos e visitas necessárias
 
 **De onde vem:** Google Analytics 4. Primeiro, garanta que suas ações de lead (envio de formulário, clique no telefone ou no WhatsApp, agendamento concluído, teste iniciado) estão configuradas como eventos principais. Depois abra **Relatórios > Engajamento > Página de destino** e divida os eventos principais pelas sessões das páginas onde as pessoas de fato convertem: páginas de serviço ou de produto, página de preços, página de contato, página de agendamento. Deixe o blog de fora. No Google Meu Negócio, o painel de desempenho mostra ligações, mensagens, pedidos de rota e cliques para o site, então dá para calcular uma taxa de visualização do perfil para ação do mesmo jeito.
 
 ```
 Taxa de conversão = leads ÷ visitas                    (F)     _______%    [ ] medida  [ ] provisória até ________
-Visitas necessárias por ano = E ÷ F, para cima         (G)     __________
+Leads diretos por ano = E × fatias de leads, p/ baixo  (N)     __________
+Visitas necessárias por ano = (E − N) ÷ F, para cima   (G)     __________
 Visitas necessárias por mês = G ÷ 12, para cima        (H)     __________
 ```
 
-Cadência (fictícia): 2,5% das visitas às páginas de planos e de modalidade viram teste ou demonstração. 1.000 ÷ 0,025 = **40.000 visitas por ano**, e 40.000 ÷ 12 = 3.333,3, arredondado para cima: **3.334 por mês**.
+**Leads que não passam pelo site (N).** Venda direta, prospecção, parceria, evento, feira e palestra geram o lead sem visita: a conversa vira demonstração, orçamento ou pedido direto no CRM. Esses leads saem da conta das visitas. N é E vezes a soma das fatias dos canais que entram como leads no passo 5, arredondado **para baixo**: um lead direto a menos deixa mais visitas na meta, que é o lado seguro. Os canais e o jeito de cada um entrar vêm de [`CANAIS.md`](CANAIS.md). Sem canal de leads, N = 0 e G = E ÷ F.
 
-## Passo 5: dividir as visitas entre os canais
+Cadência (fictícia): 2,5% das visitas às páginas de planos e de modalidade viram teste ou demonstração. Eventos, parcerias e vendas diretas para redes somam 10% dos leads e entram direto: 1.000 × 10% = **100 leads diretos por ano**. (1.000 − 100) ÷ 0,025 = **36.000 visitas por ano**, e 36.000 ÷ 12 = **3.000 por mês**.
 
-Três a cinco canais é o limite para uma equipe pequena. Escolha pelo número de visitas qualificadas que cada um consegue entregar de verdade e coloque o nome de uma pessoa ao lado de cada um.
+## Passo 5: dividir os leads entre os canais
 
-**Como dividir:** dê a cada canal uma fatia inteira das visitas mensais, somando 100%. Multiplique H por cada fatia. Para as metas dos canais somarem exatamente H, arredonde todos os canais **para baixo** primeiro e depois distribua as visitas que sobraram, uma de cada vez, para os canais com a maior fração restante. Se duas frações empatarem, a visita vai para o canal que aparece antes na lista.
+Três a cinco canais é o limite para uma equipe pequena trabalhar bem. Canal em teste é pequeno de propósito e sai do plano se falhar. Escolha pelo número de leads que cada um consegue entregar de verdade e coloque o nome de uma pessoa ao lado de cada um. A lista de canais, os testes e o jeito de cada canal entrar na conta vêm de [`CANAIS.md`](CANAIS.md).
+
+**Como dividir:** dê a cada canal uma fatia inteira dos leads (E), somando 100%, e diga como ele entra:
+
+- **Visitas:** o canal leva gente ao site, e a taxa de conversão transforma visita em lead. Meta por mês = E × fatia ÷ F ÷ 12, em visitas.
+- **Leads:** o canal gera o lead sem passar pelo site. Meta por mês = E × fatia ÷ 12, em leads.
+
+Para as metas fecharem, arredonde os canais de visitas **para baixo** e distribua as visitas que faltam para chegar a H, uma de cada vez, aos canais com a maior fração restante. Faça o mesmo com os canais de leads até somarem N ÷ 12, arredondado para cima. Se duas frações empatarem, vence o canal que aparece antes na lista.
+
+**O TOTAL fecha em leads:** H × F + leads diretos por mês tem que alcançar E ÷ 12. Com H e os leads diretos arredondados para cima, sempre alcança; se não alcançar, a conta tem erro. O placar mostra E ÷ 12 arredondado para cima.
 
 ```
-Canal                                          Fatia    Visitas/mês (H × fatia)       Dono
-Google (busca, Google Meu Negócio, IA)         ____%    __________                    __________
-Avaliações e indicações                        ____%    __________                    __________
-E-mail e WhatsApp                              ____%    __________                    __________
-Mídia paga (busca e redes sociais)             ____%    __________                    __________
-Conteúdo e redes sociais                       ____%    __________                    __________
-Outro: ______________                          ____%    __________                    __________
-                                       TOTAL   100%     __________  (tem que ser igual a H)
+Canal                                          Fatia    Entra como    Meta/mês                      Dono
+Google (busca, Google Meu Negócio, IA)         ____%    visitas       __________                    __________
+Avaliações e indicações                        ____%    visitas       __________                    __________
+E-mail e WhatsApp                              ____%    visitas       __________                    __________
+Mídia paga (busca e redes sociais)             ____%    visitas       __________                    __________
+Conteúdo e redes sociais                       ____%    visitas       __________                    __________
+Vendas diretas, parcerias ou eventos           ____%    leads         __________                    __________
+Outro: ______________                          ____%    __________    __________                    __________
+                                       TOTAL   100%     ______ visitas (igual a H) × F = ______ leads + ______ leads diretos = ______ leads por mês
 ```
 
-Fatias iniciais, se você não tiver ideia melhor: 45% Google, 15% avaliações e indicações, 15% e-mail e WhatsApp, 15% mídia paga, 10% conteúdo e redes sociais. Depois mova as fatias para onde seus clientes de fato vêm.
+Fatias iniciais, se você não tiver ideia melhor: 45% Google, 15% avaliações e indicações, 15% e-mail e WhatsApp, 15% mídia paga, 10% conteúdo e redes sociais, todas em visitas. Canal de leads entra com a fatia que a origem dos clientes no CRM justificar. Depois mova as fatias para onde seus clientes de fato vêm.
 
-Cadência (fictícia): 667 Google (Bruna), 500 indicações (Lívia), 333 e-mail e WhatsApp (Bruna), 667 mídia paga (Rafael), 1.000 Instagram (Marina), 167 eventos de pilates (Marina) = **3.334**.
+Cadência (fictícia): 667 Google (Bruna), 500 indicações (Lívia), 333 e-mail e WhatsApp (Bruna), 667 mídia paga (Rafael) e 833 Instagram (Marina) = **3.000 visitas**, mais 4 leads de eventos de pilates (Marina), 3 de parcerias com escolas de formação (Lívia) e 2 de vendas diretas para redes (Rafael) = **9 leads diretos**. 3.000 × 2,5% = 75 leads do site, mais 9 diretos, dão **84 leads por mês**.
 
 ## Passo 6: teto de orçamento
 
@@ -118,8 +129,8 @@ Se M passar de L, você precisa de uma combinação de canais mais barata, de um
 **Conferência opcional da mídia paga.** Para um negócio que trabalha com leads:
 
 ```
-Visitas pagas por ano = G × fatia da mídia paga               __________
-Leads pagos por ano = visitas pagas × F                       __________
+Leads pagos por ano = E × fatia da mídia paga                 __________
+Visitas pagas por ano = leads pagos ÷ F                       __________
 Custo pago estimado = leads pagos × custo por lead            R$__________
 Compare com K × fatia da mídia paga                           R$__________
 ```
@@ -157,5 +168,6 @@ As fórmulas nunca mudam. O que conta como cliente, lead e visita, sim.
 | **Passo 2: resultado** | Meta de R$ 468.000 ÷ R$ 1.560 = 300 hóspedes novos | Meta de R$ 900.000 ÷ R$ 18.000 = 50 negócios fechados | Meta de R$ 180.000 ÷ R$ 360 = 500 clientes novos | Meta de R$ 750.000 ÷ R$ 375 = 2.000 clientes novos |
 | **Passo 3: taxa de fechamento** | Reservas diretas confirmadas ÷ pedidos de reserva (consultas de disponibilidade, ligações, WhatsApp); acompanhe à parte quem reserva direto pelo motor de reservas | Negócios fechados ÷ conversas com leads novos que chegaram a uma visita ou avaliação | Reservas de primeira vez cumpridas ÷ pedidos de reserva; quem chega sem reserva pula este passo | Conclusão de checkout: pedidos ÷ inícios de checkout |
 | **Passo 4: taxa de conversão** | Visitas às páginas de quartos e de localização que viram reserva ou consulta de disponibilidade | Visitas às páginas de imóveis e de bairros que viram pedido de avaliação, de visita ou conversa com corretor | Visitas às páginas de cardápio e de endereço que viram reserva ou pedido online; seu perfil no Google Meu Negócio pode gerar mais disso que o site | Sessões nas páginas de produto e de categoria que viram início de checkout |
+| **Passo 5: canais de leads diretos** | Agências e operadoras de turismo, reservas de grupos e empresas pelo telefone | Indicação de corretor parceiro, plantão em lançamento, captação direta com proprietários | Eventos fechados e reservas de empresas pelo telefone ou WhatsApp | Quase nenhum: a compra passa pela loja. Venda para empresas no atacado, se houver |
 
 Para uma loja online, leia "leads" como "inícios de checkout" em toda esta conta.

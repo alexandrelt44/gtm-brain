@@ -11,7 +11,7 @@ Fontes citadas neste arquivo:
 - `[VENDAS]` RD Station CRM, relatório de funil por origem do negócio, 2026-04-01 a 2026-09-30
 - `[GA4]` exports do GA4 da propriedade cadencia.example, 2026-04-01 a 2026-09-30
 - `[ANUNCIOS]` Google Ads e Gerenciador de Anúncios da Meta, 2026-04-01 a 2026-09-30
-- `[CONVERSA 2026-10-13]` respostas de Marina Duarte sobre período, valor do primeiro ano, fatia aceitável, horas e divisão das visitas
+- `[CONVERSA 2026-10-13]` respostas de Marina Duarte sobre período, valor do primeiro ano, fatia aceitável, horas e divisão dos leads entre os canais
 
 Seis passos, uma calculadora. Trabalhe de cima para baixo: cada resposta alimenta a linha seguinte. No fim, copie as respostas para o [`PLANO-DE-UMA-PAGINA.md`](PLANO-DE-UMA-PAGINA.md).
 
@@ -71,40 +71,54 @@ Cadência: um lead é um teste grátis iniciado ou uma demonstração agendada, 
 
 Os 20% são uma média: indicação de cliente fecha 30%, Instagram 23%, Google orgânico 18%, e-mail e WhatsApp 16%, mídia paga 14% e eventos 11% `[VENDAS]`. Se a mistura de leads pender para mídia paga, a taxa cai.
 
-## Passo 4: taxa de conversão e visitas necessárias
+## Passo 4: taxa de conversão, leads diretos e visitas necessárias
 
 **De onde vem:** Google Analytics 4. Primeiro, garanta que suas ações de lead (envio de formulário, clique no telefone ou no WhatsApp, agendamento concluído, teste iniciado) estão configuradas como eventos principais. Depois abra **Relatórios > Engajamento > Página de destino** e divida os eventos principais pelas sessões das páginas onde as pessoas de fato convertem: páginas de serviço ou de produto, página de preços, página de contato, página de agendamento. Deixe o blog de fora. No Google Meu Negócio, o painel de desempenho mostra ligações, mensagens, pedidos de rota e cliques para o site, então dá para calcular uma taxa de visualização do perfil para ação do mesmo jeito.
 
 ```
 Taxa de conversão = leads ÷ visitas                    (F)     2,5%    [x] medida  [ ] provisória até n/a
-Visitas necessárias por ano = E ÷ F, para cima         (G)     40.000
-Visitas necessárias por mês = G ÷ 12, para cima        (H)     3.334
+Leads diretos por ano = E × fatias de leads, p/ baixo  (N)     100
+Visitas necessárias por ano = (E − N) ÷ F, para cima   (G)     36.000
+Visitas necessárias por mês = G ÷ 12, para cima        (H)     3.000
 ```
 
-Cadência: 480 eventos principais (318 `trial_start`, 96 `call_booked`, 66 `whatsapp_click`) ÷ 19.200 sessões nas oito páginas que vendem (`/precos`, `/pilates`, `/yoga`, `/funcional`, `/cobranca`, `/agenda`, `/rede`, `/teste-gratis`) = 2,5%, de abr. a set. de 2026, com o blog de fora `[GA4]`. `[COMPROVADO]` 1.000 ÷ 0,025 = **40.000 visitas por ano**, e 40.000 ÷ 12 = 3.333,3, arredondado para cima: **3.334 por mês**. Medida de novo na revisão trimestral de jan. de 2027.
+**Leads que não passam pelo site (N).** Venda direta, prospecção, parceria, evento, feira e palestra geram o lead sem visita: a conversa vira demonstração, orçamento ou pedido direto no CRM. Esses leads saem da conta das visitas. N é E vezes a soma das fatias dos canais que entram como leads no passo 5, arredondado **para baixo**: um lead direto a menos deixa mais visitas na meta, que é o lado seguro. Os canais e o jeito de cada um entrar vêm de [`CANAIS.md`](CANAIS.md). Sem canal de leads, N = 0 e G = E ÷ F.
 
-Os 2,5% contam eventos, não pessoas. No mesmo período, o CRM deduplicou e contou 420 leads `[VENDAS]`. A taxa por pessoa seria 420 ÷ 19.200 = 2,19%, mas o CRM também conta leads que não passaram por essas páginas (direct do Instagram, WhatsApp, eventos), então nenhum dos dois números é a taxa limpa. Com 2,19%, as visitas necessárias subiriam para 3.810 por mês. Conciliação de GA4 e CRM por origem, para separar a taxa por pessoa [PENDENTE: Bruna Alves, auditora dos dados em `/09-dados/MEDICAO.md`, até a revisão trimestral de jan. de 2027].
+Cadência: 480 eventos principais (318 `trial_start`, 96 `call_booked`, 66 `whatsapp_click`) ÷ 19.200 sessões nas oito páginas que vendem (`/precos`, `/pilates`, `/yoga`, `/funcional`, `/cobranca`, `/agenda`, `/rede`, `/teste-gratis`) = 2,5%, de abr. a set. de 2026, com o blog de fora `[GA4]`. `[COMPROVADO]` Medida de novo na revisão trimestral de jan. de 2027.
 
-## Passo 5: dividir as visitas entre os canais
+Eventos de pilates e yoga (5%), parcerias com escolas de formação (3%) e vendas diretas para redes (2%) entram como leads `[CONVERSA 2026-10-13]` (`/11-plano/CANAIS.md`). 1.000 × 10% = **100 leads diretos por ano**. (1.000 − 100) ÷ 0,025 = **36.000 visitas por ano**, e 36.000 ÷ 12 = **3.000 por mês**, sem sobra.
 
-Três a cinco canais é o limite para uma equipe pequena. Escolha pelo número de visitas qualificadas que cada um consegue entregar de verdade e coloque o nome de uma pessoa ao lado de cada um.
+Os 2,5% contam eventos, não pessoas. No mesmo período, o CRM deduplicou e contou 420 leads `[VENDAS]`. A taxa por pessoa seria 420 ÷ 19.200 = 2,19%, mas o CRM também conta leads que não passaram por essas páginas (direct do Instagram, WhatsApp, eventos), então nenhum dos dois números é a taxa limpa. Com 2,19%, as visitas necessárias subiriam para 900 ÷ 0,021875 = 41.142,9, para cima 41.143 por ano, e 3.429 por mês. Conciliação de GA4 e CRM por origem, para separar a taxa por pessoa [PENDENTE: Bruna Alves, auditora dos dados em `/09-dados/MEDICAO.md`, até a revisão trimestral de jan. de 2027].
 
-**Como dividir:** dê a cada canal uma fatia inteira das visitas mensais, somando 100%. Multiplique H por cada fatia. Para as metas dos canais somarem exatamente H, arredonde todos os canais **para baixo** primeiro e depois distribua as visitas que sobraram, uma de cada vez, para os canais com a maior fração restante. Se duas frações empatarem, a visita vai para o canal que aparece antes na lista.
+## Passo 5: dividir os leads entre os canais
+
+Três a cinco canais é o limite para uma equipe pequena trabalhar bem. Canal em teste é pequeno de propósito e sai do plano se falhar. Escolha pelo número de leads que cada um consegue entregar de verdade e coloque o nome de uma pessoa ao lado de cada um. A lista de canais, os testes e o jeito de cada canal entrar na conta vêm de [`CANAIS.md`](CANAIS.md).
+
+**Como dividir:** dê a cada canal uma fatia inteira dos leads (E), somando 100%, e diga como ele entra:
+
+- **Visitas:** o canal leva gente ao site, e a taxa de conversão transforma visita em lead. Meta por mês = E × fatia ÷ F ÷ 12, em visitas.
+- **Leads:** o canal gera o lead sem passar pelo site. Meta por mês = E × fatia ÷ 12, em leads.
+
+Para as metas fecharem, arredonde os canais de visitas **para baixo** e distribua as visitas que faltam para chegar a H, uma de cada vez, aos canais com a maior fração restante. Faça o mesmo com os canais de leads até somarem N ÷ 12, arredondado para cima. Se duas frações empatarem, vence o canal que aparece antes na lista.
+
+**O TOTAL fecha em leads:** H × F + leads diretos por mês tem que alcançar E ÷ 12. Com H e os leads diretos arredondados para cima, sempre alcança; se não alcançar, a conta tem erro. O placar mostra E ÷ 12 arredondado para cima.
 
 ```
-Canal                                          Fatia    Visitas/mês (H × fatia)       Dono
-Google (busca, Google Meu Negócio, IA)          20%     666,8   → 666 + 1 = 667       Bruna Alves
-Avaliações e indicações                         15%     500,1   → 500                 Lívia Moraes
-E-mail e WhatsApp                               10%     333,4   → 333                 Bruna Alves
-Mídia paga (busca e redes sociais)              20%     666,8   → 666 + 1 = 667       Rafael Nunes
-Conteúdo e redes sociais (Instagram)            30%     1.000,2 → 1.000               Marina Duarte
-Eventos de pilates e yoga                        5%     166,7   → 166 + 1 = 167       Marina Duarte
-                                       TOTAL   100%     3.334  (igual a H)
+Canal                                      Fatia  Entra como  Conta                    Meta/mês           Dono
+Google (busca, Google Meu Negócio, IA)      20%   visitas     1.000 × 20% ÷ 2,5% ÷ 12  666,7 → 666 + 1 = 667 visitas   Bruna Alves
+Avaliações e indicações                     15%   visitas     1.000 × 15% ÷ 2,5% ÷ 12  500,0 → 500 visitas             Lívia Moraes
+E-mail e WhatsApp                           10%   visitas     1.000 × 10% ÷ 2,5% ÷ 12  333,3 → 333 visitas             Bruna Alves
+Mídia paga (busca e redes sociais)          20%   visitas     1.000 × 20% ÷ 2,5% ÷ 12  666,7 → 666 + 1 = 667 visitas   Rafael Nunes
+Conteúdo e redes sociais (Instagram)        25%   visitas     1.000 × 25% ÷ 2,5% ÷ 12  833,3 → 833 visitas             Marina Duarte
+Eventos de pilates e yoga                    5%   leads       1.000 × 5% ÷ 12          4,17 → 4 leads                  Marina Duarte
+Parcerias com escolas de formação (teste)    3%   leads       1.000 × 3% ÷ 12          2,5 → 2 + 1 = 3 leads           Lívia Moraes
+Vendas diretas para redes (teste)            2%   leads       1.000 × 2% ÷ 12          1,67 → 1 + 1 = 2 leads          Rafael Nunes
+                                   TOTAL   100%   3.000 visitas (igual a H) × 2,5% = 75 leads + 9 leads diretos = 84 leads por mês
 ```
 
-Fatias iniciais, se você não tiver ideia melhor: 45% Google, 15% avaliações e indicações, 15% e-mail e WhatsApp, 15% mídia paga, 10% conteúdo e redes sociais. Depois mova as fatias para onde seus clientes de fato vêm.
+Fatias iniciais, se você não tiver ideia melhor: 45% Google, 15% avaliações e indicações, 15% e-mail e WhatsApp, 15% mídia paga, 10% conteúdo e redes sociais, todas em visitas. Canal de leads entra com a fatia que a origem dos clientes no CRM justificar. Depois mova as fatias para onde seus clientes de fato vêm.
 
-Cadência: 667 Google (Bruna), 500 indicações (Lívia), 333 e-mail e WhatsApp (Bruna), 667 mídia paga (Rafael), 1.000 Instagram (Marina), 167 eventos de pilates (Marina) = **3.334**. Arredondados para baixo, os canais somam 3.331; as 3 visitas que faltam vão para as maiores frações, 0,8 do Google, 0,8 da mídia paga e 0,7 dos eventos. As fatias são decisão da Marina, as mesmas do plano de uma página `[CONVERSA 2026-10-13]`.
+Cadência: 667 Google (Bruna), 500 indicações (Lívia), 333 e-mail e WhatsApp (Bruna), 667 mídia paga (Rafael) e 833 Instagram (Marina) = **3.000 visitas**, mais 4 leads de eventos (Marina), 3 de parcerias (Lívia) e 2 de vendas para redes (Rafael) = **9 leads diretos**. Arredondados para baixo, os canais de visitas somam 2.998; as 2 visitas que faltam vão para as maiores frações, 0,67 do Google e 0,67 da mídia paga. Os canais de leads somam 7 para baixo, e N ÷ 12 = 8,3, para cima 9; os 2 leads que faltam vão para 0,67 das vendas para redes e 0,5 das parcerias. **3.000 × 2,5% = 75 leads do site, mais 9 diretos, dão 84 leads por mês**, os mesmos 84 do placar (1.000 ÷ 12 = 83,3, para cima). As fatias são decisão da Marina `[CONVERSA 2026-10-13]`: ela tirou 5 pontos do Instagram, de 30% para 25%, para os dois testes de leads, porque as horas dela são a restrição do plano. Se um teste falhar na revisão trimestral de jan. de 2027, a fatia dele volta para o Instagram (`/11-plano/CANAIS.md`).
 
 Para comparar na revisão: de abr. a set. de 2026, os 84 estúdios ganhos vieram 34 do Instagram, 17 do Google orgânico, 14 de indicação, 12 da mídia paga, 5 de e-mail e WhatsApp e 2 de eventos `[VENDAS]`.
 
@@ -132,9 +146,9 @@ Cadência: R$ 3.300 × 25% = **R$ 825 por estúdio**. × 200 estúdios = **R$ 16
 
 ```
 Gasto mensal em dinheiro, todos os canais:                    R$ 4.400,00
-Horas mensais, todos os canais: 125 h × R$ 50/h =             R$ 6.250,00
-                                 20 h × R$ 100/h =            R$ 2.000,00
-Custo mensal planejado (dinheiro + horas)              (M)    R$ 12.650,00
+Horas mensais, todos os canais: 145 h × R$ 50/h =             R$ 7.250,00
+                                 15 h × R$ 100/h =            R$ 1.500,00
+Custo mensal planejado (dinheiro + horas)              (M)    R$ 13.150,00
 
 M até 80% de L: cabe.  Entre 80% e 100% de L: apertado.  Acima de L: precisa mudar.
 ```
@@ -143,27 +157,27 @@ Cadência, item por item:
 
 ```
 Dinheiro:  mídia paga R$ 2.000 + ferramentas R$ 900 + eventos R$ 1.500     = R$  4.400
-Horas:     Bruna 80 h + Rafael 30 h + Lívia 15 h = 125 h × R$ 50/h          = R$  6.250
-           Marina 20 h × R$ 100/h                                           = R$  2.000
-Total (M)                                                                   = R$ 12.650   → 92% de L: apertado
+Horas:     Bruna 80 h + Rafael 40 h + Lívia 25 h = 145 h × R$ 50/h          = R$  7.250
+           Marina 15 h × R$ 100/h                                           = R$  1.500
+Total (M)                                                                   = R$ 13.150   → 96% de L: apertado
 ```
 
-Horas e valor da hora são da Marina `[CONVERSA 2026-10-13]`. O dinheiro é a estimativa do plano em `/11-plano/EXEMPLO-cadencia.md`: a mídia paga sai da conferência abaixo (R$ 24.000 por ano ÷ 12). Ferramentas e eventos não têm fatura nos exports deste plano. Em abr. a set. de 2026, a mídia paga gastou R$ 21.600, R$ 3.600 por mês `[ANUNCIOS]`, então o plano prevê gastar menos em anúncios do que no semestre passado. R$ 12.650 ÷ R$ 13.750 = 92%: **apertado**.
+Horas e valor da hora são da Marina `[CONVERSA 2026-10-13]`. O Rafael e a Lívia têm 10 h a mais cada um para os testes de vendas diretas e de parcerias, e a Marina tem 5 h a menos com a fatia menor do Instagram (`/11-plano/CANAIS.md`). O dinheiro é a estimativa do plano em `/11-plano/EXEMPLO-cadencia.md`: a mídia paga sai da conferência abaixo (R$ 24.000 por ano ÷ 12). Ferramentas e eventos não têm fatura nos exports deste plano. Em abr. a set. de 2026, a mídia paga gastou R$ 21.600, R$ 3.600 por mês `[ANUNCIOS]`, então o plano prevê gastar menos em anúncios do que no semestre passado. R$ 13.150 ÷ R$ 13.750 = 96%: **apertado**.
 
 Se M passar de L, você precisa de uma combinação de canais mais barata, de uma taxa de conversão maior ou de uma meta menor. É uma conversa muito melhor de ter agora do que no mês nove.
 
 **Conferência opcional da mídia paga.** Para um negócio que trabalha com leads:
 
 ```
-Visitas pagas por ano = G × fatia da mídia paga               40.000 × 20% = 8.000
-Leads pagos por ano = visitas pagas × F                       8.000 × 2,5% = 200
+Leads pagos por ano = E × fatia da mídia paga                 1.000 × 20% = 200
+Visitas pagas por ano = leads pagos ÷ F                       200 ÷ 2,5% = 8.000
 Custo pago estimado = leads pagos × custo por lead            200 × R$ 120 = R$ 24.000
 Compare com K × fatia da mídia paga                           R$ 165.000 × 20% = R$ 33.000   → cabe
 ```
 
 O custo por lead vem das suas próprias contas de anúncio (últimos 6 meses) ou, se você ainda não anuncia, da estimativa de custo por clique do Planejador de palavras-chave do Google Ads dividida pela sua taxa de conversão. Para uma loja online, multiplique as visitas pagas pelo custo por clique estimado.
 
-Cadência: R$ 120 é o custo por teste iniciado nas contas de anúncio, R$ 21.600 ÷ 180 testes atribuídos por último clique, abr. a set. de 2026 `[ANUNCIOS]`. O CRM atribui à mídia paga só 84 leads no mesmo período `[VENDAS]`, o que dá R$ 21.600 ÷ 84 = R$ 257,14 por lead. Com esse custo, a mídia paga do plano custaria 200 × R$ 257,14 = R$ 51.428,57 por ano (R$ 4.285,71 por mês), acima dos R$ 33.000 da fatia, e M iria a R$ 14.935,71, 109% de L. Qual dos dois custos vale para o plano depende de conciliar a origem dos leads entre as contas de anúncio e o CRM [PENDENTE: Rafael Nunes, dono do canal, até a revisão trimestral de jan. de 2027].
+Cadência: R$ 120 é o custo por teste iniciado nas contas de anúncio, R$ 21.600 ÷ 180 testes atribuídos por último clique, abr. a set. de 2026 `[ANUNCIOS]`. O CRM atribui à mídia paga só 84 leads no mesmo período `[VENDAS]`, o que dá R$ 21.600 ÷ 84 = R$ 257,14 por lead. Com esse custo, a mídia paga do plano custaria 200 × R$ 257,14 = R$ 51.428,57 por ano (R$ 4.285,71 por mês), acima dos R$ 33.000 da fatia, e M iria a R$ 15.435,71, 112% de L. Qual dos dois custos vale para o plano depende de conciliar a origem dos leads entre as contas de anúncio e o CRM [PENDENTE: Rafael Nunes, dono do canal, até a revisão trimestral de jan. de 2027].
 
 **Confira o teto contra percentuais do faturamento, só como detector de fumaça.** Se K der 3% do faturamento, pergunte se você está sendo conservador demais para bater a meta. Se der 25%, pergunte se um cliente vale mesmo o que o passo 2 disse.
 
@@ -202,5 +216,6 @@ As fórmulas nunca mudam. O que conta como cliente, lead e visita, sim.
 | **Passo 2: resultado** | Meta de R$ 468.000 ÷ R$ 1.560 = 300 hóspedes novos | Meta de R$ 900.000 ÷ R$ 18.000 = 50 negócios fechados | Meta de R$ 180.000 ÷ R$ 360 = 500 clientes novos | Meta de R$ 750.000 ÷ R$ 375 = 2.000 clientes novos |
 | **Passo 3: taxa de fechamento** | Reservas diretas confirmadas ÷ pedidos de reserva (consultas de disponibilidade, ligações, WhatsApp); acompanhe à parte quem reserva direto pelo motor de reservas | Negócios fechados ÷ conversas com leads novos que chegaram a uma visita ou avaliação | Reservas de primeira vez cumpridas ÷ pedidos de reserva; quem chega sem reserva pula este passo | Conclusão de checkout: pedidos ÷ inícios de checkout |
 | **Passo 4: taxa de conversão** | Visitas às páginas de quartos e de localização que viram reserva ou consulta de disponibilidade | Visitas às páginas de imóveis e de bairros que viram pedido de avaliação, de visita ou conversa com corretor | Visitas às páginas de cardápio e de endereço que viram reserva ou pedido online; seu perfil no Google Meu Negócio pode gerar mais disso que o site | Sessões nas páginas de produto e de categoria que viram início de checkout |
+| **Passo 5: canais de leads diretos** | Agências e operadoras de turismo, reservas de grupos e empresas pelo telefone | Indicação de corretor parceiro, plantão em lançamento, captação direta com proprietários | Eventos fechados e reservas de empresas pelo telefone ou WhatsApp | Quase nenhum: a compra passa pela loja. Venda para empresas no atacado, se houver |
 
 Para uma loja online, leia "leads" como "inícios de checkout" em toda esta conta.

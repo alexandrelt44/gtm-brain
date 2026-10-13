@@ -109,6 +109,7 @@ Regras da Cadência:
 - **No GA4:** modelo baseado em dados, com janela de 30 dias para eventos de aquisição e de 90 dias para os demais `[SITE]`. É o multitoque dos relatórios de receita e de pipeline.
 - **Relatórios de descoberta:** primeiro toque, pelas dimensões de primeiro usuário do GA4.
 - **Leads e demonstrações por canal:** a origem do negócio no RD Station CRM, que é a fonte do relatório de funil `[VENDAS]`.
+- **Leads que não passam pelo site:** a demonstração agendada no estande de evento, na aula da escola de formação ou na prospecção de redes entra no CRM com a origem `evento`, `parceria` ou `prospeccao`, registrada por quem agendou (`/11-plano/CANAIS.md`). O GA4 não vê esses leads: eles são os 9 leads diretos do plano. O `utm_source=evento` continua para o QR code do estande que leva ao site.
 - **Contas de anúncio:** último clique, com a janela de cada plataforma. De abr. a set. de 2026, Google Ads e Meta atribuíram 180 testes iniciados à mídia paga; o CRM atribuiu 84 leads `[ANUNCIOS]` `[VENDAS]`. O número das plataformas não entra no placar sem conciliar com o CRM.
 - **Concilie com o CRM todo mês.** A receita que o marketing reivindica nunca passa da receita registrada no CRM.
 

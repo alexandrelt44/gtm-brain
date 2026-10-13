@@ -53,7 +53,7 @@ O marketplace `colaborato.rio` é mantido pelo [Colaboratório](https://colabora
 | `08-conteudo` | Provas, calendário, biblioteca | Cases e dados com permissão de uso, e o que publicar |
 | `09-dados` | Medição, plano de medição, destaques | O que medir e o que funcionou |
 | `10-cerebro` | Cérebro da marca, playbooks, prompts, modelos | O system prompt que junta tudo para os agentes |
-| `11-plano` | Plano de uma página, conta do cliente | O plano de marketing e a conta que o sustenta |
+| `11-plano` | Canais, plano de uma página, conta do cliente | Onde procurar clientes, o plano de marketing e a conta que o sustenta |
 
 Comece por `01-icp/ICP.md`, `02-voz/VOZ.md` e `05-oferta/OFERTA.md`. Com essas três, um agente já escreve melhor.
 
@@ -95,6 +95,19 @@ Sem `--write`, o servidor fica em modo leitura: dá para editar e ver as mudanç
 **4. Preencher com um agente**
 
 As skills de [`skills/`](skills/) conduzem o preenchimento com você. O agente lê as fontes que você indicar (site, transcrições de calls, CRM, avaliações, notas), pergunta só o que elas não respondem, poucas perguntas por vez e cada uma com uma resposta recomendada, e escreve nos arquivos com selo e fonte em cada afirmação, sem inventar número. O que ele não souber fica marcado como pendente.
+
+| Skill | Preenche |
+| --- | --- |
+| `gtm-brain` | Orquestra: situa, escolhe a próxima camada, mantém o `CEREBRO.md` |
+| `preencher-icp` | `01-icp/` |
+| `preencher-voz` | `02-voz/` |
+| `preencher-oferta` | `05-oferta/OFERTA.md` |
+| `mapear-concorrencia` | `05-oferta/CONCORRENCIA.md` e `GANHOS-E-PERDAS.md` |
+| `registrar-provas` | `08-conteudo/PROVAS.md` |
+| `pesquisar-palavras-chave` | `06-seo/` e `07-site/` |
+| `escolher-canais` | `11-plano/CANAIS.md`: fase e gargalo, uma ideia por canal, três canais em teste e o canal principal, com um método inspirado no livro *Traction* |
+| `montar-plano` | `11-plano/`, `09-dados/` e o calendário |
+| `fechar-lacunas` | Qualquer arquivo: pendências, contradições, fichas incompletas, visual e design system |
 
 No Claude Code, abra o repositório e peça "preencher a marca", ou instale as skills como plugin para usar em qualquer pasta:
 

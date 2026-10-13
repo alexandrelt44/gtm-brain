@@ -1,7 +1,7 @@
 {
   "name": "gtm-brain",
   "version": "0.3.0",
-  "description": "Skills para preencher o cérebro de go-to-market da marca (ICP, voz, oferta, concorrência, provas, palavras-chave, plano) com um agente, a partir das fontes e com o mínimo de perguntas",
+  "description": "Skills para preencher o cérebro de go-to-market da marca (ICP, voz, oferta, concorrência, provas, palavras-chave, canais, plano) com um agente, a partir das fontes e com o mínimo de perguntas",
   "author": {
     "name": "Alexandre Leite"
   },

@@ -85,6 +85,7 @@ https://www.exemplo.com.br/planos?utm_source=instagram&utm_medium=organic_social
 - **Relatórios de descoberta:** primeiro toque.
 - **Relatórios de pipeline:** último toque não direto, validado por vendas.
 - **Relatórios de receita:** multitoque (40% primeiro toque, 40% último toque, 20% toques intermediários).
+- **Leads que não passam pelo site:** venda direta, prospecção, parceria, evento, feira e palestra geram o lead sem visita. Registre a origem no CRM no momento em que o lead entra, com um valor por canal de `/11-plano/CANAIS.md`. É o único registro desses canais: o GA4 não os vê.
 - **Concilie com o CRM todo mês.** A receita que o marketing reivindica nunca passa da receita registrada no CRM.
 
 ## Consentimento e privacidade

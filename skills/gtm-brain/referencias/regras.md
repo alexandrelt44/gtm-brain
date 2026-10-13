@@ -83,6 +83,8 @@ Se o `CEREBRO.md` ainda não tem a lista, crie-a logo abaixo do título antes de
 | `[LITERAL]` | Citação do cliente, palavra por palavra |
 | `[PARÁFRASE]` | Citação resumida |
 
+Selo vai sozinho no colchete: `[HIPÓTESE]`, com o motivo fora dele. Um colchete com texto em minúsculas, como `[HIPÓTESE: falta medir]`, conta como instrução do template que ficou para trás.
+
 **Provas com ID**: `CS-001` (case), `T-001` (depoimento), `D-001` (dado), `CAP-001` (capacidade). O ID é definido uma vez em `08-conteudo/PROVAS.md` e citado em qualquer outro arquivo da marca. Ele é bastidor: nunca aparece em texto publicado (site, post, proposta); lá a prova é citada pelo que ela é, por exemplo o nome do cliente com permissão. Antes de citar um ID, confira que ele existe; se não existir, registre a prova primeiro (skill `registrar-provas`).
 
 **Pendência e contradição explícitas:**

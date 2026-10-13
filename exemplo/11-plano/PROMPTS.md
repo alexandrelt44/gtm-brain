@@ -13,7 +13,7 @@ Este é o meu plano de marketing de uma página: [cole o plano]. Confira cada c�
 ## 2. Peça para transformar a meta de cada canal numa lista de tarefas do mês
 
 ```
-Este é o meu plano de marketing de uma página: [cole o plano]. Para cada canal da tabela, escreva as tarefas específicas que o dono deve concluir este mês para bater a meta de visitas daquele canal, em ordem de prioridade, com o tempo que cada tarefa deve levar.
+Este é o meu plano de marketing de uma página: [cole o plano]. Para cada canal da tabela, escreva as tarefas específicas que o dono deve concluir este mês para bater a meta daquele canal (visitas ou leads, conforme a coluna "Entra como"), em ordem de prioridade, com o tempo que cada tarefa deve levar.
 ```
 
 ## 3. Peça para fazer a revisão mensal com você

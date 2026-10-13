@@ -20,6 +20,7 @@ Se a pessoa quer preencher, completar ou revisar a marca, use as skills de `skil
 | `mapear-concorrencia` | `05-oferta/CONCORRENCIA.md`, `05-oferta/GANHOS-E-PERDAS.md` |
 | `registrar-provas` | `08-conteudo/PROVAS.md` |
 | `pesquisar-palavras-chave` | `06-seo/`, `07-site/` |
+| `escolher-canais` | `11-plano/CANAIS.md` (roda antes da rodada 3 da `montar-plano`) |
 | `montar-plano` | `11-plano/`, `09-dados/`, `08-conteudo/CALENDARIO.md` |
 | `fechar-lacunas` | Qualquer arquivo: pendências, contradições, fichas incompletas, visual, design system e `08-conteudo/BIBLIOTECA.md` |
 
