@@ -17,6 +17,15 @@ Os arquivos continuam sendo a fonte de verdade: markdown no seu repositório, ve
 
 ![Ficha de uma prova, com campos, selos e fontes](docs/img/ficha-de-prova.png)
 
+## Instalar as skills no Claude Code
+
+```
+/plugin marketplace add alexandrelt44/gtm-brain
+/plugin install gtm-brain@colaborato.rio
+```
+
+O marketplace `colaborato.rio` é mantido pelo [Colaboratório](https://colaborato.rio). Depois de instalar, peça ao agente "preencher a marca" em qualquer pasta. O passo a passo completo está em [Começar](#começar).
+
 ## O que tem aqui
 
 | Pasta | O que é |
