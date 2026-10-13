@@ -1,6 +1,8 @@
+![GTM Brain: o cérebro de go-to-market da sua marca, em markdown. Um projeto colaborato.rio](docs/img/banner.png)
+
 # GTM Brain
 
-O cérebro de go-to-market da sua marca, em markdown.
+O cérebro de go-to-market da sua marca, em markdown. Um projeto do [Colaboratório](https://colaborato.rio).
 
 Você descreve a marca em 11 camadas de arquivos simples: quem compra, como a marca fala, o que vende, contra quem, com que prova, como é achada e o plano. Qualquer agente de IA lê esses arquivos e passa a escrever como a sua marca, e não de um jeito genérico.
 
@@ -162,3 +164,5 @@ Detalhes em [`docs/convencoes.md`](docs/convencoes.md).
 ## Licença
 
 [MIT](LICENSE). Avisos de terceiros em [`AVISOS-DE-TERCEIROS.md`](AVISOS-DE-TERCEIROS.md).
+
+Feito pelo [Colaboratório](https://colaborato.rio).
