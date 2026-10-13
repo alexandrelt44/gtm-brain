@@ -13,7 +13,7 @@ Fontes da marca:
 - `[FINANCEIRO]` orçamento de out/2026 a set/2027, aprovado pelos sócios em 2026-09-22
 - `[GA4]` exports do GA4 da propriedade cadencia.example, 2026-04-01 a 2026-09-30: páginas que vendem, blog, landing pages de anúncio e central de provas
 - `[ANUNCIOS]` Google Ads e Gerenciador de Anúncios da Meta, 2026-04-01 a 2026-09-30
-- `[REDES]` insights do Instagram @cadencia.estudios e @marinaduarte.estudio, abr–set/2026
+- `[REDES]` insights do Instagram @cadencia.exemplo e @marinaduarte.exemplo, abr–set/2026
 - `[EMAIL]` RD Station Marketing, newsletter "Diário do estúdio", 26 edições de abr–set/2026
 - `[SITE]` levantamento técnico do site por Tiago Ramos em 2026-10-02: contêiner do Google Tag Manager GTM-CAD (versão 41, publicada em 2026-09-15) e notas técnicas do site (Astro, schema no ar, FAQ de `/precos`, perfis, autores)
 - `[CSS]` export das variáveis e dos componentes do CSS do site (`src/styles/global.css`), feito por Tiago Ramos em 2026-10-02

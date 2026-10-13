@@ -46,7 +46,7 @@ const RE_SUPPORT = /^10-[^/]+\/(?!(BRAND-BRAIN|CEREBRO)\.md$)|\/(HISTORY|HISTORI
 // The blank template illustrates every section with the fictional example brand
 // (Cadência). A filled file that still carries one of these lines verbatim kept
 // the example instead of the brand's own content.
-export const EXAMPLE_NAMES = /\b(Cadência|Lírio|Renata|Ahimsa|Patrícia|Núcleo Funcional|Joana Prates|Marina Duarte|Bruna Alves|Rafael Nunes|Lívia Moraes|Tiago Ramos|AgendaFit|GymPro|[Ee]stúdios?|[Pp]ilates|[Yy]oga|alunas?|mensalidades?)\b/u
+export const EXAMPLE_NAMES = /\b(Cadência|Lírio|Renata|Ahimsa|Patrícia|Núcleo Funcional|Joana Prates|Marina Duarte|Bruna Alves|Rafael Nunes|Lívia Moraes|Tiago Ramos|AgendaFit|BarraFixa|[Ee]stúdios?|[Pp]ilates|[Yy]oga|alunas?|mensalidades?)\b/u
 const RE_KEEP_SECTION = /^##\s+(Como usar este arquivo|Checklist para agentes|Como passar este arquivo|How to use this file|AI agent checklist|How to hand this file)/i
 
 /** Lines of `text` identical to a template line that names the example brand. */

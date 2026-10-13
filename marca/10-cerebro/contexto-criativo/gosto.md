@@ -57,7 +57,7 @@ Uma lista curta de sim ou não que roda em todo rascunho. Fique com os cinco a o
 - [ ] [Teste]
 - [ ] [Teste]
 
-> Exemplo para a Cadência: uma dona de estúdio que nunca usou sistema entenderia cada frase? Tem uma coisa que ela pode fazer antes do próximo vencimento? Alguma frase parece ter saído do site da AgendaFit ou do GymPro ERP?
+> Exemplo para a Cadência: uma dona de estúdio que nunca usou sistema entenderia cada frase? Tem uma coisa que ela pode fazer antes do próximo vencimento? Alguma frase parece ter saído do site da AgendaFit ou do BarraFixa ERP?
 
 ## 4. Registro de recusas
 

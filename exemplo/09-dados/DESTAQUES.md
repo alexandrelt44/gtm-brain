@@ -7,7 +7,7 @@ Destaques da Cadência de abr. a set. de 2026: os ativos que mais geraram teste 
 Fontes citadas neste arquivo:
 
 - `[GA4]` exports do GA4 da propriedade cadencia.example, 2026-04-01 a 2026-09-30
-- `[REDES]` insights do Instagram @cadencia.estudios e @marinaduarte.estudio, abr–set/2026
+- `[REDES]` insights do Instagram @cadencia.exemplo e @marinaduarte.exemplo, abr–set/2026
 - `[EMAIL]` RD Station Marketing, newsletter "Diário do estúdio", 26 edições de abr–set/2026
 - `[ANUNCIOS]` Google Ads e Gerenciador de Anúncios da Meta, 2026-04-01 a 2026-09-30
 - `[VENDAS]` RD Station CRM, relatório de funil por origem do negócio, 2026-04-01 a 2026-09-30

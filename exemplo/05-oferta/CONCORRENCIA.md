@@ -33,7 +33,7 @@ Dono das atualizações: Rafael Nunes, vendas e mídia paga.
 | Concorrente | Categoria | Sobreposição | Nível de ameaça | Última atualização |
 | --- | --- | --- | --- | --- |
 | AgendaFit | Direto | Alta | Alto | 2026-09-22 |
-| GymPro ERP | Indireto | Média | Médio | 2026-09-22 |
+| BarraFixa ERP | Indireto | Média | Médio | 2026-09-22 |
 | Planilha + WhatsApp | Substituto | Total | Alto | 2026-10-01 |
 | Não fazer nada | Substituto | Total | Médio | 2026-10-01 |
 
@@ -106,7 +106,7 @@ Dono das atualizações: Rafael Nunes, vendas e mídia paga.
 
 ---
 
-## Concorrente: GymPro ERP
+## Concorrente: BarraFixa ERP
 
 **Categoria:** Indireto
 **URL:** exemplo.com.br/gympro (fictício)
@@ -309,9 +309,9 @@ Dono das atualizações: Rafael Nunes, vendas e mídia paga.
 - Nenhum argumento só de preço.
 - Nenhuma afirmação que a gente não consegue sustentar com uma prova.
 
-### Battle card: GymPro ERP
+### Battle card: BarraFixa ERP
 
-**Quando o comprador diz "Também estamos olhando o GymPro":**
+**Quando o comprador diz "Também estamos olhando o BarraFixa":**
 
 1. Reconheça. "É um sistema completo, muito usado em academia com catraca."
 2. Pergunte. "Vocês usam catraca e musculação? Ou o dia a dia é turma, cobrança e reposição?"
@@ -323,7 +323,7 @@ Dono das atualizações: Rafael Nunes, vendas e mídia paga.
 
 **Não diga:**
 
-- Que o GymPro é caro ou lento sem a proposta deles em mãos.
+- Que o BarraFixa é caro ou lento sem a proposta deles em mãos.
 - Que a Cadência serve para academia com catraca. Não serve.
 - Qualquer número do case da Rede Núcleo Funcional antes da publicação.
 

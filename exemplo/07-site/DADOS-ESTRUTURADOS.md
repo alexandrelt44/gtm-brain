@@ -5,7 +5,7 @@
 Fontes citadas neste arquivo:
 
 - `[SITE]` levantamento técnico do site por Tiago Ramos em 2026-10-02: contêiner do Google Tag Manager GTM-CAD (versão 41, publicada em 2026-09-15) e notas técnicas do site (Astro, schema no ar, FAQ de `/precos`, perfis, autores)
-- `[REDES]` insights do Instagram @cadencia.estudios e @marinaduarte.estudio, abr–set/2026
+- `[REDES]` insights do Instagram @cadencia.exemplo e @marinaduarte.exemplo, abr–set/2026
 - `[CONVERSA 2026-10-13]` respostas de Marina Duarte, CEO, sobre os dados estruturados
 
 Dados estruturados do site da Cadência (`https://cadencia.example`): os blocos JSON-LD de cada tipo de página, com os valores fixos da marca já trocados. O que muda a cada página fica entre chaves duplas dentro dos blocos de código, como `{{Título do post}}` e `{{AAAA-MM-DD}}`: troque a variável inteira, chaves incluídas. Preços iguais aos de `/05-oferta/OFERTA.md`; páginas iguais às de `/07-site/MAPA-DO-SITE.md`; autores iguais aos de `/06-seo/GEO-AEO.md`.
@@ -76,9 +76,9 @@ Fora por decisão: `Review` e `AggregateRating` (a Cadência não tem perfil em 
     { "@type": "Person", "name": "Tiago Ramos", "jobTitle": "CTO" }
   ],
   "sameAs": [
-    "https://www.instagram.com/cadencia.estudios",
-    "https://www.linkedin.com/company/cadencia-estudios",
-    "https://www.youtube.com/@cadencia.estudios"
+    "https://www.instagram.com/cadencia.exemplo",
+    "https://www.linkedin.com/company/cadencia-exemplo",
+    "https://www.youtube.com/@cadencia.exemplo"
   ],
   "contactPoint": [{
     "@type": "ContactPoint",
@@ -332,7 +332,7 @@ Um bloco por autor do blog `[SITE]` `[CONVERSA 2026-10-13]`.
   "jobTitle": "CEO",
   "url": "https://cadencia.example/sobre/equipe/marina-duarte",
   "sameAs": [
-    "https://www.instagram.com/marinaduarte.estudio"
+    "https://www.instagram.com/marinaduarte.exemplo"
   ],
   "worksFor": {
     "@type": "Organization",

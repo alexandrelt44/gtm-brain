@@ -185,8 +185,8 @@ Checagem mensal feita por Bruna Alves. Mesma pergunta, sempre escrita do mesmo j
 
 | Pergunta | Motor | A Cadência é citada? | Quem aparece no lugar | Data |
 | --- | --- | --- | --- | --- |
-| melhor sistema para estúdio de pilates | ChatGPT | Não | GymPro ERP e AgendaFit | 2026-09-26 |
-| melhor sistema para estúdio de pilates | Perplexity | Não | GymPro ERP, AgendaFit e um post de blog genérico | 2026-09-26 |
+| melhor sistema para estúdio de pilates | ChatGPT | Não | BarraFixa ERP e AgendaFit | 2026-09-26 |
+| melhor sistema para estúdio de pilates | Perplexity | Não | BarraFixa ERP, AgendaFit e um post de blog genérico | 2026-09-26 |
 | como diminuir inadimplência em academia | Visão geral criada por IA do Google | Sim, o pilar `/blog/como-diminuir-inadimplencia` | n/a | 2026-09-26 |
 | app para estúdio de yoga | Gemini | Não | AgendaFit | 2026-09-26 |
 

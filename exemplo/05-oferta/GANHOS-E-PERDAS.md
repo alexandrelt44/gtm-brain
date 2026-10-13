@@ -70,7 +70,7 @@ Um registro por negócio, sempre com os mesmos campos.
 
 ### Alternativas consideradas
 
-- GymPro ERP
+- BarraFixa ERP
 - AgendaFit
 - Continuar com Planilha + WhatsApp
 - Não fazer nada até a quinta unidade abrir
@@ -201,7 +201,7 @@ Um registro por negócio, sempre com os mesmos campos.
 
 ### Alternativas consideradas
 
-- GymPro ERP
+- BarraFixa ERP
 - Cadência
 - Continuar com os sistemas atuais
 
@@ -212,8 +212,8 @@ Um registro por negócio, sempre com os mesmos campos.
 
 ### O que fez ganhar (ou perder)
 
-- "O GymPro chegou com um preço fechado para a rede inteira. Vocês levaram nove dias para mandar uma proposta." `[LITERAL]` Fernando Aguiar
-- Contrato de 12 meses do GymPro não foi problema para uma rede desse tamanho. `[PARÁFRASE]`
+- "O BarraFixa chegou com um preço fechado para a rede inteira. Vocês levaram nove dias para mandar uma proposta." `[LITERAL]` Fernando Aguiar
+- Contrato de 12 meses do BarraFixa não foi problema para uma rede desse tamanho. `[PARÁFRASE]`
 
 ### Objeções
 
@@ -238,7 +238,7 @@ Um registro por negócio, sempre com os mesmos campos.
 
 ### Tags
 
-- Fora do ICP, treino funcional com musculação, Plano Rede, acima de R$ 60 mil por ano, Inbound, mídia paga, perdido para GymPro ERP, risco maior na etapa de proposta.
+- Fora do ICP, treino funcional com musculação, Plano Rede, acima de R$ 60 mil por ano, Inbound, mídia paga, perdido para BarraFixa ERP, risco maior na etapa de proposta.
 
 ---
 

@@ -161,7 +161,7 @@ Quando tiver 10 registros, preencha este resumo. Revise a cada trimestre.
 
 **O problema:** a unidade mais nova fechou o trimestre com 14% de inadimplência, e duas recepcionistas passavam a manhã cobrando aluno pelo WhatsApp.
 
-**Alternativas:** GymPro ERP, AgendaFit e continuar com planilha + WhatsApp.
+**Alternativas:** BarraFixa ERP, AgendaFit e continuar com planilha + WhatsApp.
 
 **O que quase fez perder:** Joana já tinha trocado de sistema duas vezes e perdido histórico de pagamento nas duas. Na terceira reunião ela insistiu: "o que garante que não vai dar o mesmo problema?"
 
