@@ -198,3 +198,57 @@ test('renderBrainHtml inlines the records safely', () => {
   assert.ok(!html.includes('</script><b>'))
   assert.ok(html.includes('<title>GTM Brain · A</title>'))
 })
+
+test('channels: Canal, Teste and Canal principal become records with expected fields, pills and links', () => {
+  const root = tree({
+    '10-cerebro/CEREBRO.md': '# Cérebro da marca — Acme\n\nFontes da marca:\n\n- `[CRM]` funil por origem, 2026\n',
+    '08-conteudo/PROVAS.md': '# Provas — Acme\n\n| ID | Afirmação | Dado |\n| --- | --- | --- |\n| D-001 | Clientes economizam | 8 h por mês |\n',
+    '09-dados/MEDICAO.md': '# Medição — Acme\n\n## Árvore de KPIs\n\nLeads diretos: 5 por mês.\n',
+    '11-plano/CANAIS.md': [
+      '# Canais — Acme', '',
+      '## Como usar este arquivo', '', 'Boilerplate.', '',
+      '## Fase e gargalo', '', '- **Fase:** II', '- **Gargalo principal:** distribuição `[CRM]`', '',
+      '## Brainstorm: uma ideia por canal', '', '| # | Canal | Ideia concreta | Entra como | Coluna |', '| --- | --- | --- | --- | --- |', '| 12 | Parcerias | Aula para contadores | leads | central |', '',
+      '## Canal: Parcerias com contadores', '',
+      '- **Entra como:** leads, origem `parceria` no CRM', '- **Ideia:** aula para escritórios de contabilidade. [PROPOSTA]',
+      '- **Custo por cliente:** R$ 400 [HIPÓTESE]', '- **Volume:** 2 por mês', '- **Qualidade:** do ICP, com a prova D-001',
+      '- **Tempo até fechar:** 30 dias', '- **Dono:** Ana', '- **Como medimos:** origem no CRM `[CRM]`, KPI em `/09-dados/MEDICAO.md`', '',
+      '## Teste: Parcerias com contadores, nov. de 2026', '',
+      '- **Hipótese:** 4 leads em seis semanas.', '- **Orçamento:** 20 h', '- **Prazo:** 2026-11-02 a 2026-12-11',
+      '- **Critério de sucesso:** 4 leads', '- **Resultado:** em andamento. Leitura em 2026-12-01.', '- **Decisão:** sai em 2027-01-05.', '',
+      '## Canal principal: Busca orgânica', '',
+      '- **Entra como:** visitas', '- **Por que é o principal:** 60% dos clientes `[CRM]`', '- **Sinais de saturação:** custo acima de J',
+      '',
+    ].join('\n'),
+  })
+  const brain = buildBrain(root, extractBrand(root))
+  const cat = brain.categories.find((c) => c.id === 'channels')
+  assert.ok(cat, 'channels category exists')
+  assert.deepEqual(cat.groups.map((g) => g.label), ['Canal principal', 'Círculo central', 'Testes', null])
+  const item = (id) => brain.items.find((i) => i.id === id)
+
+  const ch = item('channels:parcerias-com-contadores')
+  assert.equal(ch.kind, 'channel')
+  assert.equal(ch.title, 'Parcerias com contadores')
+  assert.equal(ch.total, 8)
+  assert.equal(ch.filled, 8)
+  assert.ok(ch.pills.some((p) => p.t === 'leads'), '"Entra como" becomes a pill')
+  assert.ok(ch.refs.some((r) => r.to === 'proof:D-001' && r.type === 'proves'))
+  assert.ok(ch.refs.some((r) => r.to === 'source:CRM' && r.type === 'derives'))
+  assert.ok(ch.refs.some((r) => r.to === 'doc:metricas' && r.type === 'cites'), '09-dados is linked')
+
+  const trial = item('channels:parcerias-com-contadores-nov-de-2026')
+  assert.equal(trial.kind, 'channel-test')
+  assert.equal(trial.total, 6)
+  assert.equal(trial.filled, 6)
+  assert.ok(trial.pills.some((p) => p.t === 'em andamento'))
+  assert.ok(trial.refs.some((r) => r.to === 'channels:parcerias-com-contadores'), 'a test links to its channel')
+
+  const main = item('channels:busca-organica')
+  assert.deepEqual(main.pills.map((p) => p.t), ['principal', 'visitas'])
+  assert.equal(main.total, 10)
+  assert.ok(main.missing.includes('Quando rever') && !main.missing.includes('Ideia'))
+
+  assert.ok(item('doc:fase-e-gargalo'))
+  assert.ok(item('doc:brainstorm-de-canais'))
+})

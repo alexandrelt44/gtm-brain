@@ -59,7 +59,7 @@ const TOOLS = [
       type: 'object',
       properties: {
         consulta: { type: 'string', description: 'Palavras a buscar, como "inadimplência", "CS-001" ou "concorrente"' },
-        categoria: { type: 'string', description: 'Opcional: id da categoria (personas, offers, proofs, competition, deals, voc, voice, keywords, clusters…)' },
+        categoria: { type: 'string', description: 'Opcional: id da categoria (personas, offers, proofs, competition, deals, channels, voc, voice, keywords, clusters…)' },
         limite: { type: 'number', description: 'Máximo de resultados (padrão 20)' },
       },
       required: ['consulta'],

@@ -22,6 +22,9 @@ test('skillFor maps each layer to the skill that fills it', () => {
   assert.equal(skillFor('08-conteudo/PROVAS.md'), 'registrar-provas')
   assert.equal(skillFor('06-seo/CLUSTERS.md'), 'pesquisar-palavras-chave')
   assert.equal(skillFor('11-plano/CONTA-DO-CLIENTE.md'), 'montar-plano')
+  assert.equal(skillFor('11-plano/CANAIS.md'), 'escolher-canais')
+  assert.equal(skillFor('11-marketing-plan/CHANNELS.md'), 'escolher-canais')
+  assert.equal(skillFor('11-plano/PLANO-DE-UMA-PAGINA.md'), 'montar-plano')
   assert.equal(skillFor('03-visual/IMAGENS.md'), 'fechar-lacunas')
   assert.equal(skillFor('07-site/MAPA-DO-SITE.md'), 'pesquisar-palavras-chave')
   assert.equal(skillFor('07-site/DADOS-ESTRUTURADOS.md'), 'fechar-lacunas')
@@ -141,4 +144,38 @@ test('the "Fontes da marca:" registry in the brain file is where a source tag is
   assert.equal(graph.meta.sources.CRM.file, '10-cerebro/CEREBRO.md')
   const r = gapReport(root)
   assert.ok(!r.marks.some((m) => m.file === '09-dados/DESTAQUES.md' && m.kind === 'pendente'))
+})
+
+test('CANAIS.md: template goes to escolher-canais after the customer math; a filled one reports channels and tests that miss fields', () => {
+  const blank = tree({
+    '10-cerebro/CEREBRO.md': '# Cérebro da marca — Acme\n',
+    '11-plano/CONTA-DO-CLIENTE.md': '# Conta do cliente\n\n```\nMeta                (A)    R$__________\n```\n',
+    '11-plano/CANAIS.md': '# Canais\n\nÚltima atualização: [AAAA-MM-DD]\n\n## Canal: [Nome do canal 1 do círculo central]\n\n- **Entra como:** [visitas ou leads]\n',
+    '11-plano/PLANO-DE-UMA-PAGINA.md': '# Plano\n\n```\nEmpresa: ____________\n```\n',
+  })
+  const t = gapReport(blank, { template: null })
+  assert.deepEqual(t.toFill.map((f) => [f.file, f.skill]), [
+    ['11-plano/CONTA-DO-CLIENTE.md', 'montar-plano'],
+    ['11-plano/CANAIS.md', 'escolher-canais'],
+    ['11-plano/PLANO-DE-UMA-PAGINA.md', 'montar-plano'],
+  ])
+
+  const filled = tree({
+    '10-cerebro/CEREBRO.md': '# Cérebro da marca — Acme\n',
+    '11-plano/CANAIS.md': [
+      '# Canais — Acme', '',
+      '## Canal: Parcerias com contadores', '',
+      '- **Entra como:** leads', '- **Ideia:** aula para escritórios.', '- **Dono:** Ana', '',
+      '## Teste: Parcerias com contadores, nov. de 2026', '',
+      '- **Hipótese:** 4 leads em seis semanas. [HIPÓTESE]', '- **Resultado:** em andamento, leitura em 2026-12-01.', '',
+    ].join('\n'),
+  })
+  const r = gapReport(filled, { template: null })
+  assert.ok(!r.toFill.some((f) => f.file === '11-plano/CANAIS.md'), 'a filled CANAIS.md is canonical brand data')
+  const channel = r.incomplete.find((i) => i.title === 'Parcerias com contadores')
+  assert.ok(channel.missing.includes('Custo por cliente') && channel.missing.includes('Tempo até fechar'))
+  assert.equal(channel.skill, 'escolher-canais')
+  const trial = r.incomplete.find((i) => i.title.startsWith('Parcerias com contadores, nov.'))
+  assert.deepEqual(trial.missing, ['Orçamento', 'Prazo', 'Critério de sucesso', 'Decisão'])
+  assert.ok(!trial.pending.includes('Resultado'), 'a running test is not a gap')
 })

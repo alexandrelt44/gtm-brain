@@ -64,6 +64,31 @@ const COMPETITOR_FIELDS = [
   ['Como ganhamos', /como ganhamos|how we win/i],
   ['Como perdemos', /como perdemos|how we lose/i],
 ]
+// "Canal:", "Teste:" and "Canal principal:" sections of 11-plano/CANAIS.md
+const CHANNEL_FIELDS = [
+  ['Entra como', /^(entra como|enters as)/i],
+  ['Ideia', /^(ideia|idea)$/i],
+  ['Custo por cliente', /custo por cliente|cost per customer|\bcac\b/i],
+  ['Volume', /^volume/i],
+  ['Qualidade', /^(qualidade|quality)/i],
+  ['Tempo até fechar', /tempo até fechar|time to close|ciclo/i],
+  ['Dono', /^(dono|owner)/i],
+  ['Como medimos', /como medimos|how we measure/i],
+]
+const MAIN_CHANNEL_FIELDS = [
+  ...CHANNEL_FIELDS.filter(([l]) => l !== 'Ideia'),
+  ['Por que é o principal', /por que é o principal|why it is the main/i],
+  ['Sinais de saturação', /saturação|saturation/i],
+  ['Quando rever', /quando rever|when to revisit/i],
+]
+const TEST_FIELDS = [
+  ['Hipótese', /^(hipótese|hypothesis)/i],
+  ['Orçamento', /^(orçamento|budget)/i],
+  ['Prazo', /^(prazo|timeline|time-?box)/i],
+  ['Critério de sucesso', /critério|success criteri/i],
+  ['Resultado', /^(resultado|result)/i],
+  ['Decisão', /^(decisão|decision)/i],
+]
 
 // Template headings and labels in English → how the brain names them.
 const LABELS = {
@@ -122,6 +147,7 @@ const F = {
   sitemap: ['07-website/SITE-MAP.md', '07-site/MAPA-DO-SITE.md'],
   proof: ['08-content/PROOF-CORPUS.md', '08-conteudo/PROVAS.md'], calendar: ['08-content/EDITORIAL-CALENDAR.md', '08-conteudo/CALENDARIO.md'], library: ['08-content/CONTENT-LIBRARY.md', '08-conteudo/BIBLIOTECA.md'],
   analytics: ['09-data/ANALYTICS.md', '09-dados/MEDICAO.md'], plan: ['11-marketing-plan/ONE-PAGE-MARKETING-PLAN.md', '11-plano/PLANO-DE-UMA-PAGINA.md'],
+  channels: ['11-marketing-plan/CHANNELS.md', '11-plano/CANAIS.md'],
   research: ['06-seo/research', '06-seo/pesquisa'],
 }
 
@@ -194,6 +220,15 @@ export const SCHEMA = [
   { id: 'deals', label: 'Ganhos e perdas', icon: 'trend', color: '#7C3AED', desc: 'Negócios ganhos e perdidos, o que decidiu cada um e a lição.', groups: [
     { heading: { file: F.winloss, level: 2, match: /^(Deal|Negócio):/i }, kind: 'deal' },
     { docs: [{ id: 'padroes-win-loss', title: 'Padrões de ganhos e perdas', sections: [[F.winloss, /^(Aggregated patterns|Padrões agregados)/i]] }] },
+  ] },
+  { id: 'channels', label: 'Canais', icon: 'compass', color: '#0F766E', desc: 'Onde a marca procura clientes: os canais em teste, o canal principal e os sinais de saturação.', groups: [
+    { label: 'Canal principal', heading: { file: F.channels, level: 2, match: /^(Canal principal|Main channel):/i }, expected: MAIN_CHANNEL_FIELDS, kind: 'channel' },
+    { label: 'Círculo central', heading: { file: F.channels, level: 2, match: /^(Canal|Channel):/i }, expected: CHANNEL_FIELDS, kind: 'channel' },
+    { label: 'Testes', heading: { file: F.channels, level: 2, match: /^(Teste|Test):/i }, expected: TEST_FIELDS, kind: 'channel-test' },
+    { docs: [
+      { id: 'fase-e-gargalo', title: 'Fase e gargalo', sections: [[F.channels, /^(Fase e gargalo|Stage and bottleneck)/i]] },
+      { id: 'brainstorm-de-canais', title: 'Uma ideia por canal e as três colunas', sections: [[F.channels, /^Brainstorm/i], [F.channels, /^(Classificação|Ranking)/i]] },
+    ] },
   ] },
   { id: 'voc', label: 'Voz do cliente', icon: 'quote', color: '#E11D48', desc: 'O que o cliente diz, nas palavras dele, por família de dor, por tema e por origem.', groups: [
     { label: 'Famílias de dor', heading: { file: F.voc, level: 3, under: /^Por família de dor/i }, kind: 'voc' },
@@ -319,6 +354,16 @@ export function buildBrain(root, graph, opts = {}) {
       }
       if (!g.expected && recs.length >= 3 && !g.docs && !g.docsIn && !g.sources && !g.csv) inferExpected(recs)
       if (g.csv) recs.sort((a, b) => (num(b, 'Oportunidade') - num(a, 'Oportunidade')) || (num(b, 'Volume') - num(a, 'Volume')))
+      if (g.kind === 'channel') for (const r of recs) {
+        // "Entra como: leads" → a pill, so the list shows which channels skip the site
+        const enters = r.fields.find((f) => f.label === 'Entra como')
+        const m = enters && /\b(visitas|leads|visits)\b/i.exec(stripMd(enters.lines.join(' ')))
+        if (m) r.pills.push({ t: m[1].toLowerCase() === 'visits' ? 'visitas' : m[1].toLowerCase(), cls: '' })
+      }
+      if (g.kind === 'channel-test') for (const r of recs) {
+        const result = r.fields.find((f) => f.label === 'Resultado')
+        if (result && /^\s*(em andamento|in progress)/i.test(stripMd(result.lines.join(' ')))) r.pills.push({ t: 'em andamento', cls: 'warn' })
+      }
       if (g.kind === 'testimonial') for (const r of recs) {
         // "T-001" says nothing; name the testimonial by who said it.
         const who = r.fields.find((f) => /^(Nome|Empresa)$/.test(f.label))
@@ -581,6 +626,12 @@ function cleanTitle(raw, kind) {
     t = t.replace(/^(Alternativa|Concorrente|Competitor):\s*/i, '')
   } else if (kind === 'battlecard') {
     t = t.replace(/^Battle card:\s*/i, '').replace(/^["“](.*)["”]$/, '$1')
+  } else if (kind === 'channel') {
+    const main = /^(Canal principal|Main channel):\s*/i.exec(t)
+    if (main) pills.unshift({ t: 'principal', cls: 'ok' })
+    t = t.replace(/^(Canal principal|Main channel|Canal|Channel):\s*/i, '')
+  } else if (kind === 'channel-test') {
+    t = t.replace(/^(Teste|Test):\s*/i, '')
   } else if (kind === 'deal') {
     t = t.replace(/^(Deal|Negócio):\s*/i, '')
     const m = /,\s*([^,]+)$/.exec(t)
@@ -721,6 +772,12 @@ function findRefs(r, raw, ctx, aliases) {
     const k = to + '|' + type
     if (!refs.has(k)) refs.set(k, { to, type, n: 0 })
     refs.get(k).n++
+  }
+  if (r.kind === 'channel-test') {
+    // "Teste: Parcerias com escolas, out. a dez." tests the channel whose name starts the same way
+    const name = r.title.replace(/,[^,]*$/, '').trim().toLowerCase()
+    const hit = name && [...ctx.byId.values()].find((x) => x.kind === 'channel' && (x.title.toLowerCase().startsWith(name) || name.startsWith(x.title.toLowerCase())))
+    if (hit) add(hit.id, 'cites')
   }
   if (r.kind === 'keyword') {
     const c = r.fields.find((f) => f.label === 'Cluster')

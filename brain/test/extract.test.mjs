@@ -216,11 +216,13 @@ test('a filled data file counts even without the brand in its header; "[Nome da 
     '01-icp/ICP.md': '# Perfil de cliente ideal (ICP)\n\n## Persona primária: dona de estúdio\n\n### Dores\n\n- Cobrança no WhatsApp\n',
     '02-voz/VOZ.md': '# Guia de voz\n\n## Ponto de vista\n\n[Escreva aqui o ponto de vista da marca em duas frases]\n\n[AAAA-MM-DD]\n',
     '10-cerebro/playbooks/blog.md': '# Playbook de blog\n\nTexto genérico.\n',
+    '11-plano/CANAIS.md': '# Canais\n\n## Canal: Parcerias\n\n- **Entra como:** leads\n',
   })
   const g = extractBrand(root)
   assert.equal(g.meta.brand, null)
   const st = (p) => (g.nodes.find((n) => n.id === `file:${p}`) || {}).status
   assert.equal(st('01-icp/ICP.md'), 'filled')
   assert.equal(st('02-voz/VOZ.md'), 'template')
+  assert.equal(st('11-plano/CANAIS.md'), 'filled', 'CANAIS.md is one of the brand data files')
   assert.equal(st('10-cerebro/playbooks/blog.md'), undefined, 'generic scaffold stays out of the graph')
 })

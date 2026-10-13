@@ -19,6 +19,7 @@ Os arquivos funcionam sem nada disto. As convenções só deixam as fichas, as l
 | `06-seo/PALAVRAS-CHAVE.md` | linhas das tabelas em `## Palavras-chave primárias` e `## Palavras-chave secundárias` | colunas (`Palavra-chave`, `Intenção`, `Volume`, `Dificuldade`, `Tendência`, `Página alvo`, `Prioridade`) |
 | `06-seo/pesquisa/*.csv` | cada linha de um CSV com coluna `keyword` | `volume`, `kd`, `intent`, `yoy`, `cluster`, `demand`, `competition`, `fit`, `opportunity` |
 | `06-seo/CLUSTERS.md` | `## Cluster N: …` | `### Página pilar`, `### Satélites` |
+| `11-plano/CANAIS.md` | `## Canal: …`, `## Teste: …`, `## Canal principal: …` | bullets com rótulo. Canal: `Entra como`, `Ideia`, `Custo por cliente`, `Volume`, `Qualidade`, `Tempo até fechar`, `Dono`, `Como medimos`. Teste: `Hipótese`, `Orçamento`, `Prazo`, `Critério de sucesso`, `Resultado`, `Decisão`. Canal principal: os de canal sem `Ideia`, mais `Por que é o principal`, `Sinais de saturação`, `Quando rever` |
 
 O resto dos arquivos (voz, terminologia, compliance, GEO, calendário, mapa do site, visual, plano) aparece como **documentos**, um campo por seção.
 
@@ -26,7 +27,7 @@ O resto dos arquivos (voz, terminologia, compliance, GEO, calendário, mapa do s
 
 ## Completude
 
-Personas, ofertas e concorrentes têm uma lista de campos esperados (as tabelas acima). A ficha mostra "N de M preenchidos" e lista o que falta. Um campo conta como **pendente** quando tem placeholder (`[AAAA-MM-DD]`, `[Nome da empresa]`…) ou uma marca de pendência: `(pendente)`, `⬜`, `em definição`, `a confirmar`.
+Personas, ofertas, concorrentes, canais e testes têm uma lista de campos esperados (as tabelas acima). A ficha mostra "N de M preenchidos" e lista o que falta. Um campo conta como **pendente** quando tem placeholder (`[AAAA-MM-DD]`, `[Nome da empresa]`…) ou uma marca de pendência: `(pendente)`, `⬜`, `em definição`, `a confirmar`.
 
 ## Selos de evidência
 

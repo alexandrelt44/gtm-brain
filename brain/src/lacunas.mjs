@@ -27,6 +27,7 @@ export const SKILL_FOR = [
   [/^08-[^/]+\/(PROOF-CORPUS|PROVAS)\.md$/, 'registrar-provas'],
   [/^08-[^/]+\/(CALENDAR|CALENDARIO)\.md$/, 'montar-plano'],
   [/^09-[^/]+\//, 'montar-plano'],
+  [/^11-[^/]+\/(CHANNELS|CANAIS)\.md$/, 'escolher-canais'],
   [/^11-[^/]+\//, 'montar-plano'],
   [/^10-[^/]+\/(BRAND-BRAIN|CEREBRO)\.md$/, 'gtm-brain'],
 ]
