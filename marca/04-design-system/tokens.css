@@ -91,6 +91,14 @@
   --ds-motion-easing-enter:    cubic-bezier(0.4, 0, 0.2, 1);
   --ds-motion-easing-exit:     cubic-bezier(0.2, 0.8, 0.2, 1);
 
+  /* Breakpoints: variável CSS não funciona dentro de @media; servem de referência
+     para as specs e para o JavaScript (getComputedStyle). */
+  --ds-bp-sm:   640px;
+  --ds-bp-md:   768px;
+  --ds-bp-lg:  1024px;
+  --ds-bp-xl:  1280px;
+  --ds-bp-2xl: 1536px;
+
   --ds-fs-display-xl: 72px;
   --ds-fs-display-lg: 56px;
   --ds-fs-h1:         44px;
@@ -170,6 +178,13 @@
   --duration-slow:   var(--ds-motion-duration-slow,   320ms);
   --easing-enter:    var(--ds-motion-easing-enter, cubic-bezier(0.4, 0, 0.2, 1));
   --easing-exit:     var(--ds-motion-easing-exit,  cubic-bezier(0.2, 0.8, 0.2, 1));
+
+  /* Breakpoints */
+  --bp-sm:  var(--ds-bp-sm,   640px);
+  --bp-md:  var(--ds-bp-md,   768px);
+  --bp-lg:  var(--ds-bp-lg,  1024px);
+  --bp-xl:  var(--ds-bp-xl,  1280px);
+  --bp-2xl: var(--ds-bp-2xl, 1536px);
 
   /* Escala tipográfica */
   --fs-display-xl: var(--ds-fs-display-xl, 72px);

@@ -1,28 +1,30 @@
 /*
- * tokens.css: design system do GTM Brain
+ * tokens.css: design system da Cadência
+ *
+ * Exemplo fictício. A Cadência e todas as pessoas e empresas citadas não existem.
+ *
+ * Valores tirados do CSS do site no ar (export de src/styles/global.css feito
+ * por Tiago Ramos em 2026-10-02) e das cores de /03-visual/IDENTIDADE-VISUAL.md.
+ * Decisão de Marina Duarte em 2026-10-13: registrar o que o site já usa, sem
+ * modo escuro. O que o export não mostra está pendente em
+ * /04-design-system/DESIGN.md e não tem token aqui.
  *
  * Arquitetura de tokens em três camadas (padrão de Hardik Pandya):
  *
- *   Camada 1: tokens do design system de origem. Os valores brutos da
- *             biblioteca de componentes ou do design system de que você
- *             depende (Atlassian, Carbon, MUI, Radix, shadcn, Tailwind ou um
- *             conjunto próprio). São os valores de referência que você não
- *             inventa.
+ *   Camada 1: tokens do design system de origem. A Cadência não usa
+ *             biblioteca de componentes de terceiros; a origem é o próprio
+ *             global.css do site, com os valores brutos abaixo.
  *
- *   Camada 2: apelidos do projeto. As funções nomeadas do seu projeto, cada
- *             uma apontando para um token da Camada 1, com o valor bruto como
- *             reserva. A camada de apelidos é o que protege você: se a origem
- *             renomeia um token, você atualiza um apelido. Modo escuro, alto
- *             contraste e temas futuros se resolvem sozinhos pela cadeia.
+ *   Camada 2: apelidos do projeto. As funções nomeadas, cada uma apontando
+ *             para um token da Camada 1, com o valor bruto como reserva. A
+ *             reserva é sempre igual ao valor da Camada 1.
  *
  *   Camada 3: componentes. No CSS dos componentes, referencie só apelidos.
  *             Nunca hex bruto. Nunca pixel bruto. Nunca a Camada 1
  *             direto. O script de auditoria em scripts/auditar-tokens.sh
  *             garante essa regra.
  *
- * Use este arquivo junto com theme.json e DESIGN.md. Alinhe os nomes dos
- * apelidos com as tabelas de /03-visual/IDENTIDADE-VISUAL.md, para que
- * designer e modelo de IA leiam o mesmo dicionário.
+ * Use este arquivo junto com theme.json e DESIGN.md.
  *
  * Para entender o raciocínio completo, veja o estudo original de Pandya:
  * https://hvpandya.com/llm-design-systems
@@ -30,38 +32,30 @@
 
 :root {
   /* =========================================================================
-   * CAMADA 1: origem / valores brutos
-   *
-   * Numa adoção real, estes valores referenciariam tokens do pacote de
-   * design system instalado (por exemplo, `var(--ds-color-accent-blue-600)`
-   * do Atlaskit). Os valores abaixo usam OKLCH / hex / px brutos para que o
-   * modelo funcione sozinho. Troque o lado direito quando adotar uma
-   * biblioteca de origem.
+   * CAMADA 1: origem / valores brutos (global.css do site da Cadência)
    * ========================================================================= */
 
-  --ds-color-brand-primary:        oklch(0.34 0.08 245);
-  --ds-color-brand-primary-hover:  oklch(0.41 0.10 247);
-  --ds-color-brand-primary-fg:     oklch(1.00 0 0);
-  --ds-color-brand-secondary:      oklch(0.67 0.16 58);
-  --ds-color-brand-secondary-hover:oklch(0.56 0.15 49);
-  --ds-color-brand-secondary-fg:   oklch(1.00 0 0);
-  --ds-color-accent-1:             oklch(0.70 0.15 162);
-  --ds-color-accent-2:             oklch(0.59 0.20 277);
+  --ds-color-brand-primary:        oklch(0.38 0.04 158);   /* #2F4A3A Musgo */
+  --ds-color-brand-primary-hover:  oklch(0.33 0.04 158);   /* #243A2D */
+  --ds-color-brand-primary-fg:     oklch(1.00 0 0);        /* #FFFFFF */
+  --ds-color-brand-secondary:      oklch(0.61 0.13 41);    /* #C4643F Terracota */
+  --ds-color-brand-secondary-hover:oklch(0.54 0.12 42);    /* #A85331 Terracota escuro */
+  --ds-color-brand-secondary-fg:   oklch(1.00 0 0);        /* #FFFFFF */
+  --ds-color-accent-1:             oklch(0.94 0.02 80);    /* #F1E9DC Areia */
+  --ds-color-accent-2:             oklch(0.65 0.07 136);   /* #7C9A6E Sálvia */
 
-  --ds-color-neutral-0:            oklch(1.00 0 0);
-  --ds-color-neutral-50:           oklch(0.98 0.003 248);
-  --ds-color-neutral-100:          oklch(0.97 0.01 248);
-  --ds-color-neutral-200:          oklch(0.93 0.01 256);
-  --ds-color-neutral-300:          oklch(0.87 0.02 253);
-  --ds-color-neutral-400:          oklch(0.71 0.04 257);
-  --ds-color-neutral-500:          oklch(0.55 0.04 257);
-  --ds-color-neutral-700:          oklch(0.37 0.04 257);
-  --ds-color-neutral-900:          oklch(0.21 0.04 266);
+  --ds-color-neutral-0:            oklch(0.98 0.01 81);    /* #FBF8F3 fundo da página */
+  --ds-color-neutral-50:           oklch(1.00 0 0);        /* #FFFFFF card, navegação */
+  --ds-color-neutral-100:          oklch(0.94 0.02 80);    /* #F1E9DC seção (Areia) */
+  --ds-color-neutral-200:          oklch(0.89 0.02 78);    /* #E4DACB bordas */
+  --ds-color-neutral-500:          oklch(0.50 0.02 67);    /* #6B6259 texto secundário */
+  --ds-color-neutral-700:          oklch(0.34 0.01 72);    /* #3D3832 texto corrido */
+  --ds-color-neutral-900:          oklch(0.23 0.01 67);    /* #211D19 títulos */
 
-  --ds-color-success:              #10B981;
-  --ds-color-warning:              #F59E0B;
-  --ds-color-danger:               #EF4444;
-  --ds-color-info:                 #3B82F6;
+  --ds-color-success:              #3F7A57;
+  --ds-color-warning:              #C98A1B;
+  --ds-color-danger:               #B23A2E;
+  --ds-color-info:                 #3B6E8F;
 
   --ds-space-100:  4px;
   --ds-space-200:  8px;
@@ -72,72 +66,73 @@
   --ds-space-800: 32px;
   --ds-space-1200:48px;
   --ds-space-1600:64px;
+  --ds-space-2400:96px;
 
-  --ds-radius-sm:   4px;
   --ds-radius-md:   8px;
-  --ds-radius-lg:  16px;
-  --ds-radius-xl:  24px;
-  --ds-radius-pill:9999px;
+  --ds-radius-lg:  12px;
+  --ds-radius-xl:  16px;
+  --ds-radius-pill:999px;
 
-  --ds-shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 0.06);
-  --ds-shadow-md: 0 4px 8px -2px rgb(15 23 42 / 0.08), 0 2px 4px -2px rgb(15 23 42 / 0.06);
-  --ds-shadow-lg: 0 12px 24px -8px rgb(15 23 42 / 0.12), 0 4px 8px -4px rgb(15 23 42 / 0.08);
-  --ds-shadow-xl: 0 24px 48px -12px rgb(15 23 42 / 0.18);
+  --ds-shadow-sm: 0 1px 2px rgba(33,29,25,.06), 0 2px 8px rgba(33,29,25,.06);
+  --ds-shadow-md: 0 8px 24px rgba(33,29,25,.12);
 
-  --ds-motion-duration-fast:   120ms;
-  --ds-motion-duration-base:   180ms;
-  --ds-motion-duration-medium: 240ms;
-  --ds-motion-duration-slow:   320ms;
-  --ds-motion-easing-enter:    cubic-bezier(0.4, 0, 0.2, 1);
-  --ds-motion-easing-exit:     cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ds-motion-duration-base:   150ms;
+  --ds-motion-duration-medium: 250ms;
+  --ds-motion-easing-enter:    ease-out;
 
-  --ds-fs-display-xl: 72px;
-  --ds-fs-display-lg: 56px;
-  --ds-fs-h1:         44px;
-  --ds-fs-h2:         32px;
-  --ds-fs-h3:         24px;
-  --ds-fs-h4:         20px;
-  --ds-fs-body-lg:    18px;
-  --ds-fs-body:       16px;
-  --ds-fs-body-sm:    14px;
+  --ds-fs-h1:         48px;
+  --ds-fs-h2:         36px;
+  --ds-fs-h3:         28px;
+  --ds-fs-h4:         22px;
+  --ds-fs-h1-mobile:  34px;
+  --ds-fs-h2-mobile:  28px;
+  --ds-fs-h3-mobile:  24px;
+  --ds-fs-h4-mobile:  20px;
+  --ds-fs-body:       17px;
+  --ds-fs-button:     16px;
+  --ds-fs-badge:      13px;
   --ds-fs-mono:       14px;
+
+  --ds-layout-content-max: 1200px;
+  --ds-layout-measure:     68ch;
+
+  --ds-control-height: 44px;
 
   /* =========================================================================
    * CAMADA 2: apelidos do projeto (use estes nos componentes)
    *
-   * Cada apelido aponta para um token da Camada 1, com o valor bruto como
-   * reserva. Se você trocar de design system de origem, atualiza o lado
-   * esquerdo da expressão `var(..., reserva)` aqui, uma vez, e não em cada
-   * componente.
+   * Cada apelido aponta para um token da Camada 1, com o mesmo valor bruto
+   * como reserva.
    * ========================================================================= */
 
   /* Cor: estrutura */
-  --color-surface:        var(--ds-color-neutral-0,   #FFFFFF);
-  --color-surface-subtle: var(--ds-color-neutral-50,  #F8FAFC);
-  --color-surface-muted:  var(--ds-color-neutral-100, #F1F5F9);
-  --color-border:         var(--ds-color-neutral-200, #E2E8F0);
-  --color-divider:        var(--ds-color-neutral-200, #E2E8F0);
+  --color-surface:        var(--ds-color-neutral-0,   #FBF8F3);
+  --color-surface-subtle: var(--ds-color-neutral-50,  #FFFFFF);
+  --color-surface-muted:  var(--ds-color-neutral-100, #F1E9DC);
+  --color-border:         var(--ds-color-neutral-200, #E4DACB);
+  --color-divider:        var(--ds-color-neutral-200, #E4DACB);
 
   /* Cor: texto */
-  --color-text:           var(--ds-color-neutral-700, #334155);
-  --color-text-heading:   var(--ds-color-neutral-900, #0F172A);
-  --color-text-muted:     var(--ds-color-neutral-500, #64748B);
+  --color-text:           var(--ds-color-neutral-700, #3D3832);
+  --color-text-heading:   var(--ds-color-neutral-900, #211D19);
+  --color-text-muted:     var(--ds-color-neutral-500, #6B6259);
   --color-text-on-brand:  var(--ds-color-brand-primary-fg, #FFFFFF);
-  --color-text-link:      var(--ds-color-brand-primary,    #0B3A5B);
+  --color-text-link:      var(--ds-color-brand-primary,    #2F4A3A);
 
   /* Cor: marca */
-  --color-brand:          var(--ds-color-brand-primary,       #0B3A5B);
-  --color-brand-hover:    var(--ds-color-brand-primary-hover, #124D7A);
-  --color-brand-secondary:       var(--ds-color-brand-secondary,       #D97706);
-  --color-brand-secondary-hover: var(--ds-color-brand-secondary-hover, #B45309);
-  --color-accent-1:       var(--ds-color-accent-1, #10B981);
-  --color-accent-2:       var(--ds-color-accent-2, #6366F1);
+  --color-brand:          var(--ds-color-brand-primary,       #2F4A3A);
+  --color-brand-hover:    var(--ds-color-brand-primary-hover, #243A2D);
+  --color-brand-secondary:       var(--ds-color-brand-secondary,       #C4643F);
+  --color-brand-secondary-hover: var(--ds-color-brand-secondary-hover, #A85331);
+  --color-accent-1:       var(--ds-color-accent-1, #F1E9DC);
+  --color-accent-2:       var(--ds-color-accent-2, #7C9A6E);
+  --color-focus:          var(--ds-color-brand-secondary-hover, #A85331);
 
   /* Cor: semântica (só para status, nunca para decorar) */
-  --color-success: var(--ds-color-success, #10B981);
-  --color-warning: var(--ds-color-warning, #F59E0B);
-  --color-danger:  var(--ds-color-danger,  #EF4444);
-  --color-info:    var(--ds-color-info,    #3B82F6);
+  --color-success: var(--ds-color-success, #3F7A57);
+  --color-warning: var(--ds-color-warning, #C98A1B);
+  --color-danger:  var(--ds-color-danger,  #B23A2E);
+  --color-info:    var(--ds-color-info,    #3B6E8F);
 
   /* Espaçamento: base de 4px, nomes por degrau */
   --space-100:  var(--ds-space-100,  4px);
@@ -149,57 +144,61 @@
   --space-800:  var(--ds-space-800, 32px);
   --space-1200: var(--ds-space-1200, 48px);
   --space-1600: var(--ds-space-1600, 64px);
+  --space-2400: var(--ds-space-2400, 96px);
 
   /* Raio */
-  --radius-sm:   var(--ds-radius-sm,    4px);
   --radius-md:   var(--ds-radius-md,    8px);
-  --radius-lg:   var(--ds-radius-lg,   16px);
-  --radius-xl:   var(--ds-radius-xl,   24px);
-  --radius-pill: var(--ds-radius-pill, 9999px);
+  --radius-lg:   var(--ds-radius-lg,   12px);
+  --radius-xl:   var(--ds-radius-xl,   16px);
+  --radius-pill: var(--ds-radius-pill, 999px);
 
   /* Sombra */
   --shadow-sm: var(--ds-shadow-sm);
   --shadow-md: var(--ds-shadow-md);
-  --shadow-lg: var(--ds-shadow-lg);
-  --shadow-xl: var(--ds-shadow-xl);
 
   /* Movimento */
-  --duration-fast:   var(--ds-motion-duration-fast,   120ms);
-  --duration-base:   var(--ds-motion-duration-base,   180ms);
-  --duration-medium: var(--ds-motion-duration-medium, 240ms);
-  --duration-slow:   var(--ds-motion-duration-slow,   320ms);
-  --easing-enter:    var(--ds-motion-easing-enter, cubic-bezier(0.4, 0, 0.2, 1));
-  --easing-exit:     var(--ds-motion-easing-exit,  cubic-bezier(0.2, 0.8, 0.2, 1));
+  --duration-base:   var(--ds-motion-duration-base,   150ms);
+  --duration-medium: var(--ds-motion-duration-medium, 250ms);
+  --easing-enter:    var(--ds-motion-easing-enter, ease-out);
 
   /* Escala tipográfica */
-  --fs-display-xl: var(--ds-fs-display-xl, 72px);
-  --fs-display-lg: var(--ds-fs-display-lg, 56px);
-  --fs-h1:         var(--ds-fs-h1,         44px);
-  --fs-h2:         var(--ds-fs-h2,         32px);
-  --fs-h3:         var(--ds-fs-h3,         24px);
-  --fs-h4:         var(--ds-fs-h4,         20px);
-  --fs-body-lg:    var(--ds-fs-body-lg,    18px);
-  --fs-body:       var(--ds-fs-body,       16px);
-  --fs-body-sm:    var(--ds-fs-body-sm,    14px);
+  --fs-h1:         var(--ds-fs-h1,         48px);
+  --fs-h2:         var(--ds-fs-h2,         36px);
+  --fs-h3:         var(--ds-fs-h3,         28px);
+  --fs-h4:         var(--ds-fs-h4,         22px);
+  --fs-h1-mobile:  var(--ds-fs-h1-mobile,  34px);
+  --fs-h2-mobile:  var(--ds-fs-h2-mobile,  28px);
+  --fs-h3-mobile:  var(--ds-fs-h3-mobile,  24px);
+  --fs-h4-mobile:  var(--ds-fs-h4-mobile,  20px);
+  --fs-body:       var(--ds-fs-body,       17px);
+  --fs-button:     var(--ds-fs-button,     16px);
+  --fs-badge:      var(--ds-fs-badge,      13px);
   --fs-mono:       var(--ds-fs-mono,       14px);
 
-  /* Anel de foco: um valor oficial. Use sempre este. */
-  --focus-ring: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--color-brand);
+  /* Layout */
+  --layout-content-max: var(--ds-layout-content-max, 1200px);
+  --layout-measure:     var(--ds-layout-measure,     68ch);
+  --control-height:     var(--ds-control-height,     44px);
+
+  /* Anel de foco: um valor oficial. Use sempre este. Terracota escuro, 2 px, afastado 2 px. */
+  --focus-ring: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--color-focus);
 }
 
 /* =========================================================================
  * CAMADA 3: exemplos de uso em componentes
  *
- * São ilustrativos. Num projeto real, os componentes ficam em arquivos
- * próprios. A regra: componentes só referenciam apelidos da Camada 2.
- * Nunca hex bruto, nunca pixel bruto, nunca um token da Camada 1 direto.
+ * Ilustrativos, montados a partir do botão primário do site. A regra:
+ * componentes só referenciam apelidos da Camada 2.
  * ========================================================================= */
 
 /*
 .button {
   background-color: var(--color-brand);
   color:            var(--color-text-on-brand);
-  padding:          var(--space-300) var(--space-500);
+  height:           var(--control-height);
+  padding:          0 var(--space-500);
+  font-size:        var(--fs-button);
+  font-weight:      600;
   border-radius:    var(--radius-md);
   transition:       background-color var(--duration-base) var(--easing-enter);
 }
@@ -209,17 +208,6 @@
 */
 
 /*
- * Modo escuro (opcional): reatribua só os apelidos da Camada 2. Os
- * componentes não mudam. Essa é a recompensa do padrão em três camadas.
+ * Modo escuro: a Cadência não tem, nem no site nem no app. Não crie
+ * variantes escuras dos apelidos.
  */
-/*
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-surface:        var(--ds-color-neutral-900);
-    --color-surface-subtle: var(--ds-color-neutral-700);
-    --color-text:           var(--ds-color-neutral-100);
-    --color-text-heading:   var(--ds-color-neutral-0);
-    --color-border:         var(--ds-color-neutral-700);
-  }
-}
-*/

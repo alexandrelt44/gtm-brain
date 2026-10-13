@@ -1,5 +1,9 @@
 # Cérebro da marca — [Nome da marca]
 
+Fontes da marca:
+
+- [uma linha por fonte, no formato `[TAG]` descrição, período. É o registro de tags da marca: veja `skills/gtm-brain/referencias/regras.md`, seção 4]
+
 Este é o arquivo mestre. Se um agente de IA só puder carregar uma coisa deste repositório, que seja este arquivo.
 
 ## Como usar este arquivo

@@ -6,6 +6,7 @@ Fontes citadas neste arquivo:
 
 - `[PAINEL]` dados de uso do produto (painel interno da Cadência)
 - `[PESQUISA]` pesquisa de palavras-chave de setembro de 2026 (arquivo em `/06-seo/pesquisa/`). Volumes fictícios
+- `[GA4]` exports do GA4 da propriedade cadencia.example, 2026-04-01 a 2026-09-30
 
 ## Como usar este arquivo
 
@@ -27,7 +28,7 @@ Fontes citadas neste arquivo:
 
 ## Inventário das páginas principais
 
-O site da Cadência tem páginas por modalidade (pilates, yoga, funcional), por recurso (agenda, cobrança, presença) e uma página para redes. As páginas que vendem são as de modalidade, de planos e de teste grátis: são elas que entram na conta de visitas do plano em `/11-plano/PLANO-DE-UMA-PAGINA.md`.
+O site da Cadência tem páginas por modalidade (pilates, yoga, funcional), por recurso (agenda, cobrança, presença) e uma página para redes. As páginas que vendem são `/precos`, `/pilates`, `/yoga`, `/funcional`, `/cobranca`, `/agenda`, `/rede` e `/teste-gratis`, as oito do export do GA4 `[GA4]`: são elas que entram na conta de visitas do plano em `/11-plano/PLANO-DE-UMA-PAGINA.md`.
 
 | Página | Padrão de URL | Objetivo | CTA principal | Responsável | Status |
 | --- | --- | --- | --- | --- | --- |

@@ -22,7 +22,7 @@ Fontes citadas neste arquivo:
 - [x] Versionado.
 - [x] Citável: os agentes citam `/06-seo/GEO-AEO.md` ao finalizar um conteúdo.
 
-Última atualização: 2026-10-01
+Última atualização: 2026-10-13
 
 ---
 
@@ -118,19 +118,17 @@ Os motores de resposta favorecem conteúdo recente em buscas comerciais e inform
 
 ## Dados estruturados por tipo de página
 
-| Tipo de página | Dados estruturados obrigatórios |
+| Tipo de página | Dados estruturados da Cadência |
 | --- | --- |
 | Página inicial | `Organization` |
-| Sobre | `AboutPage`, `Person` para a liderança |
-| Serviços | `Service`, opcionalmente `Product` |
-| Página de produto | `Product`, `Offer`, `AggregateRating` se houver avaliações |
-| Preços | `Offer` |
-| Case | `Article`, `Review` |
-| Post de blog | `BlogPosting` ou `Article` |
-| Passo a passo | `HowTo` |
-| Bloco de perguntas frequentes | `FAQPage` |
-| Negócio local | `LocalBusiness` |
-| Avaliações | `Review`, `AggregateRating` |
+| Sobre e bio da equipe | `Person` para Marina Duarte e Bruna Alves |
+| Modalidade e recurso (`/pilates`, `/cobranca`…) | `BreadcrumbList` |
+| Preços | `Product` com `Offer` para os três planos, `FAQPage` com as perguntas visíveis |
+| Case | `BreadcrumbList`; `Article` a decidir [PENDENTE: Tiago Ramos, ver `/07-site/DADOS-ESTRUTURADOS.md`] |
+| Post de blog | `BlogPosting` com autor |
+| Guia passo a passo (`/guias/[slug]`) | `HowTo` |
+
+Sem `Review`, `AggregateRating` nem `LocalBusiness`: a Cadência não tem avaliações publicadas com nota nem atendimento presencial. Decisão de Marina Duarte `[CONVERSA 2026-10-13]`; implantação com Tiago Ramos até 2026-11-30.
 
 Os trechos completos de JSON-LD ficam em `/07-site/DADOS-ESTRUTURADOS.md`.
 

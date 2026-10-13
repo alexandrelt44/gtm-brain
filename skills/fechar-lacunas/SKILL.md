@@ -19,7 +19,7 @@ O método é sempre o mesmo: **listar → pesquisar → perguntar o mínimo → 
 | Campo faltando ou pendente num arquivo já preenchido, de qualquer camada | Esta skill |
 | Contradição `[CONTRADIZ: …]` | Esta skill |
 | Prova citada sem definição | `registrar-provas`. Se a pessoa já tem o material da prova à mão, registre seguindo as regras daquela skill e volte |
-| `03-visual/`, `04-design-system/`, `08-conteudo/BIBLIOTECA.md` | Esta skill, com as referências abaixo |
+| `03-visual/`, `04-design-system/`, `07-site/DADOS-ESTRUTURADOS.md`, `08-conteudo/BIBLIOTECA.md` | Esta skill, com as referências abaixo |
 
 ## 1. Ler o relatório
 
@@ -48,10 +48,11 @@ Agrupe tudo por arquivo e classifique cada lacuna:
 - **B. Só a pessoa sabe.** Vira pergunta.
 - **C. Depende de algo que ainda não existe** (um case em produção, uma medição futura, uma assinatura). Mantenha a marca e deixe-a específica: o que falta, quem tem, quando.
 - **D. É de outra skill.** Passe adiante (tabela acima).
+- **E. A fonte existe, mas não veio.** O valor está num arquivo ou sistema que a pessoa não entregou (o CSS completo, o export do CRM). Não vira pergunta: peça a fonte a quem tem e deixe `[PENDENTE: <quem>, <onde está>]` até ela chegar.
 
 Ordem: contradições e exemplo do template primeiro (informação errada se espalha para os textos), depois fichas incompletas e instruções esquecidas, na ordem do relatório, depois pendências, depois os arquivos em template das camadas sem skill.
 
-Mostre à pessoa a lista resumida, por arquivo, com a contagem de A, B, C e D. Pergunte por onde começar: a ordem do relatório (Recomendado) ou um arquivo que ela precisa agora.
+Mostre à pessoa a lista resumida, por arquivo, com a contagem de A, B, C, D e E. Pergunte por onde começar: a ordem do relatório (Recomendado) ou um arquivo que ela precisa agora.
 
 ## 3. Pesquisar
 
@@ -106,6 +107,7 @@ Formato de uma pergunta, quando não há ferramenta de perguntas:
 ## 7. Camadas sem skill própria
 
 - **`03-visual/` e `04-design-system/`:** [`referencias/visual-e-design.md`](referencias/visual-e-design.md). Do site ou do manual da marca para cores em hex, fontes, uso do logo, direção de imagem, prompts; depois os tokens.
+- **`07-site/DADOS-ESTRUTURADOS.md`:** [`../pesquisar-palavras-chave/referencias/site-e-dados-estruturados.md`](../pesquisar-palavras-chave/referencias/site-e-dados-estruturados.md), seção `07-site/DADOS-ESTRUTURADOS.md`. Os valores vêm do site, da oferta e dos autores, não de uma pesquisa de palavras-chave. Pergunte só o que a referência pede: tipos de página, contato, autores, dono e prazo da implantação.
 - **`08-conteudo/BIBLIOTECA.md`:** [`referencias/biblioteca.md`](referencias/biblioteca.md). Inventário do que a marca já publicou.
 - **Qualquer outro arquivo que o relatório mande para cá:** leia `## Como usar este arquivo` do próprio template, preencha das fontes, pergunte o resto, com o mesmo método.
 

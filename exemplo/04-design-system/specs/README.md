@@ -1,5 +1,9 @@
 # Specs
 
+> Exemplo fictício. A Cadência e todas as pessoas e empresas citadas não existem.
+
+**Na Cadência, estas specs ainda são o modelo genérico** [PENDENTE: Marina Duarte decide se a Cadência vai usar as specs com um agente de código; as de tabela de preços e de cartão de depoimento estão com Bruna Alves até dezembro de 2026]. Até lá, tamanhos, raios, sombras, movimento e breakpoints valem de [`../DESIGN.md`](../DESIGN.md), [`../theme.json`](../theme.json) e [`../tokens.css`](../tokens.css), nunca daqui. Estes tokens aparecem nas specs e não existem na Cadência: `--fs-display-xl`, `--fs-display-lg`, `--fs-body-lg`, `--fs-body-sm`, `--radius-sm`, `--shadow-lg`, `--shadow-xl`, `--duration-fast`, `--duration-slow`, `--easing-exit`, `--bp-md`, `--bp-2xl`. Use o mais próximo que existe: `--fs-h1`, `--fs-body`, `--radius-md`, `--shadow-md`, `--duration-base`, `--duration-medium`, `--easing-enter`, `--bp-lg`, `--bp-xl`.
+
 Documentação de componentes e fundamentos legível para a IA. Cada spec é um arquivo Markdown que um agente de IA lê antes de escrever ou alterar código de interface. Se não existe spec para um componente, o agente chuta. Se existe, o agente consulta.
 
 ## Hierarquia

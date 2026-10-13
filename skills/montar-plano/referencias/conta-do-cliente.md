@@ -47,7 +47,7 @@ B ≈ preço mensal da oferta principal × [1 + (1 − c) + … + (1 − c)¹¹]
 R$ 300 por mês, churn de 3%, sem implantação: R$ 300 × 10,2053 = R$ 3.061,58
 ```
 
-Confira B contra `/05-oferta/OFERTA.md`. Se B passa de 12 mensalidades da oferta principal mais a implantação, a diferença precisa de explicação (upgrade, adicional, segunda compra). Se fica muito abaixo, confira o churn do primeiro ano.
+Confira B contra `/05-oferta/OFERTA.md`. Se B passa de 12 mensalidades da oferta principal mais a implantação, a diferença precisa de explicação (upgrade, adicional, segunda compra). Se fica mais de 20% abaixo, explique com o mix de planos, o churn do primeiro ano e quantos compraram a implantação.
 
 **Passo 3, leads (E).** E = C ÷ D, para cima. Escreva a definição de lead ao lado; ela vai igual para `MEDICAO.md` e `PLANO-DE-MEDICAO.md`.
 
@@ -121,4 +121,4 @@ Mude um número aqui e mude em todos os lugares desta tabela no mesmo momento.
 
 ## Sensibilidade
 
-Antes de apresentar o plano, refaça os passos 3 a 6 duas vezes: com a taxa de fechamento 25% menor e com a taxa de conversão 25% menor. Diga à pessoa qual das duas leva M acima de L, ou quanto o número de visitas sobe. Essa é a premissa que ela precisa medir primeiro. Não grave os cenários no arquivo; eles servem para a conversa e para o primeiro prompt de `PROMPTS.md`.
+Antes de apresentar o plano, refaça os passos 3 a 6 duas vezes: com a taxa de fechamento 25% menor e com a taxa de conversão 25% menor. Diga à pessoa quanto sobem os leads (E) e as visitas por mês (H) em cada cenário. M só muda se o gasto cresce com as visitas: se a mídia paga é comprada por clique ou por lead, refaça M com o gasto proporcional às visitas pagas a mais e diga se passa de L. Mostre também M com o custo por lead do CRM, se ele divergir do da plataforma. Essa é a premissa que ela precisa medir primeiro. Não grave os cenários no arquivo; eles servem para a conversa e para o primeiro prompt de `PROMPTS.md`.

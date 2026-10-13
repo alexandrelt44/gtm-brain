@@ -1,5 +1,15 @@
 # Schema e dados estruturados
 
+> Exemplo fictício. A Cadência e todas as pessoas e empresas citadas não existem.
+
+Fontes citadas neste arquivo:
+
+- `[SITE]` levantamento técnico do site por Tiago Ramos em 2026-10-02: contêiner do Google Tag Manager GTM-CAD (versão 41, publicada em 2026-09-15) e notas técnicas do site (Astro, schema no ar, FAQ de `/precos`, perfis, autores)
+- `[REDES]` insights do Instagram @cadencia.estudios e @marinaduarte.estudio, abr–set/2026
+- `[CONVERSA 2026-10-13]` respostas de Marina Duarte, CEO, sobre os dados estruturados
+
+Dados estruturados do site da Cadência (`https://cadencia.example`): os blocos JSON-LD de cada tipo de página, com os valores fixos da marca já trocados. O que muda a cada página fica entre chaves duplas dentro dos blocos de código, como `{{Título do post}}` e `{{AAAA-MM-DD}}`: troque a variável inteira, chaves incluídas. Preços iguais aos de `/05-oferta/OFERTA.md`; páginas iguais às de `/07-site/MAPA-DO-SITE.md`; autores iguais aos de `/06-seo/GEO-AEO.md`.
+
 ## Como usar este arquivo
 
 - **O que entra:** os trechos de JSON-LD de cada tipo de página do site. Copie, cole e preencha as variáveis.
@@ -8,13 +18,14 @@
 
 ## Checklist para agentes de IA
 
-- [ ] Legível por máquina: trechos de JSON-LD em blocos de código.
-- [ ] Estruturado: um tipo de schema por H2.
-- [ ] Fonte única da verdade: nenhuma biblioteca de schema alternativa na pasta da agência.
-- [ ] Versionado: data da última atualização.
-- [ ] Citável: os agentes citam `/07-site/DADOS-ESTRUTURADOS.md` ao inserir dados estruturados.
+- [x] Legível por máquina: trechos de JSON-LD em blocos de código.
+- [x] Estruturado: um tipo de schema por H2.
+- [x] Fonte única da verdade: nenhuma biblioteca de schema alternativa na pasta da agência.
+- [x] Versionado: data da última atualização.
+- [x] Citável: os agentes citam `/07-site/DADOS-ESTRUTURADOS.md` ao inserir dados estruturados.
 
-Última atualização: [AAAA-MM-DD]
+Última atualização: 2026-10-13
+Autor principal: Marina Duarte (decisões), com as notas técnicas de Tiago Ramos
 
 ---
 
@@ -30,173 +41,187 @@ Antes de toda publicação, passe a página por:
 - Validador do Schema.org.
 - Ferramenta de inspeção de URL do Bing.
 
+Os blocos abaixo foram conferidos como JSON válido em 2026-10-13. Ainda não passaram pelo Teste de pesquisa aprimorada nem pelo validador do Schema.org: o domínio é de exemplo e não há página no ar para testar [PENDENTE: Tiago Ramos valida cada página ao implantar].
+
+## O que está no ar e o que falta
+
+Hoje o site tem só `Organization` na página inicial, sem logo e sem `sameAs`, e o `BreadcrumbList` automático do tema `[SITE]`. O resto foi decidido em 2026-10-13 `[CONVERSA 2026-10-13]`.
+
+| Tipo | Páginas | Hoje | Responsável | Prazo |
+| --- | --- | --- | --- | --- |
+| `Organization` completa | `/` | No ar, incompleta | Tiago Ramos | 2026-11-30 |
+| `Product` (três planos) | `/precos` | Não existe | Tiago Ramos | 2026-11-30 |
+| `FAQPage` | `/precos` | Não existe | Tiago Ramos | 2026-11-30 |
+| `BlogPosting` | `/blog/[slug]` | Não existe | Tiago Ramos | 2026-11-30 |
+| `HowTo` | `/guias/[slug]` | Não existe | Tiago Ramos | 2026-11-30 |
+| `Person` (Marina e Bruna) | `/sobre/equipe/marina-duarte`, `/sobre/equipe/bruna-alves` | Não existe | Tiago Ramos | 2026-11-30 |
+| `BreadcrumbList` | Páginas de segundo e terceiro nível | No ar, automático do tema | Tiago Ramos | — |
+
+Fora por decisão: `Review` e `AggregateRating` (a Cadência não tem perfil em plataforma de avaliação e os depoimentos do site não têm nota `[SITE]`) e `LocalBusiness` (sem endereço público nem atendimento presencial) `[CONVERSA 2026-10-13]`. `Service` também saiu: a Cadência vende planos, que já têm `Product`, e a implantação assistida não tem página própria em `/07-site/MAPA-DO-SITE.md` `[PROPOSTA]`. A tabela de `/06-seo/GEO-AEO.md` pede `Article` e `Review` nos cases; `Review` está fora, e `Article` nos cases não foi decidido [PENDENTE: Marina Duarte decide se `/cases/[slug]` ganha `Article`].
+
 ## Organization (para a página inicial)
 
 ```json
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "[Nome da empresa]",
-  "url": "https://www.exemplo.com.br",
-  "logo": "https://www.exemplo.com.br/assets/logo-principal.png",
+  "@id": "https://cadencia.example/#organizacao",
+  "name": "Cadência",
+  "legalName": "Cadência Tecnologia para Estúdios Ltda.",
+  "url": "https://cadencia.example",
+  "logo": "https://cadencia.example/logo-cadencia.png",
+  "foundingDate": "2023",
+  "founder": [
+    { "@type": "Person", "name": "Marina Duarte", "jobTitle": "CEO" },
+    { "@type": "Person", "name": "Tiago Ramos", "jobTitle": "CTO" }
+  ],
   "sameAs": [
-    "https://www.linkedin.com/company/[perfil]",
-    "https://www.instagram.com/[perfil]",
-    "https://www.youtube.com/@[perfil]"
+    "https://www.instagram.com/cadencia.estudios",
+    "https://www.linkedin.com/company/cadencia-estudios",
+    "https://www.youtube.com/@cadencia.estudios"
   ],
   "contactPoint": [{
     "@type": "ContactPoint",
-    "telephone": "+55-48-0000-0000",
     "contactType": "atendimento ao cliente",
+    "url": "https://cadencia.example/contato",
+    "hoursAvailable": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "08:00",
+      "closes": "19:00"
+    },
     "areaServed": "BR",
     "availableLanguage": "pt-BR"
   }]
 }
 ```
 
-## LocalBusiness (para um negócio local)
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://www.exemplo.com.br/#negocio",
-  "name": "[Nome da empresa]",
-  "image": "https://www.exemplo.com.br/assets/fachada.jpg",
-  "url": "https://www.exemplo.com.br",
-  "telephone": "+55-48-0000-0000",
-  "priceRange": "R$$",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Rua Exemplo, 100",
-    "addressLocality": "Florianópolis",
-    "addressRegion": "SC",
-    "postalCode": "88010-000",
-    "addressCountry": "BR"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": -27.5954,
-    "longitude": -48.5480
-  },
-  "openingHoursSpecification": [{
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-    "opens": "08:00",
-    "closes": "18:00"
-  }]
-}
-```
-
-Os valores de `dayOfWeek` ficam em inglês: são nomes fixos do schema.org. Mantenha o endereço igual ao do perfil no Google Meu Negócio.
-
-## Service (para uma página de serviço)
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "serviceType": "[Nome do serviço]",
-  "provider": {
-    "@type": "Organization",
-    "name": "[Nome da empresa]",
-    "url": "https://www.exemplo.com.br"
-  },
-  "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "[Cidade ou região]"
-  },
-  "description": "[Descrição do serviço em uma frase]",
-  "offers": {
-    "@type": "Offer",
-    "price": "[Preço ou faixa]",
-    "priceCurrency": "BRL",
-    "availability": "https://schema.org/InStock",
-    "url": "https://www.exemplo.com.br/servicos/[slug]"
-  }
-}
-```
+Valores: razão social, fundação, fundadores, domínio, logo (512×512), perfis e horário do WhatsApp `[SITE]`. O perfil do LinkedIn existe e não tem posts; o do YouTube só tem tutoriais do produto `[SITE]`. Sem `address`: a Cadência não tem endereço público `[CONVERSA 2026-10-13]`. O número do WhatsApp não está em nenhuma fonte; o `contactPoint` aponta para `/contato` até ele entrar como `telephone` [PENDENTE: número do WhatsApp de atendimento, com Lívia Moraes]. Os valores de `dayOfWeek` ficam em inglês: são nomes fixos do schema.org.
 
 ## Product (para uma oferta empacotada)
+
+Um bloco por plano, na página `/precos`. Preços de `/05-oferta/OFERTA.md`, iguais aos publicados em `/precos` (`/07-site/MAPA-DO-SITE.md`). Sem `aggregateRating`: a Cadência não publica avaliações com nota `[SITE]` `[CONVERSA 2026-10-13]`.
+
+**Plano Essencial**
 
 ```json
 {
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": "[Nome da oferta]",
-  "description": "[Descrição em uma frase]",
+  "name": "Cadência Plano Essencial",
+  "description": "Agenda, cobrança recorrente por Pix automático e cartão e controle de presença para o estúdio de uma unidade com até 150 alunos.",
   "brand": {
     "@type": "Brand",
-    "name": "[Nome da empresa]"
+    "name": "Cadência"
   },
   "offers": {
     "@type": "Offer",
-    "url": "https://www.exemplo.com.br/servicos/[slug]",
+    "url": "https://cadencia.example/precos",
     "priceCurrency": "BRL",
-    "price": "[Preço]",
+    "price": "189",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "189",
+      "priceCurrency": "BRL",
+      "referenceQuantity": { "@type": "QuantitativeValue", "value": 1, "unitCode": "MON" }
+    },
     "availability": "https://schema.org/InStock"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "[Nota]",
-    "reviewCount": "[Quantidade]"
   }
 }
 ```
 
-## Article (para conteúdo editorial longo)
+**Plano Estúdio**
 
 ```json
 {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "[Título do artigo]",
-  "image": ["https://www.exemplo.com.br/assets/og/[slug].jpg"],
-  "datePublished": "[AAAA-MM-DD]",
-  "dateModified": "[AAAA-MM-DD]",
-  "author": [{
-    "@type": "Person",
-    "name": "[Nome do autor]",
-    "url": "https://www.exemplo.com.br/sobre/equipe/[slug-do-autor]"
-  }],
-  "publisher": {
-    "@type": "Organization",
-    "name": "[Nome da empresa]",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.exemplo.com.br/assets/logo-principal.png"
-    }
+  "@type": "Product",
+  "name": "Cadência Plano Estúdio",
+  "description": "Agenda, cobrança recorrente por Pix automático e cartão, controle de presença e app do aluno para estúdios de até 400 alunos.",
+  "brand": {
+    "@type": "Brand",
+    "name": "Cadência"
   },
-  "description": "[Meta description]",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://www.exemplo.com.br/blog/[slug]"
+  "offers": {
+    "@type": "Offer",
+    "url": "https://cadencia.example/precos",
+    "priceCurrency": "BRL",
+    "price": "289",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "289",
+      "priceCurrency": "BRL",
+      "referenceQuantity": { "@type": "QuantitativeValue", "value": 1, "unitCode": "MON" }
+    },
+    "availability": "https://schema.org/InStock"
   }
 }
 ```
 
+**Plano Rede**
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Cadência Plano Rede",
+  "description": "Tudo do Plano Estúdio em cada unidade, mais painel consolidado de todas as unidades, para redes a partir de três unidades.",
+  "brand": {
+    "@type": "Brand",
+    "name": "Cadência"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://cadencia.example/precos",
+    "priceCurrency": "BRL",
+    "price": "449",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "449",
+      "priceCurrency": "BRL",
+      "unitText": "por unidade, por mês, a partir de três unidades",
+      "referenceQuantity": { "@type": "QuantitativeValue", "value": 1, "unitCode": "MON" }
+    },
+    "availability": "https://schema.org/InStock"
+  }
+}
+```
+
+O preço do Plano Rede para 10 unidades ou mais não está definido (`/05-oferta/OFERTA.md`); o bloco não fala dele. As descrições saem da "Descrição em uma frase" de cada oferta em `/05-oferta/OFERTA.md`; o texto de `/precos` não está nas fontes [PENDENTE: Tiago Ramos confere que cada `description` diz o mesmo que a página `/precos`]. A implantação assistida (R$ 990, opcional) aparece em `/precos` e não tem bloco próprio.
+
 ## BlogPosting (para um post de blog)
+
+Autores: Marina Duarte nos pilares de cobrança e de abrir estúdio; Bruna Alves nos de agenda e de rede (`/06-seo/GEO-AEO.md`). O `author` aponta para o `@id` do bloco `Person` da pessoa.
 
 ```json
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "[Título do post]",
-  "description": "[Meta description]",
-  "image": "https://www.exemplo.com.br/assets/og/[slug].jpg",
-  "datePublished": "[AAAA-MM-DD]",
-  "dateModified": "[AAAA-MM-DD]",
+  "headline": "{{Título do post}}",
+  "description": "{{Meta description}}",
+  "image": "{{URL da imagem de capa do post}}",
+  "datePublished": "{{AAAA-MM-DD}}",
+  "dateModified": "{{AAAA-MM-DD}}",
+  "mainEntityOfPage": "https://cadencia.example/blog/{{slug}}",
   "author": {
     "@type": "Person",
-    "name": "[Nome do autor]",
-    "url": "https://www.exemplo.com.br/sobre/equipe/[slug-do-autor]"
+    "@id": "https://cadencia.example/sobre/equipe/{{marina-duarte ou bruna-alves}}#pessoa",
+    "name": "{{Marina Duarte ou Bruna Alves}}",
+    "url": "https://cadencia.example/sobre/equipe/{{marina-duarte ou bruna-alves}}"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "[Nome da empresa]",
+    "@id": "https://cadencia.example/#organizacao",
+    "name": "Cadência",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.exemplo.com.br/assets/logo-principal.png"
+      "url": "https://cadencia.example/logo-cadencia.png"
     }
   }
 }
@@ -204,38 +229,34 @@ Os valores de `dayOfWeek` ficam em inglês: são nomes fixos do schema.org. Mant
 
 ## HowTo (para conteúdo passo a passo)
 
+Para os guias em `/guias/[slug]`, que são passo a passo; por exemplo, `/guias/reposicao-de-aulas` tem 6 passos `[SITE]`. Um `HowToStep` por passo visível na página. `totalTime`, `supply` e `tool` só entram se a página disser.
+
 ```json
 {
   "@context": "https://schema.org",
   "@type": "HowTo",
-  "name": "[Título do passo a passo]",
-  "description": "[Descrição em uma frase]",
-  "image": "https://www.exemplo.com.br/assets/passo-a-passo/[slug].jpg",
-  "totalTime": "PT30M",
-  "supply": [
-    { "@type": "HowToSupply", "name": "[Material 1]" }
-  ],
-  "tool": [
-    { "@type": "HowToTool", "name": "[Ferramenta 1]" }
-  ],
+  "name": "{{Título do guia}}",
+  "description": "{{Descrição em uma frase}}",
   "step": [
     {
       "@type": "HowToStep",
-      "name": "[Título do passo 1]",
-      "text": "[Descrição do passo 1]",
-      "url": "https://www.exemplo.com.br/blog/[slug]#passo-1"
+      "name": "{{Título do passo 1}}",
+      "text": "{{Descrição do passo 1}}",
+      "url": "https://cadencia.example/guias/{{slug}}#passo-1"
     },
     {
       "@type": "HowToStep",
-      "name": "[Título do passo 2]",
-      "text": "[Descrição do passo 2]",
-      "url": "https://www.exemplo.com.br/blog/[slug]#passo-2"
+      "name": "{{Título do passo 2}}",
+      "text": "{{Descrição do passo 2}}",
+      "url": "https://cadencia.example/guias/{{slug}}#passo-2"
     }
   ]
 }
 ```
 
 ## FAQPage (para um bloco de perguntas frequentes)
+
+Em `/precos`, com as quatro perguntas que estão visíveis na página, palavra por palavra `[SITE]`. As respostas ficam do tamanho que têm na página: o schema não pode dizer mais que a página.
 
 ```json
 {
@@ -244,83 +265,103 @@ Os valores de `dayOfWeek` ficam em inglês: são nomes fixos do schema.org. Mant
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "[Pergunta 1]",
+      "name": "Preciso de cartão para começar o teste?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "[Resposta 1, de 40 a 80 palavras]"
+        "text": "Não. O teste dura 14 dias e não pede cartão."
       }
     },
     {
       "@type": "Question",
-      "name": "[Pergunta 2]",
+      "name": "Tem fidelidade?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "[Resposta 2, de 40 a 80 palavras]"
+        "text": "Não. O plano é mensal e você cancela quando quiser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O que é Pix automático?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "É a cobrança recorrente por Pix: a aluna autoriza uma vez no banco e a mensalidade é paga sozinha todo mês."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vocês importam meus alunos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Na implantação assistida (R$ 990), a gente importa alunos, planos e pacotes em até 5 dias úteis."
       }
     }
   ]
 }
 ```
 
-## Review (para a avaliação de um cliente)
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "Review",
-  "itemReviewed": {
-    "@type": "Service",
-    "name": "[Nome do serviço]"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "[Nome de quem avaliou]"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5"
-  },
-  "reviewBody": "[Fala de quem avaliou]",
-  "datePublished": "[AAAA-MM-DD]"
-}
-```
+A quarta resposta repete o prazo de 5 dias úteis (D-003), que está em contradição com uma implantação de 7 dias registrada em `/05-oferta/GANHOS-E-PERDAS.md`. Se o texto de `/precos` mudar para "de 5 a 7 dias úteis", este bloco muda junto, no mesmo dia [PENDENTE: decisão sobre o prazo publicado, com Lívia Moraes, `/07-site/MAPA-DO-SITE.md`].
 
 ## BreadcrumbList
+
+Gerado automaticamente pelo tema do site e já no ar `[SITE]`. Formato esperado, por exemplo num post:
 
 ```json
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://www.exemplo.com.br" },
-    { "@type": "ListItem", "position": 2, "name": "Serviços", "item": "https://www.exemplo.com.br/servicos" },
-    { "@type": "ListItem", "position": 3, "name": "[Nome do serviço]", "item": "https://www.exemplo.com.br/servicos/[slug]" }
+    { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://cadencia.example" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cadencia.example/blog" },
+    { "@type": "ListItem", "position": 3, "name": "{{Título do post}}", "item": "https://cadencia.example/blog/{{slug}}" }
   ]
 }
 ```
 
 ## Person (para a página de bio do autor)
 
+Um bloco por autor do blog `[SITE]` `[CONVERSA 2026-10-13]`.
+
+**Marina Duarte**
+
 ```json
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "[Nome do autor]",
-  "jobTitle": "[Cargo]",
-  "url": "https://www.exemplo.com.br/sobre/equipe/[slug]",
-  "image": "https://www.exemplo.com.br/assets/equipe/[slug].jpg",
+  "@id": "https://cadencia.example/sobre/equipe/marina-duarte#pessoa",
+  "name": "Marina Duarte",
+  "jobTitle": "CEO",
+  "url": "https://cadencia.example/sobre/equipe/marina-duarte",
   "sameAs": [
-    "https://www.linkedin.com/in/[perfil]",
-    "https://www.instagram.com/[perfil]"
+    "https://www.instagram.com/marinaduarte.estudio"
   ],
   "worksFor": {
     "@type": "Organization",
-    "name": "[Nome da empresa]"
+    "@id": "https://cadencia.example/#organizacao",
+    "name": "Cadência"
   },
-  "description": "[Parágrafo de bio]"
+  "description": "CEO e cofundadora da Cadência, ex-dona de estúdio."
 }
 ```
+
+**Bruna Alves**
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://cadencia.example/sobre/equipe/bruna-alves#pessoa",
+  "name": "Bruna Alves",
+  "jobTitle": "Marketing",
+  "url": "https://cadencia.example/sobre/equipe/bruna-alves",
+  "worksFor": {
+    "@type": "Organization",
+    "@id": "https://cadencia.example/#organizacao",
+    "name": "Cadência"
+  }
+}
+```
+
+Perfil de Instagram da Marina `[REDES]`; cargo e páginas de bio `[SITE]`. Foto, bio por extenso e perfis da Bruna (LinkedIn ou outro) não estão nas fontes [PENDENTE: Bruna Alves e Marina Duarte mandam foto, bio e perfis; `description` e `image` entram com o texto da página de bio].
 
 ## Faça e não faça com schema
 
@@ -336,6 +377,7 @@ Os valores de `dayOfWeek` ficam em inglês: são nomes fixos do schema.org. Mant
 - Usar schema para afirmar o que a página não prova.
 - Publicar schema `FAQPage` numa página que esconde as respostas em acordeões fechados por padrão, se isso prejudica a clareza. Alguns motores já dão preferência a perguntas frequentes visíveis.
 - Empilhar tipos de schema irrelevantes para tentar ganhar um recurso da SERP.
+- Na Cadência: `Review`, `AggregateRating` ou `LocalBusiness` sem nova decisão da Marina.
 
 ## Como passar este arquivo para um agente de IA
 
@@ -352,4 +394,4 @@ Fluxo:
 Cite /07-site/DADOS-ESTRUTURADOS.md nas notas de publicação da página.
 ```
 
-Caminhos de referência: `/07-site/DADOS-ESTRUTURADOS.md`, `/07-site/MAPA-DO-SITE.md`, `/06-seo/GEO-AEO.md`.
+Caminhos de referência: `/07-site/DADOS-ESTRUTURADOS.md`, `/07-site/MAPA-DO-SITE.md`, `/06-seo/GEO-AEO.md`, `/05-oferta/OFERTA.md`.

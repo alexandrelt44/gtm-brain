@@ -2,6 +2,22 @@
 
 > Exemplo fictício. A Cadência e todas as pessoas e empresas citadas não existem.
 
+Fontes da marca:
+
+- `[ENTREVISTAS]` 14 entrevistas com donas de estúdio e gestoras de rede, jan–mar/2026
+- `[ENTREVISTAS-GP]` entrevistas de ganhos e perdas feitas pela Lívia Moraes, 14 a 30 dias depois de cada fechamento, 2025–2026
+- `[SUPORTE]` tickets e conversas de suporte no WhatsApp, 2025–2026
+- `[PAINEL]` painel interno da Cadência: uso do produto, assinaturas e cobrança; inclui o export de valor do primeiro ano por coorte, 2026-09-30
+- `[PESQUISA]` pesquisa de palavras-chave de setembro de 2026 (`/06-seo/pesquisa/2026-09-pesquisa-palavras-chave.csv`). Volumes fictícios
+- `[VENDAS]` RD Station CRM, negócios e relatório de funil por origem, abr–set/2026
+- `[FINANCEIRO]` orçamento de out/2026 a set/2027, aprovado pelos sócios em 2026-09-22
+- `[GA4]` exports do GA4 da propriedade cadencia.example, 2026-04-01 a 2026-09-30: páginas que vendem, blog, landing pages de anúncio e central de provas
+- `[ANUNCIOS]` Google Ads e Gerenciador de Anúncios da Meta, 2026-04-01 a 2026-09-30
+- `[REDES]` insights do Instagram @cadencia.estudios e @marinaduarte.estudio, abr–set/2026
+- `[EMAIL]` RD Station Marketing, newsletter "Diário do estúdio", 26 edições de abr–set/2026
+- `[SITE]` levantamento técnico do site por Tiago Ramos em 2026-10-02: contêiner do Google Tag Manager GTM-CAD (versão 41, publicada em 2026-09-15) e notas técnicas do site (Astro, schema no ar, FAQ de `/precos`, perfis, autores)
+- `[CSS]` export das variáveis e dos componentes do CSS do site (`src/styles/global.css`), feito por Tiago Ramos em 2026-10-02
+
 Este é o arquivo mestre. Se um agente de IA só puder carregar uma coisa deste repositório, que seja este arquivo.
 
 ## Como usar este arquivo
@@ -25,7 +41,7 @@ Atualize esta tabela sempre que uma camada for preenchida. Enquanto uma camada e
 | 01 ICP | `/01-icp/ICP.md` | ✅ preenchido | — |
 | 02 Voz | `/02-voz/VOZ.md` | ✅ preenchido | — |
 | 03 Visual | `/03-visual/IDENTIDADE-VISUAL.md` | ✅ preenchido | — |
-| 04 Design system | `/04-design-system/DESIGN.md` | ⬜ template | `/03-visual/IDENTIDADE-VISUAL.md` (cores e fontes) |
+| 04 Design system | `/04-design-system/DESIGN.md` | 🟡 parcial (tokens do site no ar em `DESIGN.md`, `theme.json` e `tokens.css`; pendentes: contraste do botão de destaque e da borda do campo, entrelinhas e estados fora do export do CSS, specs de tabela de preços e de depoimento) | — |
 | 05 Oferta | `/05-oferta/OFERTA.md` | ✅ preenchido | — |
 | 06 SEO | `/06-seo/PALAVRAS-CHAVE.md` | ✅ preenchido | — |
 | 07 Site | `/07-site/MAPA-DO-SITE.md` | ✅ preenchido | — |
@@ -36,10 +52,12 @@ Atualize esta tabela sempre que uma camada for preenchida. Enquanto uma camada e
 
 Lacunas abertas que o agente precisa conhecer:
 
-- O design system (camada 04) está em template. Não leia `/04-design-system/theme.json` como valor da Cadência.
+- O design system (camada 04) registra o CSS do site no ar e bate com `/03-visual/IDENTIDADE-VISUAL.md`. `/04-design-system/specs/` ainda é o modelo genérico: tamanhos e tokens valem de `DESIGN.md`, `theme.json` e `tokens.css`, nunca das specs.
+- Os dados estruturados de `/07-site/DADOS-ESTRUTURADOS.md` foram decididos em 2026-10-13 e serão implantados por Tiago Ramos até 2026-11-30. Hoje o site só tem `Organization` incompleto e `BreadcrumbList`. Sem `Review`, `AggregateRating` nem `LocalBusiness`.
 - O case da Rede Núcleo Funcional (CS-003) está em produção, sem número. Nenhuma afirmação sobre redes sai com número até ele ser publicado. `[HIPÓTESE]`
 - O preço do plano Rede para 10 unidades ou mais ainda não foi definido (ver `/05-oferta/OFERTA.md`).
 - O prazo de implantação de 5 dias úteis (D-003) não bateu numa implantação recente. O caso está em `/05-oferta/GANHOS-E-PERDAS.md`.
+- O plano usa R$ 120 por teste iniciado (contas de anúncio) para a mídia paga. Pelo CRM, o custo foi R$ 257,14 por lead; com ele, o custo planejado passa do teto. A conciliação está pendente em `/11-plano/CONTA-DO-CLIENTE.md`. Não afirme que o plano cabe no orçamento sem essa ressalva.
 
 ## Árvore de pastas
 
@@ -215,7 +233,7 @@ Como aparecemos na busca:
 Como medimos sucesso:
 - Métrica norte (north star): MRR novo vindo de estúdios gerados pelo marketing, por mês.
 - KPI principal de marketing: leads dentro do ICP por mês (testes iniciados mais demonstrações agendadas), meta de 84.
-- Eventos de conversão: trial_start, call_booked, whatsapp_click, lead_magnet_download, newsletter_subscribe.
+- Eventos de conversão (os que contam como lead): trial_start, call_booked, whatsapp_click. lead_magnet_download e newsletter_subscribe são medidos, mas não são lead (de /09-dados/PLANO-DE-MEDICAO.md).
 - Modelo de atribuição: primeiro toque para reconhecimento, último toque não direto para pipeline, multitoque para receita.
 
 Regras para tudo o que você produzir:

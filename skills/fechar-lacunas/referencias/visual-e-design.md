@@ -17,7 +17,7 @@ Camadas `03-visual/` e `04-design-system/`. Não têm skill própria: você pree
 3. **Capturas de tela** do site e das peças publicadas (Instagram, anúncios).
 4. **A pessoa**, para o que nenhuma fonte mostra (regras de uso, o que é proibido, a intenção).
 
-Se o manual e o site discordam (o manual diz um azul, o site usa outro), é uma contradição: pergunte qual vale antes de escrever.
+Se o manual e o site discordam (o manual diz um azul, o site usa outro), é uma contradição: pergunte qual vale antes de escrever. O mesmo vale quando `IDENTIDADE-VISUAL.md` já está preenchido e o CSS do site discorda dele: corrija a identidade primeiro (SKILL.md, seção 5), depois copie para o design system.
 
 ## Extrair do site
 
@@ -84,7 +84,7 @@ function oklch(rgb) {
   const A = 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s
   const B = 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s
   const C = Math.hypot(A, B), H = C < 0.002 ? 0 : (Math.atan2(B, A) * 180 / Math.PI + 360) % 360
-  return `oklch(${L.toFixed(2)} ${C.toFixed(2)} ${Math.round(H)})`
+  return `oklch(${L.toFixed(2)} ${C < 0.002 ? '0' : C.toFixed(2)} ${Math.round(H)})`
 }
 const lum = (rgb) => { const [r, g, b] = rgb.map(lin); return 0.2126 * r + 0.7152 * g + 0.0722 * b }
 const cores = process.argv.slice(2)
@@ -95,7 +95,7 @@ if (cores.length === 2) {
 }
 ```
 
-Contraste mínimo (WCAG AA): 4,5:1 para texto normal, 3:1 para texto grande (24 px, ou 18,5 px em negrito) e para ícones. Escreva em `### Regras de uso das cores` cada combinação que a marca usa e o contraste dela. Combinação abaixo do mínimo vira regra ("só em texto grande") ou lacuna para a pessoa decidir.
+Contraste mínimo (WCAG AA): 4,5:1 para texto normal; 3:1 para texto grande (24 px, ou 18,7 px em negrito, que é 14 pt: "18 px negrito" não chega); 3:1 para ícones e para o contorno de componentes contra o fundo ao lado (borda de campo, botão só com borda, anel de foco). Escreva em `### Regras de uso das cores` cada combinação que a marca usa e o contraste dela. Combinação abaixo do mínimo vira regra ("só em texto grande") ou lacuna para a pessoa decidir.
 
 ## `IDENTIDADE-VISUAL.md`
 
@@ -103,7 +103,7 @@ Contraste mínimo (WCAG AA): 4,5:1 para texto normal, 3:1 para texto grande (24 
 - Linha que a marca não tem (um segundo destaque, cores de estado): pergunte se ela quer uma proposta (marcada `[PROPOSTA]`) ou se a linha sai. Sites raramente mostram cores de erro e de alerta; não tire isso de um padrão de framework.
 - Os tokens de neutras do `theme.json` incluem `300` e `400`, que a tabela do template não tem. Acrescente as duas linhas ou registre que a marca não usa.
 - **Tipografia:** a família é a fonte carregada de fato (`document.fonts` ou o `@font-face`), não a primeira da pilha de fallback. Origem: Google Fonts, Adobe Fonts, arquivo próprio. Pesos: só os que aparecem. Escala: os tamanhos de `h1` a `h4` e do texto, medidos.
-- **Espaçamento, raio, sombra, movimento, breakpoints:** dos valores do CSS (`border-radius` dos botões e cards, `box-shadow`, `transition`, `@media`). Se o site usa os valores padrão de um framework (Tailwind, Bootstrap), diga isso: é o valor real da marca, com selo `[OBSERVADO]`.
+- **Espaçamento, raio, sombra, movimento, breakpoints:** a escala tipográfica, os raios, as sombras (`rgb(15 23 42 …)`), as curvas de movimento e os breakpoints do template também são exemplo, não só as cores. Tire tudo dos valores do CSS (`border-radius` dos botões e cards, `box-shadow`, `transition`, `@media`). Se o site usa os valores padrão de um framework (Tailwind, Bootstrap), diga isso: é o valor real da marca, com selo `[OBSERVADO]`.
 - **Modo escuro:** procure `prefers-color-scheme` no CSS. Se não existe, escreva que a marca não tem modo escuro.
 - **Logo:** caminhos ou URLs reais de cada versão. Tamanho mínimo e área de respiro só do manual ou da pessoa; sem isso, `[PENDENTE: tamanho mínimo do logo, no manual da marca]`.
 - Apague `## Exemplo` (regras, seção 3) e escreva a primeira linha do `## Histórico de mudanças`.
@@ -121,15 +121,15 @@ Olhe as fotos do site e as últimas 12 a 30 publicações das redes. Descreva o 
 
 ## `theme.json` e `tokens.css`
 
-- **`theme.json`:** mantenha a estrutura e os nomes das chaves. Troque `name` ("Tema da <Marca>"), `description`, `meta.author`, `meta.lastUpdated` e cada valor: `value` em OKLCH, `hex`, `role`, famílias, pilhas, pesos, escala. Os valores são os mesmos de `IDENTIDADE-VISUAL.md`, sem arredondar diferente. Confira que o JSON abre (SKILL.md, seção 8).
+- **`theme.json`:** mantenha a estrutura e os nomes das chaves que a marca usa. Chave que a marca não usa pode sair; valor que a marca tem e o template não prevê (tamanho de título no celular, largura máxima, altura de controle) pode entrar como chave nova. Valor pendente fica `null`, com o motivo na `description`. `meta.license` é a licença do template: troque pela da marca ou tire. Troque `name` ("Tema da <Marca>"), `description`, `meta.author`, `meta.lastUpdated` e cada valor: `value` em OKLCH, `hex`, `role`, famílias, pilhas, pesos, escala. Os valores são os mesmos de `IDENTIDADE-VISUAL.md`, sem arredondar diferente. Confira que o JSON abre (SKILL.md, seção 8).
 - **`tokens.css`:** troque os valores da Camada 1 (`--ds-*`) **e** a reserva dentro de cada `var(--ds-…, <reserva>)` da Camada 2. As duas precisam bater.
 - **Sobrou valor do template?** Rode nos três arquivos (identidade, theme, tokens) e no `DESIGN.md`:
 
 ```sh
-grep -n -i -E '#(0B3A5B|124D7A|D97706|B45309|10B981|6366F1|F8FAFC|F1F5F9|E2E8F0|64748B|334155|0F172A|F59E0B|EF4444|3B82F6)|oklch\([0-9.]+ [0-9.]+ 240\)|Satoshi' <arquivos>
+grep -n -i -E '#(0B3A5B|124D7A|D97706|B45309|10B981|6366F1|F8FAFC|F1F5F9|E2E8F0|64748B|334155|0F172A|F59E0B|EF4444|3B82F6)|oklch\([0-9.]+ [0-9.]+ 240\)|Satoshi|rgb\(15 23 42|cubic-bezier\(0\.4, 0, 0\.2, 1\)|cubic-bezier\(0\.2, 0\.8, 0\.2, 1\)|9999px|1536' <arquivos>
 ```
 
-Cada linha que aparecer é um valor do template. Se a marca usa por acaso o mesmo valor (branco, por exemplo, não está na lista), deixe e cite a fonte.
+Compare também a escala tipográfica (72, 56, 44, 32, 24, 20 px) com o CSS: igual à do template, não é da marca. Cada linha que aparecer é um valor do template. Se a marca usa por acaso o mesmo valor (branco, por exemplo, não está na lista), deixe e cite a fonte.
 
 ## `DESIGN.md`
 
@@ -137,7 +137,7 @@ Cada linha que aparecer é um valor do template. Se a marca usa por acaso o mesm
 - As tabelas de tokens repetem os nomes e valores do `theme.json`. A referência de variáveis CSS repete o `tokens.css`.
 - `## Como os componentes devem ser construídos`: descreva os componentes como estão no site (raio, altura, espaçamento interno, estados de hover e foco, ícone). O que o site não mostra, a pessoa decide ou fica pendente.
 - No checklist, marque só o que é verdade. "Script de auditoria no CI" e "código em produção usa os tokens" quase nunca são, no começo.
-- As specs em `specs/` são modelos genéricos e não entram no relatório de lacunas. Ajuste `fundamentos/cor.md` e `fundamentos/tipografia.md` aos valores da marca só se a pessoa for usar as specs com um agente de código.
+- As specs em `specs/` são modelos genéricos e não entram no relatório de lacunas. Ajuste `fundamentos/cor.md` e `fundamentos/tipografia.md` aos valores da marca só se a pessoa for usar as specs com um agente de código. Mas se você tirou um token, procure quem o cita (`grep -rn -- '--radius-sm' <pasta>/04-design-system/specs`) e troque pelo token mais próximo que ficou, ou avise a pessoa: um agente de código que lê as specs usaria um token que não existe.
 
 ## Sem site e sem manual
 

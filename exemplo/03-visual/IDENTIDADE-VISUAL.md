@@ -5,6 +5,7 @@
 Fontes citadas neste arquivo:
 
 - `[ENTREVISTAS]` 14 entrevistas com donas de estúdio e gestoras de rede, janeiro a março de 2026
+- `[CSS]` export das variáveis e dos componentes do CSS do site (`src/styles/global.css`), feito por Tiago Ramos em 2026-10-02
 
 ## Como usar este arquivo
 
@@ -24,7 +25,7 @@ Fontes citadas neste arquivo:
 
 A Cadência é um SaaS de agenda, cobrança recorrente e controle de presença para estúdios de pilates, yoga e treino funcional. A marca visual quer parecer um estúdio bom numa manhã calma: verde musgo, terracota e areia, serifa com personalidade nos títulos e texto limpo. Nada de neon, nada de academia de musculação. `[PROPOSTA]`
 
-O design system (`/04-design-system/`) ainda está em template. Até ele ser preenchido, este arquivo é a única fonte de cor e tipografia, e `/04-design-system/theme.json` não deve ser lido como valor da Cadência.
+Tamanhos, raios, sombras, movimento e breakpoints vêm do CSS do site no ar `[CSS]` e são os mesmos de `/04-design-system/DESIGN.md`, `theme.json` e `tokens.css`.
 
 ---
 
@@ -112,6 +113,8 @@ Neutras quentes, puxadas para a areia. Nada de cinza azulado.
 | `--color-neutral-700` | Texto corrido | `#3D3832` | `61, 56, 50` | `oklch(0.34 0.01 72)` |
 | `--color-neutral-900` | Títulos | `#211D19` | `33, 29, 25` | `oklch(0.23 0.01 67)` |
 
+A Cadência não usa as neutras 300 e 400 `[CSS]`.
+
 ### Semânticas
 
 | Token | Função | Hex |
@@ -127,7 +130,7 @@ Neutras quentes, puxadas para a areia. Nada de cinza azulado.
 - Cor secundária em CTAs secundários, etiquetas e momentos de destaque. Nunca empilhada contra a primária em saturação máxima.
 - As neutras sustentam a página. 80% de qualquer layout é neutro.
 - Cores semânticas são reservadas para status. Não use vermelho como destaque visual.
-- Texto branco sobre Terracota `#C4643F` tem contraste de 4,0:1. Só vale para texto grande (18 px negrito ou maior). Em texto pequeno, use `#A85331` (5,3:1).
+- Texto branco sobre Terracota `#C4643F` tem contraste de 4,0:1. Só vale para texto grande: 24 px, ou 18,7 px (14 pt) em negrito. O site hoje libera a partir de 18 px negrito, abaixo do limite [PENDENTE: Bruna Alves e Tiago Ramos decidem entre 19 px negrito e fundo `#A85331`, ver `/04-design-system/DESIGN.md`]. Em texto pequeno, use `#A85331` (5,3:1).
 - Musgo sobre Areia tem contraste de 8,1:1 e é a combinação padrão de card de depoimento.
 
 ## Tipografia
@@ -135,7 +138,7 @@ Neutras quentes, puxadas para a areia. Nada de cinza azulado.
 ### Display
 
 - **Família:** "Fraunces"
-- **Pesos usados:** 600, 700.
+- **Pesos usados:** 600 `[CSS]`.
 - **Origem na web:** Google Fonts, auto-hospedada no site e no app.
 - **Pilha de fallback:** `"Fraunces", Georgia, "Times New Roman", serif`
 
@@ -148,23 +151,23 @@ Neutras quentes, puxadas para a areia. Nada de cinza azulado.
 ### Mono
 
 - **Família:** "JetBrains Mono"
-- **Pesos usados:** 400, 500. Só para números de tabela no painel e trechos técnicos da central de ajuda.
+- **Pesos usados:** 400. Só no código de UTM e nas tabelas de preço do site, em 14 px `[CSS]`.
 - **Pilha de fallback:** `"JetBrains Mono", "IBM Plex Mono", "Menlo", "Consolas", monospace`
 
 ### Escala tipográfica
 
-| Token | Função | Tamanho (px) | Entrelinha | Peso | Espaçamento entre letras |
+Tamanhos do site `[CSS]`. Entrelinha e espaçamento entre letras dos títulos ficam fora do export do CSS [PENDENTE: Tiago Ramos, `src/styles/global.css`].
+
+| Token | Função | Desktop (px) | Celular (px) | Entrelinha | Peso |
 | --- | --- | --- | --- | --- | --- |
-| `--fs-display-xl` | Destaque do topo | 72 | 1.05 | 700 | -0.02em |
-| `--fs-display-lg` | Destaque secundário | 56 | 1.1 | 700 | -0.02em |
-| `--fs-h1` | Título da página | 44 | 1.15 | 700 | -0.01em |
-| `--fs-h2` | Seção | 32 | 1.2 | 600 | 0 |
-| `--fs-h3` | Subseção | 24 | 1.3 | 600 | 0 |
-| `--fs-h4` | Título pequeno | 20 | 1.35 | 600 | 0 |
-| `--fs-body-lg` | Parágrafo de abertura | 18 | 1.6 | 400 | 0 |
-| `--fs-body` | Texto padrão | 16 | 1.6 | 400 | 0 |
-| `--fs-body-sm` | Legendas, metadados | 14 | 1.55 | 400 | 0.005em |
-| `--fs-mono` | Código | 14 | 1.55 | 400 | 0 |
+| `--fs-h1` | Título da página | 48 | 34 | a confirmar | Fraunces 600 |
+| `--fs-h2` | Seção | 36 | 28 | a confirmar | Fraunces 600 |
+| `--fs-h3` | Subseção | 28 | 24 | a confirmar | Fraunces 600 |
+| `--fs-h4` | Título pequeno | 22 | 20 | a confirmar | Fraunces 600 |
+| `--fs-body` | Texto corrido | 17 | 17 | 1.6 | Inter 400 |
+| `--fs-button` | Texto do botão | 16 | 16 | a confirmar | Inter 600 |
+| `--fs-badge` | Badge | 13 | 13 | a confirmar | Inter 500 |
+| `--fs-mono` | Código de UTM, tabela de preços | 14 | 14 | a confirmar | JetBrains Mono 400 |
 
 ### Escala para impresso
 
@@ -175,7 +178,7 @@ Neutras quentes, puxadas para a areia. Nada de cinza azulado.
 
 ## Espaçamento
 
-O espaçamento segue uma unidade-base de 4 px. Monte os layouts a partir do conjunto de tokens.
+O espaçamento segue uma unidade-base de 4 px `[CSS]`. Monte os layouts a partir do conjunto de tokens.
 
 | Token | Valor |
 | --- | --- |
@@ -184,39 +187,37 @@ O espaçamento segue uma unidade-base de 4 px. Monte os layouts a partir do conj
 | `--space-2` | 8px |
 | `--space-3` | 12px |
 | `--space-4` | 16px |
-| `--space-5` | 20px |
+| `--space-5` | 20px (só o espaçamento lateral do botão) |
 | `--space-6` | 24px |
 | `--space-8` | 32px |
-| `--space-10` | 40px |
 | `--space-12` | 48px |
 | `--space-16` | 64px |
-| `--space-20` | 80px |
 | `--space-24` | 96px |
+
+Conteúdo até 1200 px de largura; texto corrido até 68 caracteres por linha `[CSS]`.
 
 ## Raio
 
-| Token | Valor | Uso |
+| Token | Valor | Uso `[CSS]` |
 | --- | --- | --- |
-| `--radius-none` | 0 | Tabelas de dados, faixas |
-| `--radius-sm` | 4px | Etiquetas, campos pequenos |
-| `--radius-md` | 8px | Botões, campos, cards |
-| `--radius-lg` | 16px | Cards, modais |
-| `--radius-xl` | 24px | Blocos de destaque |
-| `--radius-pill` | 9999px | Pílulas, badges, avatares |
+| `--radius-md` | 8px | Botões, campos |
+| `--radius-lg` | 12px | Cards |
+| `--radius-xl` | 16px | Imagem de case |
+| `--radius-pill` | 999px | Badges |
 
 ## Sombra
 
-| Token | Valor |
-| --- | --- |
-| `--shadow-sm` | `0 1px 2px 0 rgb(15 23 42 / 0.06)` |
-| `--shadow-md` | `0 4px 8px -2px rgb(15 23 42 / 0.08), 0 2px 4px -2px rgb(15 23 42 / 0.06)` |
-| `--shadow-lg` | `0 12px 24px -8px rgb(15 23 42 / 0.12), 0 4px 8px -4px rgb(15 23 42 / 0.08)` |
-| `--shadow-xl` | `0 24px 48px -12px rgb(15 23 42 / 0.18)` |
+Sombras no tom do `#211D19`, nunca em cinza azulado `[CSS]`.
+
+| Token | Valor | Uso |
+| --- | --- | --- |
+| `--shadow-sm` | `0 1px 2px rgba(33,29,25,.06), 0 2px 8px rgba(33,29,25,.06)` | Cards |
+| `--shadow-md` | `0 8px 24px rgba(33,29,25,.12)` | Menu e modal |
 
 ## Movimento
 
-- **Duração-base:** 180 ms para microinterações, 240 ms para sobreposições, 320 ms para transições de página.
-- **Curva de aceleração:** `cubic-bezier(0.2, 0.8, 0.2, 1)` para saídas, `cubic-bezier(0.4, 0, 0.2, 1)` para entradas.
+- **Duração:** 150 ms em hover e foco, 250 ms para abrir menu e modal `[CSS]`.
+- **Curva de aceleração:** `ease-out` nas duas `[CSS]`.
 - **Redução de movimento:** respeite `prefers-reduced-motion`. Só fade, sem parallax nem deslizamento.
 
 ## Breakpoints
@@ -224,16 +225,16 @@ O espaçamento segue uma unidade-base de 4 px. Monte os layouts a partir do conj
 | Token | Largura mínima |
 | --- | --- |
 | `--bp-sm` | 640px |
-| `--bp-md` | 768px |
 | `--bp-lg` | 1024px |
 | `--bp-xl` | 1280px |
-| `--bp-2xl` | 1536px |
+
+O site usa só esses três `[CSS]`.
 
 ## Acessibilidade
 
 - Contraste mínimo: WCAG 2.2 nível AA. Isso significa 4,5:1 para texto corrido e 3:1 para texto grande (18 pt regular ou 14 pt negrito para cima).
-- Botões precisam de 3:1 contra o fundo no estado padrão.
-- Estados de foco precisam ser visíveis. Anel mínimo de 2 px, com afastamento de 2 px, usando `--color-brand-primary` sobre fundos claros e `--color-brand-primary-hover` sobre fundos escuros.
+- Botões e contornos de campo precisam de 3:1 contra o fundo no estado padrão. A borda de campo `#E4DACB` dá 1,4:1 sobre branco [PENDENTE: Bruna Alves e Tiago Ramos decidem; proposta em `/04-design-system/DESIGN.md`].
+- Estados de foco precisam ser visíveis. Anel mínimo de 2 px, com afastamento de 2 px, em Terracota escuro `#A85331` (`--color-focus`) `[CSS]`.
 - Áreas de toque têm no mínimo 44 x 44 px.
 - Nunca transmita significado só pela cor. Junte a cor a um ícone ou a um rótulo.
 - Texto alternativo de imagem é campo obrigatório em todo modelo do CMS.
@@ -279,5 +280,6 @@ Se o pedido exigir cores, fontes ou movimento fora destes sistemas, pare e peça
 | --- | --- | --- |
 | 2026-02-10 | Versão inicial: Musgo, Terracota e Areia, Fraunces e Inter. | Bruna Alves |
 | 2026-10-01 | Regra de contraste para texto branco sobre Terracota e neutras quentes. | Bruna Alves |
+| 2026-10-13 | Escala tipográfica, espaçamento, raios, sombras, movimento, breakpoints, foco e uso do mono alinhados ao CSS do site. | Tiago Ramos |
 
 Caminhos de referência: `/03-visual/IDENTIDADE-VISUAL.md`, `/03-visual/IMAGENS.md`, `/03-visual/PROMPTS-DE-IMAGEM.md`, `/04-design-system/DESIGN.md`, `/04-design-system/theme.json`.

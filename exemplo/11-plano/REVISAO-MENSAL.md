@@ -1,5 +1,7 @@
 # Revisão mensal
 
+> Exemplo fictício. A Cadência e todas as pessoas e empresas citadas não existem.
+
 Plano que ninguém confere é desejo. Esta revisão mantém o seu vivo em 30 minutos por mês: mesmo dia todo mês, os mesmos quatro números.
 
 ## Os quatro números
@@ -48,7 +50,7 @@ Copie as metas mensais na primeira linha e acrescente uma linha depois de cada r
 
 | Mês | Visitas | Leads | Clientes | Custo por cliente | Primeira falha | Uma mudança e por quê |
 |---|---:|---:|---:|---:|---|---|
-| **Meta** | | | | | | |
+| **Meta** | 3.334 | 84 | 17 | R$ 825 | | |
 | Mês 1 | | | | | | |
 | Mês 2 | | | | | | |
 | Mês 3 | | | | | | |

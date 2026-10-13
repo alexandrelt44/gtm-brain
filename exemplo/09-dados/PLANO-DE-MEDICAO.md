@@ -1,5 +1,17 @@
 # Plano de medição
 
+> Exemplo fictício. A Cadência e todas as pessoas e empresas citadas não existem.
+
+Plano de medição da Cadência para o plano de out. de 2026 a set. de 2027: os eventos que o site e o app disparam hoje, os três que contam como lead e as regras de UTM, atribuição e consentimento.
+
+Fontes citadas neste arquivo:
+
+- `[SITE]` levantamento técnico do site por Tiago Ramos em 2026-10-02: contêiner do Google Tag Manager GTM-CAD (versão 41, publicada em 2026-09-15) e notas técnicas do site
+- `[GA4]` exports do GA4 da propriedade cadencia.example, 2026-04-01 a 2026-09-30
+- `[VENDAS]` RD Station CRM, relatório de funil por origem do negócio, 2026-04-01 a 2026-09-30
+- `[ANUNCIOS]` Google Ads e Gerenciador de Anúncios da Meta, 2026-04-01 a 2026-09-30
+- `[CONVERSA 2026-10-13]` definição de lead e do clique no WhatsApp, por Marina Duarte
+
 ## Como usar este arquivo
 
 - **O que entra:** cada nome de evento, cada propriedade, cada definição de conversão, cada convenção de UTM e o modelo de atribuição que a empresa usa.
@@ -8,13 +20,14 @@
 
 ## Checklist para agentes de IA
 
-- [ ] Legível por máquina: eventos e propriedades em tabelas.
-- [ ] Estruturado: taxonomia, eventos de conversão, convenções de UTM, atribuição, consentimento.
-- [ ] Fonte única da verdade: nenhum registro paralelo de eventos no Notion ou numa planilha.
-- [ ] Versionado.
-- [ ] Citável: os agentes citam `/09-dados/PLANO-DE-MEDICAO.md` ao descrever eventos.
+- [x] Legível por máquina: eventos e propriedades em tabelas.
+- [x] Estruturado: taxonomia, eventos de conversão, convenções de UTM, atribuição, consentimento.
+- [x] Fonte única da verdade: nenhum registro paralelo de eventos no Notion ou numa planilha.
+- [x] Versionado.
+- [x] Citável: os agentes citam `/09-dados/PLANO-DE-MEDICAO.md` ao descrever eventos.
 
-Última atualização: [AAAA-MM-DD]
+Última atualização: 2026-10-13
+Autor principal: Tiago Ramos (contêiner e site) e Marina Duarte (definição de lead)
 
 ---
 
@@ -29,38 +42,43 @@
 
 ## Taxonomia de eventos
 
+Os eventos do contêiner GTM-CAD, versão 41 `[SITE]`. O site (`https://cadencia.example`) e o app (`https://app.cadencia.example`) usam a mesma propriedade do GA4, com domínio cruzado.
+
 | Nome do evento | Gatilho | Propriedades | Quem dispara | Responsável | Onde está |
 | --- | --- | --- | --- | --- | --- |
-| `page_view` | Carregamento de qualquer página | `page_path`, `page_title`, `page_type`, `cluster` | GTM | [Responsável] | GA4, CDP |
-| `cta_click` | Clique num CTA rastreado | `cta_id`, `cta_label`, `cta_page`, `cta_position` | GTM | [Responsável] | GA4, CDP |
-| `form_view` | Formulário aparece na tela | `form_id`, `form_name`, `form_page` | GTM | [Responsável] | GA4 |
-| `form_start` | Pessoa interage com um campo do formulário | `form_id` | GTM | [Responsável] | GA4 |
-| `form_submit` | Formulário enviado com sucesso | `form_id`, `form_name`, `form_source`, `lead_persona_guess` | GTM | [Responsável] | GA4, CRM |
-| `form_error` | Formulário falha na validação | `form_id`, `error_code` | GTM | [Responsável] | GA4 |
-| `call_book_started` | Widget de agenda aberto | `widget_id`, `page_source` | GTM | [Responsável] | GA4 |
-| `call_booked` | Evento criado na agenda | `call_type`, `page_source`, `utm_source`, `utm_campaign` | Webhook da agenda | [Responsável] | CRM, GA4 |
-| `newsletter_subscribe` | Formulário da newsletter enviado | `list_id`, `source_page` | Webhook da ferramenta de e-mail | [Responsável] | CRM, GA4 |
-| `lead_magnet_download` | Download de material com cadastro | `asset_id`, `asset_name` | GTM | [Responsável] | CRM, GA4 |
-| `pricing_view` | Página de preços vista | `tier_viewed` | GTM | [Responsável] | GA4 |
-| `comparison_view` | Página de comparação vista | `competitor_slug` | GTM | [Responsável] | GA4 |
-| `search_query` | Busca interna enviada | `query`, `results_count` | Ferramenta de busca | [Responsável] | GA4 |
-| `video_play` | Vídeo rastreado começa a tocar | `video_id`, `video_title`, `percent_watched` | Player | [Responsável] | GA4 |
-| `chat_started` | Widget de chat aberto | `chat_context` | Ferramenta de chat | [Responsável] | CRM, GA4 |
-| `whatsapp_click` | Clique num botão ou link de WhatsApp | `cta_id`, `cta_page`, `whatsapp_context` | GTM | [Responsável] | GA4, CRM |
+| `page_view` | Carregamento de qualquer página (automático) | `page_location`, `page_title` | GTM | Tiago Ramos | GA4 |
+| `cta_click` | Clique num botão com `data-cta-id` | `cta_id`, `cta_label`, `cta_page`, `cta_position` | GTM | Tiago Ramos | GA4 |
+| `whatsapp_click` | Clique em qualquer link `wa.me` | `cta_id`, `cta_page` | GTM | Tiago Ramos | GA4 |
+| `trial_start` | Conta criada no app | `plan_interest`, `modality` | dataLayer do app, via GTM | Tiago Ramos | GA4, painel interno, RD Station CRM |
+| `call_book_started` | Widget de agenda da demonstração aberto | `cta_id` | GTM | Tiago Ramos | GA4 |
+| `call_booked` | Demonstração confirmada no widget | `cta_id`, `modality` | GTM | Tiago Ramos | GA4, RD Station CRM |
+| `newsletter_subscribe` | Formulário da newsletter enviado | `form_id` | GTM | Tiago Ramos | GA4, RD Station Marketing |
+| `lead_magnet_download` | Download de guia em `/guias/` | `asset_slug` | GTM | Tiago Ramos | GA4, RD Station Marketing |
+| `pricing_toggle` | Troca entre mensal e anual em `/precos` | nenhuma | GTM | Tiago Ramos | (pendente) Tiago instala até 2026-11-15 |
+| `case_read` | 75% de rolagem em `/cases/[slug]` | `case_id` | GTM | Bruna Alves | (pendente) Bruna instala até 2026-11-15 |
+
+Os eventos de formulário genérico (`form_view`, `form_start`, `form_submit`, `form_error`), `pricing_view`, `comparison_view`, `search_query`, `video_play` e `chat_started` não existem no contêiner e nenhum está planejado `[SITE]`. A página `/comparativo/agendafit`, planejada em `/07-site/MAPA-DO-SITE.md`, entra aqui com o evento dela quando for ao ar.
 
 ## Eventos de conversão
 
 O subconjunto de eventos que importa para otimização e relatórios.
 
+São exatamente as ações que o plano conta como lead: teste grátis iniciado ou demonstração agendada, pelo site ou pelo WhatsApp `[CONVERSA 2026-10-13]`. Os três estão marcados como eventos principais no GA4 `[GA4]`.
+
 | Evento | Etapa | Dono do número |
 | --- | --- | --- |
-| `form_submit` (formulário de lead) | Topo do funil | Marketing |
-| `newsletter_subscribe` | Topo do funil | Marketing |
-| `whatsapp_click` | Topo do funil | Marketing |
-| `lead_magnet_download` | Consideração | Marketing |
-| `call_booked` | Decisão | Vendas + Marketing |
-| `deal_opened` (evento do CRM) | Decisão | Vendas |
-| `deal_closed_won` (evento do CRM) | Fechamento | Vendas |
+| `trial_start` | Decisão: teste grátis iniciado | Tiago Ramos |
+| `call_booked` | Decisão: demonstração agendada pelo site | Rafael Nunes |
+| `whatsapp_click` | Decisão: conversa no WhatsApp que pode virar demonstração | Lívia Moraes |
+
+Regras de contagem:
+
+- **Eventos não são pessoas.** De abr. a set. de 2026, as oito páginas que vendem tiveram 480 eventos principais (318 `trial_start`, 96 `call_booked`, 66 `whatsapp_click`), e o RD Station CRM, que deduplica por e-mail e telefone, contou 420 leads `[GA4]` `[VENDAS]`. A taxa de conversão do plano (2,5%) é eventos ÷ sessões; o lead do placar é o do CRM.
+- **O clique no WhatsApp não é o lead.** Ele vira lead quando a conversa termina num teste ou numa demonstração, registrada no CRM com a etiqueta de origem do WhatsApp Business (`/09-dados/MEDICAO.md`).
+- `newsletter_subscribe` e `lead_magnet_download` não são conversão. Contam na etapa de consideração de `/09-dados/MEDICAO.md`.
+- O ganho (assinatura com o primeiro pagamento recebido) é registrado no painel interno e no CRM, não no GA4.
+
+As páginas que vendem, as do denominador da taxa de conversão, são `/precos`, `/pilates`, `/yoga`, `/funcional`, `/cobranca`, `/agenda`, `/rede` e `/teste-gratis` `[GA4]`. O blog e as landing pages de anúncio (`/lp/…`) ficam fora.
 
 ## Convenções de UTM
 
@@ -68,30 +86,39 @@ Sempre use o conjunto completo de UTMs nos links de campanha. Nunca corte.
 
 | Parâmetro | Regra | Exemplo |
 | --- | --- | --- |
-| `utm_source` | Origem do canal, minúsculas, sem espaços | `instagram`, `linkedin`, `newsletter`, `whatsapp`, `google` |
-| `utm_medium` | Meio de marketing | `organic_social`, `paid_social`, `email`, `cpc`, `referral` |
-| `utm_campaign` | Slug da campanha, aaaa-mm-nomedacampanha | `2026-04-lancamento-app-aluno` |
-| `utm_content` | Variação do anúncio ou do criativo | `variante-a`, `variante-b`, `link-na-bio` |
+| `utm_source` | Origem do canal, minúsculas, sem espaços. Só os valores em uso: `instagram`, `google`, `meta`, `newsletter`, `whatsapp`, `evento` `[SITE]` | `instagram` |
+| `utm_medium` | Meio de marketing. `[PROPOSTA]` o contêiner não registra uma lista; confirmar com Tiago na revisão de jan. de 2027 | `organic_social`, `paid_social`, `cpc`, `email`, `referral` |
+| `utm_campaign` | Slug da campanha, aaaa-mm-nomedacampanha | `2026-10-link-na-bio` |
+| `utm_content` | Variação do anúncio, do criativo ou do perfil | `bio-marina`, `bio-cadencia` |
 | `utm_term` | Palavra-chave da busca paga | `sistema-estudio-pilates` |
 
 URL canônica de exemplo:
 
 ```
-https://www.exemplo.com.br/planos?utm_source=instagram&utm_medium=organic_social&utm_campaign=2026-04-lancamento-app-aluno&utm_content=link-na-bio
+https://cadencia.example/precos?utm_source=instagram&utm_medium=organic_social&utm_campaign=2026-10-link-na-bio&utm_content=bio-marina
 ```
+
+Regras da Cadência:
+
+- UTM em todo link de anúncio, newsletter, lista de transmissão do WhatsApp, link na bio, stories e QR code de evento. Nunca em link interno do site nem do site para o app: quebra a origem da sessão.
+- O tráfego de `app.cadencia.example` para `cadencia.example` está excluído como referência no GA4 `[SITE]`.
+- Problema achado: 18% das sessões do Instagram chegam com `utm_source=ig`, de um link antigo da bio, e caem em outra linha do GA4 `[SITE]`. Troca do link antigo da bio para `utm_source=instagram` [PENDENTE: dono a definir na próxima revisão mensal; o canal Instagram é da Marina Duarte no plano].
 
 ## Modelo de atribuição
 
-- **Relatórios de descoberta:** primeiro toque.
-- **Relatórios de pipeline:** último toque não direto, validado por vendas.
-- **Relatórios de receita:** multitoque (40% primeiro toque, 40% último toque, 20% toques intermediários).
+- **No GA4:** modelo baseado em dados, com janela de 30 dias para eventos de aquisição e de 90 dias para os demais `[SITE]`. É o multitoque dos relatórios de receita e de pipeline.
+- **Relatórios de descoberta:** primeiro toque, pelas dimensões de primeiro usuário do GA4.
+- **Leads e demonstrações por canal:** a origem do negócio no RD Station CRM, que é a fonte do relatório de funil `[VENDAS]`.
+- **Contas de anúncio:** último clique, com a janela de cada plataforma. De abr. a set. de 2026, Google Ads e Meta atribuíram 180 testes iniciados à mídia paga; o CRM atribuiu 84 leads `[ANUNCIOS]` `[VENDAS]`. O número das plataformas não entra no placar sem conciliar com o CRM.
 - **Concilie com o CRM todo mês.** A receita que o marketing reivindica nunca passa da receita registrada no CRM.
 
 ## Consentimento e privacidade
 
 - O consentimento do visitante é coletado antes de disparar tags de análise, de anúncios e de personalização que usam cookies não essenciais, conforme a LGPD.
-- O estado do consentimento fica guardado no CDP (ou na plataforma de consentimento) e é repassado às ferramentas seguintes, inclusive via Consent Mode do Google.
-- A tabela de classificação de cookies fica em `/02-voz/COMPLIANCE.md` e é atualizada a cada troca de ferramenta.
+- Banner próprio com o Consent Mode v2 do Google em modo básico: `analytics_storage` e `ad_storage` ficam negados até o aceite. O pixel da Meta só dispara depois do aceite `[SITE]`.
+- A Cadência não usa CDP. O estado do consentimento fica no banner e é repassado ao GA4 e ao Google Ads pelo Consent Mode.
+- No modo básico, o GA4 não recebe nada de quem recusa. Sessões e eventos ficam abaixo do real; o CRM conta todos os leads. Leve isso em conta na conciliação de GA4 e CRM.
+- A tabela de classificação de cookies fica em `/02-voz/COMPLIANCE.md` e é atualizada a cada troca de ferramenta. Hoje o arquivo tem a regra de consentimento, mas não a tabela [PENDENTE: tabela de cookies em `/02-voz/COMPLIANCE.md`, Tiago Ramos, dono técnico dos dados em `/09-dados/MEDICAO.md`].
 
 ## Checklist de QA das tags
 
@@ -104,15 +131,7 @@ Antes de qualquer página ou funil novo ir ao ar.
 - [ ] Nenhum dado pessoal nos valores das propriedades.
 - [ ] Evento de conversão verificado de ponta a ponta em pelo menos um ambiente.
 
-## Exemplo: evento de conversão da demonstração da Cadência
-
-- **Página:** `/planos`
-- **CTA:** botão "Agende uma demonstração de 30 minutos".
-- **Atributos do CTA:** `cta_id="demo-hero"`, `cta_label="agende uma demonstração de 30 minutos"`, `cta_page="/planos"`, `cta_position="hero"`.
-- **Eventos:** `cta_click` no botão, `call_book_started` ao abrir o widget, `call_booked` quando o evento é aceito.
-- **Alternativa:** o botão "Falar no WhatsApp" na mesma página dispara `whatsapp_click` com `cta_id="whatsapp-planos"`.
-- **Destino:** `call_booked` cria no CRM um negócio novo com a tag `source=planos-demo-hero`.
-- **Atribuição:** primeiro toque pelo início da sessão no GA4, último toque pelas UTMs do `call_booked`.
+Na Cadência, o checklist roda no modo de depuração do GA4 antes de cada versão nova do contêiner. Quem roda e quem confere seguem os donos dos dados de `/09-dados/MEDICAO.md`: Tiago Ramos é o dono técnico e Bruna Alves, a auditora.
 
 ## Como passar este arquivo para um agente de IA
 

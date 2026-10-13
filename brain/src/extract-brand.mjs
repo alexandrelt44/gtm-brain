@@ -51,11 +51,12 @@ export const RE_TENSION = /(diverg|contradi|⚠️|inconsist|conflita com|\bem c
 //   [DERIVA: PLAYBOOK §5]
 export const RE_EXPLICIT = /\[(CONTRADIZ|PENDENTE|DERIVA):\s*([^\]]+)\]/g
 // Words that flag something still owed
-export const RE_PENDING = /(\(pendente\)|\[PENDENTE:|⬜|\bem definição|a confirmar|não registrad|verificar antes|ainda não adaptad)/i
+export const RE_PENDING = /(\(pendente\)|\[PENDENTE:|⬜|\bem definição|(?<![\p{L}])a confirmar|não registrad|verificar antes|ainda não adaptad)/iu
 // A banner in the first lines saying the file is still the upstream template.
 // A template instruction left in place: a bracket with lowercase text ("[1 a 9 funcionários]").
 // Seals and source tags are all caps, even with a pointer ([CASES, Hypnos]); checklist marks ([x]) and explicit marks ([PENDENTE: /05-oferta/…]) are content.
-export const RE_INSTRUCTION = /\[(?![xX]\]|(?:PENDENTE|CONTRADIZ|DERIVA):|[A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-ZÁÉÍÓÚÂÊÔÃÕÇ0-9-]{1,20}[ ,§])[^\]\n]*[a-zà-ÿ][^\]\n]*\](?!\()/g
+export const RE_INSTRUCTION = /\[(?![xX]\]|"|(?:PENDENTE|CONTRADIZ|DERIVA):|[A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-ZÁÉÍÓÚÂÊÔÃÕÇ0-9-]{1,20}[ ,§])[^\]\n]*[a-zà-ÿ][^\]\n]*\](?!\()/g
+const RE_MASTER = /^10-[^/]+\/(BRAND-BRAIN|CEREBRO)\.md$/
 export const RE_NOT_ADAPTED = /(ainda não adaptad|não são da marca|not yet adapted)/i
 
 // The brand's own data files, in the English template and in the GTM Brain template.
@@ -307,9 +308,12 @@ export function extractBrand(root, opts = {}) {
   // Global definitions first, so mentions can resolve.
   const proofDefs = new Map()
   const sourceDefs = new Map()
+  const registryDefs = new Map()
   for (const [f, text] of texts) {
     for (const [id, d] of findProofDefinitions(text)) if (!proofDefs.has(id)) proofDefs.set(id, { ...d, file: f })
     for (const [tag, d] of findSourceDefinitions(text)) {
+      // The "Fontes da marca:" list in the brain file is the brand's tag registry: it wins (below).
+      if (RE_MASTER.test(f)) { registryDefs.set(tag, { ...d, file: f }); continue }
       const prev = sourceDefs.get(tag)
       if (!prev || (!prev.obsidian && d.obsidian)) sourceDefs.set(tag, { ...d, file: f })
     }
@@ -331,13 +335,18 @@ export function extractBrand(root, opts = {}) {
 
   const classify = (f, text) => {
     const head = text.split('\n').slice(0, 15).join('\n')
-    const placeholders = (text.match(RE_PLACEHOLDER) || []).length
+    // Brackets inside fenced code are page variables ("[AAAA-MM-DD]" in a JSON-LD block), not
+    // leftovers, except in the master prompt, whose fence is the brand's own content.
+    const body = RE_MASTER.test(f) ? text : text.replace(/^```[\s\S]*?^```/gm, ' ')
+    // Blank form fields ("R$__________") inside a fence are still blanks to fill.
+    const blanks = (text.match(/^```[\s\S]*?^```/gm) || []).join('\n').match(/_{4,}/g) || []
+    const placeholders = (body.match(RE_PLACEHOLDER) || []).length + blanks.length
     const isReadme = /(^|\/)README\.md$/.test(f) || /(^|\/)(examples|exemplos)\//.test(f) || /(EXAMPLE|EXEMPLO)-/.test(f)
     const isRepoMeta = !/^\d{2}-/.test(f)
     // Filled: names the brand near the top or is one of the brand's own data files (not a README,
     // scaffold or example), AND has no placeholder and (almost) no bracketed instruction left.
     // Naming the brand in the title alone does not fill a template.
-    const instructions = (text.replace(/`[^`\n]*`/g, '').match(RE_INSTRUCTION) || []).length
+    const instructions = (body.replace(/`[^`\n]*`/g, '').match(RE_INSTRUCTION) || []).length
     const clean = placeholders === 0 && instructions <= 6
     const filled = ((brand && head.includes(brand)) || RE_CANONICAL.test(f)) && clean && !RE_NOT_ADAPTED.test(head)
     let status
@@ -368,6 +377,11 @@ export function extractBrand(root, opts = {}) {
   }
   // Sources come from the brand's filled files only: the template's own examples are not sources.
   for (const [tag, d] of [...sourceDefs]) if (fileInfo.get(d.file)?.status !== 'filled') sourceDefs.delete(tag)
+  for (const [tag, d] of registryDefs) {
+    if (fileInfo.get(d.file)?.status !== 'filled') continue
+    const prev = sourceDefs.get(tag)
+    sourceDefs.set(tag, { ...d, obsidian: d.obsidian || prev?.obsidian })
+  }
   const tagLines = new Map()
   for (const [f, text] of texts) {
     if (fileInfo.get(f).status !== 'filled') continue

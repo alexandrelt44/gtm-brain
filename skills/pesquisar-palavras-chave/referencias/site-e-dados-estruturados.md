@@ -54,9 +54,18 @@ O arquivo é uma biblioteca de blocos JSON-LD. Você preenche o que é fixo da m
 1. **Nome da marca no topo.** Escreva a lista de fontes logo abaixo do título e uma frase dizendo de quem é o arquivo ("Dados estruturados do site da [marca]"). O GTM Brain só considera o arquivo preenchido quando o nome da marca aparece nas primeiras linhas.
 2. **Troque os valores fixos** em todos os blocos: `"name"` da empresa, `"url"` (o domínio real, não `exemplo.com.br`), `"logo"`, `"sameAs"` (só perfis que existem e são da marca), `"contactPoint"` (telefone, WhatsApp, e-mail de atendimento, horário), `"areaServed"`.
 3. **Autores:** um bloco `Person` por autor confirmado em `GEO-AEO.md`, com cargo, URL da bio e perfis.
-4. **Apague os blocos que a marca não usa.** `LocalBusiness` só se houver atendimento presencial; `Product` só se houver oferta empacotada; `AggregateRating` só com avaliações reais publicadas na página.
+4. **Apague os blocos que a marca não usa.** `LocalBusiness` só se houver atendimento presencial; `Product` só se houver oferta empacotada; `AggregateRating` e `Review` só com avaliações reais publicadas na página (o bloco `Product` do template traz `aggregateRating`: tire se não for o caso). Para planos de software, `Product` com `Offer` serve; `SoftwareApplication` é mais específico. Mensalidade vai em `UnitPriceSpecification` com `"unitCode": "MON"`.
 5. **Deixe as variáveis de página** dentro dos blocos de código: `[Título do post]`, `[AAAA-MM-DD]` de publicação, `[slug]`. Elas são preenchidas a cada página, e o GTM Brain não conta colchetes dentro de blocos de código como pendência.
-6. **Preço no schema** igual ao preço da página e de `/05-oferta/OFERTA.md`. Se o preço não é público, tire `price` do bloco.
-7. Valide cada bloco no Teste de pesquisa aprimorada do Google e no validador do Schema.org antes de dizer que está pronto. Se você não consegue validar daqui, diga isso à pessoa.
+6. **Preço no schema** igual ao preço da página e de `/05-oferta/OFERTA.md`. Se o preço não é público, tire `price` do bloco. **Perguntas e respostas do `FAQPage`** são as da página, palavra por palavra, mesmo que sejam mais curtas que as 40 a 80 palavras do template: aquele tamanho é conselho para escrever a página, não para o schema.
+7. **O que está no ar e o que falta.** Registre numa tabela, por tipo: páginas, o que está no ar hoje, responsável e prazo da implantação.
+8. **Valide.** Primeiro confira que cada bloco é JSON válido:
+
+   ```sh
+   node -e "const t=require('fs').readFileSync(process.argv[1],'utf8');for(const m of t.matchAll(/\x60\x60\x60json\n([\s\S]*?)\x60\x60\x60/g))JSON.parse(m[1]);console.log('ok')" <pasta>/07-site/DADOS-ESTRUTURADOS.md
+   ```
+
+   Depois, com a página no ar, rode o Teste de pesquisa aprimorada do Google e o validador do Schema.org. Se você não consegue validar daqui, diga isso à pessoa.
 
 Prioridade de tipos para quem quer ser citado por IA: `Organization` na página inicial, `Article` ou `BlogPosting` com autor nos textos, `FAQPage` onde houver perguntas frequentes visíveis, `Product` ou `Service` nas páginas de oferta, `BreadcrumbList` em tudo que tem segundo nível. Nunca descreva no schema o que a página não mostra.
+
+Não prometa resultado enriquecido no Google para todo tipo. Desde 2023 o Google não mostra mais o resultado enriquecido de `HowTo` e só mostra o de `FAQPage` para sites de governo e de saúde. Os dois continuam úteis para quem lê a página por máquina, inclusive as IAs.

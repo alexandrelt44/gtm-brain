@@ -50,17 +50,17 @@
 
 ## Eventos de conversão
 
-O subconjunto de eventos que importa para otimização e relatórios.
+O subconjunto de eventos que importa para otimização e relatórios. Os que contam como lead são exatamente as ações que o plano conta como lead em `/11-plano/PLANO-DE-UMA-PAGINA.md` e em `/09-dados/MEDICAO.md`: marque esses como evento principal no GA4. Os outros são micro-conversões ou eventos do CRM, acompanhados sem entrar na taxa de conversão.
 
-| Evento | Etapa | Dono do número |
-| --- | --- | --- |
-| `form_submit` (formulário de lead) | Topo do funil | Marketing |
-| `newsletter_subscribe` | Topo do funil | Marketing |
-| `whatsapp_click` | Topo do funil | Marketing |
-| `lead_magnet_download` | Consideração | Marketing |
-| `call_booked` | Decisão | Vendas + Marketing |
-| `deal_opened` (evento do CRM) | Decisão | Vendas |
-| `deal_closed_won` (evento do CRM) | Fechamento | Vendas |
+| Evento | Etapa | Conta como lead | Dono do número |
+| --- | --- | --- | --- |
+| `form_submit` (formulário de lead) | Topo do funil | Sim | Marketing |
+| `whatsapp_click` | Topo do funil | Sim, se o plano conta conversa no WhatsApp | Marketing |
+| `call_booked` | Decisão | Sim | Vendas + Marketing |
+| `newsletter_subscribe` | Topo do funil | Não (micro-conversão) | Marketing |
+| `lead_magnet_download` | Consideração | Não (micro-conversão) | Marketing |
+| `deal_opened` (evento do CRM) | Decisão | Não (etapa do CRM) | Vendas |
+| `deal_closed_won` (evento do CRM) | Fechamento | Não (é o ganho) | Vendas |
 
 ## Convenções de UTM
 

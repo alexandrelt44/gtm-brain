@@ -81,12 +81,15 @@ Se a marca ainda não mede, escreva o que existe e marque o resto como `(pendent
 
 ## Destaques
 
-Um ativo entra em `DESTAQUES.md` quando cumpre dois ou mais critérios do template, sempre com o número, o período e a fonte. Na prática:
+Um ativo entra em `DESTAQUES.md` quando cumpre o critério da marca, sempre com o número, o período e a fonte. Sem critério da pessoa, use dois ou mais critérios do template. Se o export só traz os primeiros de cada canal e a média (sem a lista inteira, "10% melhores" não se calcula), use um múltiplo da média do canal com um mínimo absoluto, por exemplo o dobro da média e pelo menos 5 leads, e marque a regra como `[PROPOSTA]`. Na prática:
 
 - Compare dentro do mesmo canal. Um post do blog compete com posts do blog, não com anúncios.
 - Espere um ciclo completo: 90 dias para conteúdo orgânico, o tempo de uma campanha para anúncios.
 - Prefira números que andam perto da receita: leads e reuniões atribuídos antes de alcance e cliques.
 - Para cada vencedor, escreva por que funciona em termos que outro agente consiga repetir: o gancho, a estrutura, a prova usada, o CTA.
-- `## Padrões entre os vencedores` só depois de três ou mais vencedores no mesmo canal. Antes disso, um padrão é um caso.
+- `## Padrões entre os vencedores` só depois de três ou mais vencedores no mesmo canal, ou do mesmo gancho vencendo em três canais. Antes disso, um padrão é um caso, registrado como `[OBSERVADO]`.
+- As colunas das tabelas podem mudar para as métricas que o export traz (testes com UTM no lugar de taxa de resposta, custo por teste no lugar de custo por cliente). Os títulos das seções ficam.
+- Canal que a marca não usa: "Nenhum vencedor registrado: a marca não publica em <canal>", sem pendência.
+- Peça que rodou sem a permissão de `PROVAS.md` (depoimento em anúncio sem "Anúncios" aprovado) não entra como vencedora, por melhor que seja o número. Registre e avise a pessoa.
 
 Marca sem histórico: as seções ficam com "Nenhum vencedor registrado ainda (pendente: primeira seleção em AAAA-MM-DD)". É o estado certo, não uma falha.

@@ -53,7 +53,7 @@ O GTM Brain lê os arquivos como um banco de dados: **títulos viram registros**
 Fontes citadas neste arquivo:
 
 - `[ENTREVISTAS]` 14 entrevistas com donas de estúdio, jan–mar/2026
-- `[SITE]` cadencia.app, páginas de preço e de recursos, lidas em 2026-10-12
+- `[SITE]` cadencia.example, páginas de preço e de recursos, lidas em 2026-10-12
 ```
 
 Depois cite a fonte ao lado da afirmação: `` `[ENTREVISTAS §2]` ``, `` `[SITE]` ``. Resposta da pessoa no chat também é fonte: `[CONVERSA AAAA-MM-DD]`, com a data da conversa.
@@ -63,12 +63,14 @@ Depois cite a fonte ao lado da afirmação: `` `[ENTREVISTAS §2]` ``, `` `[SITE
 ```md
 Fontes da marca:
 
-- `[SITE]` cadencia.app, páginas de preço e de recursos, lidas em 2026-10-12
+- `[SITE]` cadencia.example, páginas de preço e de recursos, lidas em 2026-10-12
 - `[CRM]` export do HubSpot, negócios de jan–set/2026
 - `[ENTREVISTAS]` 14 entrevistas com donas de estúdio, jan–mar/2026
 ```
 
 A tag nasce ali e vale para a marca inteira: a mesma fonte tem a mesma tag em todos os arquivos. Antes de citar uma fonte, procure a tag nessa lista e reutilize. Fonte nova (um export, uma pasta, uma página) entra primeiro em `Fontes da marca:` e depois no `Fontes citadas neste arquivo:` do arquivo que a usa. `[CONVERSA AAAA-MM-DD]` não precisa entrar na lista.
+
+Se o `CEREBRO.md` ainda não tem a lista, crie-a logo abaixo do título antes de escrever o primeiro arquivo. Com mais de um agente trabalhando ao mesmo tempo, quem orquestra registra as tags de todas as fontes antes de dividir o trabalho, e cada agente só reutiliza.
 
 **Selos** no começo da frase ou ao lado da afirmação:
 

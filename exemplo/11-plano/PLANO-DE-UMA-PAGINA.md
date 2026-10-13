@@ -6,8 +6,11 @@ Fontes citadas neste arquivo:
 
 - `[PAINEL]` dados de uso do produto (painel interno da Cadência), incluindo o sistema de cobrança
 - `[VENDAS]` CRM da Cadência, negócios de abril a setembro de 2026
+- `[FINANCEIRO]` orçamento de out. de 2026 a set. de 2027, aprovado pelos sócios em 2026-09-22
+- `[GA4]` exports do GA4 da propriedade cadencia.example, 2026-04-01 a 2026-09-30
+- `[CONVERSA 2026-10-13]` respostas de Marina Duarte sobre a divisão das visitas, as horas e a fatia aceitável
 
-Plano da Cadência para out. de 2026 a set. de 2027. A conta passo a passo e a explicação de cada número estão em [`EXEMPLO-cadencia.md`](EXEMPLO-cadencia.md). Taxa de fechamento `[COMPROVADO]` `[VENDAS]`. Base, churn e valor do primeiro ano `[COMPROVADO]` `[PAINEL]`. Divisão entre canais `[PROPOSTA]`, decisão da Marina.
+Plano da Cadência para out. de 2026 a set. de 2027. A conta passo a passo e a explicação de cada número estão em [`EXEMPLO-cadencia.md`](EXEMPLO-cadencia.md). Meta e base `[COMPROVADO]` `[FINANCEIRO]`. Taxa de fechamento `[COMPROVADO]` `[VENDAS]`. Taxa de conversão `[COMPROVADO]` `[GA4]`. Base, churn e valor do primeiro ano `[COMPROVADO]` `[PAINEL]`. Divisão entre canais: decisão da Marina, confirmada em 2026-10-13 `[CONVERSA 2026-10-13]`. A conta passo a passo com as fontes de cada número está em [`CONTA-DO-CLIENTE.md`](CONTA-DO-CLIENTE.md).
 
 Copie o bloco abaixo para um documento, um app de notas ou o seu próprio repositório. Ele é o plano inteiro: meta, conta, canais, orçamento, placar e revisão.
 
@@ -44,7 +47,7 @@ Avaliações e indicações                              500            Lívia  
 E-mail e WhatsApp                                    333            Bruna        Sessões do GA4 vindas de e-mail e WhatsApp, com UTM
 Mídia paga (busca e redes sociais)                   667            Rafael       Cliques nas landing pages por modalidade, custo por teste
 Conteúdo e redes sociais (Instagram)                 1.000          Marina       Sessões do GA4 vindas da bio e dos stories, com UTM
-Outro: eventos de pilates e yoga                     167            Marina       Sessões da página do evento (QR code), cupom do evento
+Eventos de pilates e yoga                            167            Marina       Sessões da página do evento (QR code), cupom do evento
                                               TOTAL  3.334  (igual às visitas necessárias por mês)
 
 ORÇAMENTO (passo 6)

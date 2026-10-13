@@ -100,7 +100,7 @@ contabilidade para clinica medica,320,28,comm,12,1,5,4,9,7
 
 **`GEO-AEO.md`.** Mantenha as regras gerais e escreva o que é da marca: [`referencias/geo-aeo.md`](referencias/geo-aeo.md). Troque `## Exemplo` por `## Onde a marca aparece hoje nas respostas de IA`, com a tabela de medição.
 
-**`MAPA-DO-SITE.md` e `DADOS-ESTRUTURADOS.md`:** [`referencias/site-e-dados-estruturados.md`](referencias/site-e-dados-estruturados.md).
+**`MAPA-DO-SITE.md` e `DADOS-ESTRUTURADOS.md`:** [`referencias/site-e-dados-estruturados.md`](referencias/site-e-dados-estruturados.md). Se só falta `DADOS-ESTRUTURADOS.md`, o relatório manda para `fechar-lacunas`, que usa a mesma referência sem a rodada de palavras-chave.
 
 Em todos: fontes no topo, `Última atualização`, checklist marcado, `## Exemplo` e blocos "Exemplo de preenchimento:" apagados (regras, seção 3).
 

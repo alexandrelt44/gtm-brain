@@ -36,8 +36,8 @@ Defina a frequência uma vez. Proteja-a. Os canais seguem a divisão do plano em
 | Newsletter "Diário do estúdio" | 1 por semana, terça às 7h | Editorial curto e seleção de links, e-mail e lista de transmissão no WhatsApp | Bruna Alves | Marina Duarte |
 | Instagram da Cadência | 3 posts por semana (carrossel ou reel) e stories diários | Carrossel, reel, stories | Bruna Alves | Marina Duarte |
 | Instagram da Marina | 2 posts por semana e stories de bastidor | Reel com a Marina falando, stories | Marina Duarte | A própria Marina |
-| LinkedIn da Marina | 1 por semana | Post para gestoras de rede | Marina Duarte | A própria Marina |
-| YouTube | 1 por mês | Vídeo de 5 a 10 minutos, tutorial ou bastidor de estúdio cliente | Bruna Alves | Tiago Ramos (precisão do produto) |
+| LinkedIn da Marina | 1 por semana [PENDENTE: canal fora de `/11-plano/PLANO-DE-UMA-PAGINA.md` e sem horas no passo 6 da conta; Marina decide se entra no plano ou sai do calendário] | Post para gestoras de rede | Marina Duarte | A própria Marina |
+| YouTube | 1 por mês [PENDENTE: canal fora de `/11-plano/PLANO-DE-UMA-PAGINA.md` e sem horas no passo 6 da conta; Marina decide se entra no plano ou sai do calendário] | Vídeo de 5 a 10 minutos, tutorial ou bastidor de estúdio cliente | Bruna Alves | Tiago Ramos (precisão do produto) |
 | E-mail de nutrição | Automação sempre ligada, com revisão trimestral | E-mail | Bruna Alves | Lívia Moraes |
 | Anúncios | Contínuo, teste de variação semanal | Texto curto + criativo no Instagram e no Google Ads | Rafael Nunes | Bruna Alves (checagem de dados) |
 | X e podcast | Não usamos | n/a | n/a | n/a |

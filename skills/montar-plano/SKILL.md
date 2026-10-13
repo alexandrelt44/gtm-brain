@@ -41,15 +41,16 @@ O plano depende de outras camadas. Confira com `lacunas`:
 
 Comece pela lista `Fontes da marca:` do `10-cerebro/CEREBRO.md`. Ela é o registro de tags da marca: reutilize as tags de lá e acrescente ali cada fonte nova (regras, seção 4).
 
-| Número ou campo | Onde buscar | Tag sugerida |
+| Número ou campo | Onde buscar | Tag sugerida, se a marca ainda não tem uma para a mesma fonte |
 | --- | --- | --- |
 | Meta de receita, 12 meses | Orçamento ou plano financeiro, sócios | `[FINANCEIRO]` |
 | Receita esperada da base | Sistema de cobrança (receita recorrente, contratos ativos), churn medido | `[COBRANCA]` |
 | Valor do cliente no primeiro ano | Cobrança ou notas fiscais dos clientes que entraram nos últimos 12 a 24 meses | `[COBRANCA]` |
 | Taxa de fechamento | CRM: ganhos ÷ leads do mesmo período, 6 a 12 meses. Sem CRM: 90 dias de WhatsApp, e-mail e agenda | `[CRM]` |
-| Taxa de conversão | GA4: eventos principais ÷ sessões das páginas que vendem. Perfil da empresa no Google: ações ÷ visualizações | `[GA4]` |
+| Taxa de conversão | Leads ÷ sessões das páginas que vendem. Os eventos principais do GA4 são a aproximação; confira contra os leads do CRM no mesmo período (armadilhas). Perfil da empresa no Google: ações ÷ visualizações | `[GA4]` |
 | De onde vêm os clientes | Campo de origem no CRM, pergunta "como conheceu" no fechamento | `[CRM]` |
-| Custo por lead ou por clique | Contas de anúncio, últimos 6 meses | `[ANUNCIOS]` |
+| Custo por lead ou por clique | Contas de anúncio, últimos 6 meses, conferido contra os leads que o CRM atribui à mídia paga. Se divergirem, mostre os dois na conta | `[ANUNCIOS]` |
+| Gasto mensal em dinheiro | Faturas das contas de anúncio, das ferramentas e dos eventos | `[ANUNCIOS]`, `[FINANCEIRO]` |
 | Ferramentas, eventos, UTM | Contêiner do Tag Manager, administração do GA4, o próprio site | `[SITE]` |
 | Vencedores do conteúdo | GA4, Search Console, insights das redes, ferramenta de e-mail | `[GA4]`, `[REDES]` |
 | Donos, horas, valor da hora | A pessoa | `[CONVERSA AAAA-MM-DD]` |
@@ -64,7 +65,8 @@ Pergunte só o que as fontes não deram, até 4 por rodada (regras, seção 2).
 
 1. **Meta de receita dos próximos 12 meses.** (Recomendado) o número do orçamento, se você achou; a receita dos últimos 12 meses mais o crescimento que a pessoa quer (pergunte quanto); não existe meta. Sem meta, a conta para no passo 1: registre `(pendente)` e siga só para a medição.
 2. **Receita esperada da base.** (Recomendado) a que você calculou, com a conta à vista; outro número do financeiro.
-3. **Período.** (Recomendado) os 12 meses a partir do mês que vem; o ano fiscal da marca.
+3. **Período.** (Recomendado) o do orçamento, se houver; senão, os 12 meses a partir do mês que vem; o ano fiscal da marca.
+4. **Valor do primeiro ano de quem.** (Recomendado) da faixa de cliente que o ICP quer conquistar; da base inteira, se a marca quer todas as faixas. Mostre os dois números quando a cobrança separar.
 
 **Rodada 2, as taxas.**
 
@@ -77,7 +79,8 @@ Pergunte só o que as fontes não deram, até 4 por rodada (regras, seção 2).
 1. **Divisão das visitas.** (Recomendado) a sua proposta, a partir da origem dos clientes no CRM; as fatias iniciais da conta; a divisão que a pessoa quiser.
 2. **Dono de cada canal.** Uma pessoa por canal.
 3. **Fatia aceitável do valor do primeiro ano.** (Recomendado) 20% a 30% se a relação é recorrente e a margem é saudável; 10% a 15% se a compra é única e a margem é baixa.
-4. **Valor da hora** de quem toca os canais.
+4. **Valor da hora** de quem toca os canais, e as horas por mês de cada pessoa.
+5. **Gasto mensal em dinheiro por canal** (anúncios, ferramentas, eventos). (Recomendado) o gasto real das contas e faturas dos últimos meses; um valor novo, se a pessoa quer mudar o investimento (aí pergunte como o canal mantém as visitas com o gasto novo).
 
 **Rodada 4, o calendário.** Canais e frequência que cabem nas horas do passo 6, o cluster ou a oferta que puxa o trimestre e a data de início.
 
@@ -91,7 +94,8 @@ Abra cada arquivo com uma linha que diga de quem é o plano e o período, e com 
 - Troque a frase que apresenta a Cadência por uma que diga que cada passo mostra a conta da marca e que o exemplo fictício está em `EXEMPLO-cadencia.md`.
 - Preencha cada bloco de código com os números da marca e marque `[x] medida` ou `[x] provisória até AAAA-MM-DD`.
 - Troque cada linha "Cadência (fictícia): …" pela conta da marca: os números, o resultado em negrito, a fonte e o selo.
-- Em `## Referências`, deixe só as linhas usadas, com valor, fonte, janela de dados e data. Se nenhuma referência foi usada, uma linha dizendo isso.
+- Em `## Referências`, deixe só as linhas usadas, com valor, fonte, janela de dados e data. Dado próprio da marca usado na conta (custo por lead das contas de anúncio, taxa do CRM) também entra, porque a caixa `ATUALIZADO EM` do plano repete esta tabela. Se nenhuma referência de mercado foi usada, diga isso numa linha.
+- Se uma fonte errou na conta e o número arredondado não muda (a planilha do financeiro dá R$ 52 a mais), registre o número da fonte e o refeito, lado a lado.
 - O passo a passo, a conferência e a lista de onde cada número se repete estão em [`referencias/conta-do-cliente.md`](referencias/conta-do-cliente.md).
 
 ### `11-plano/PLANO-DE-UMA-PAGINA.md`
@@ -143,7 +147,10 @@ KPIs, eventos, UTM e critérios de vencedor estão em [`referencias/metricas.md`
 - **Conta que não fecha.** TOTAL dos canais diferente das visitas por mês, leads por mês arredondados para baixo, meta de `MEDICAO.md` diferente da do plano.
 - **Receita total no passo 1.** O plano cobre a receita de clientes novos. Renovação e contrato assinado ficam fora.
 - **Valor do tempo de vida no passo 2.** Use o valor do primeiro ano.
-- **Valor do primeiro ano que a oferta não explica.** Se B passa de 12 mensalidades da oferta principal mais a implantação, pergunte de onde vem a diferença antes de seguir.
+- **Valor do primeiro ano que a oferta não explica.** Se B passa de 12 mensalidades da oferta principal mais a implantação, pergunte de onde vem a diferença antes de seguir. Se fica mais de 20% abaixo, explique com o mix de planos, o churn do primeiro ano e quantos compraram a implantação.
+- **Eventos não são leads.** O GA4 conta eventos; a mesma pessoa clica no WhatsApp e começa um teste. Compare os eventos principais com os leads do CRM no mesmo período. Se divergirem, diga a taxa por pessoa ao lado da taxa por evento e marque a conciliação como pendente.
+- **Custo por lead da plataforma.** A conta de anúncio atribui por último clique e costuma contar mais leads que o CRM. Se o custo pelo CRM leva M acima de L, diga isso à pessoa: o plano só cabe no número mais otimista.
+- **Gasto que cai sem explicação.** Se o plano põe menos dinheiro num canal do que ele gastou nos últimos meses e pede mais visitas dele, pergunte como.
 - **Três definições de lead.** O lead do plano, o de `MEDICAO.md` e os eventos de conversão de `PLANO-DE-MEDICAO.md` têm que ser o mesmo.
 - **Hora da equipe a zero.** O teto de orçamento cobre dinheiro e horas. Sem as horas, o plano parece caber e não cabe.
 - **Calendário solto.** Peça sem cluster, oferta ou prova; canal fora do plano; mais peças do que as horas do passo 6 pagam; depoimento em anúncio sem "Anúncios" nos usos aprovados de `PROVAS.md`.

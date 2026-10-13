@@ -23,6 +23,8 @@ test('skillFor maps each layer to the skill that fills it', () => {
   assert.equal(skillFor('06-seo/CLUSTERS.md'), 'pesquisar-palavras-chave')
   assert.equal(skillFor('11-plano/CONTA-DO-CLIENTE.md'), 'montar-plano')
   assert.equal(skillFor('03-visual/IMAGENS.md'), 'fechar-lacunas')
+  assert.equal(skillFor('07-site/MAPA-DO-SITE.md'), 'pesquisar-palavras-chave')
+  assert.equal(skillFor('07-site/DADOS-ESTRUTURADOS.md'), 'fechar-lacunas')
 })
 
 test('gap report lists template files first, then incomplete records, undefined proofs and marks', () => {
@@ -107,4 +109,36 @@ test('naming the brand in a template title does not fill it; template example so
   assert.ok(r.toFill.some((f) => f.file === '10-cerebro/CEREBRO.md'))
   const graph = extractBrand(root)
   assert.ok(!graph.nodes.some((n) => n.type === 'source'))
+})
+
+test('page variables inside code fences do not keep a file in template; blank form fields do', () => {
+  const fence = '```'
+  const root = tree({
+    '10-cerebro/CEREBRO.md': '# Cérebro da marca — Acme\n\n' + fence + 'text\nVocê é o agente da Acme.\n' + fence + '\n',
+    '07-site/DADOS-ESTRUTURADOS.md': [
+      '# Dados estruturados da Acme', '',
+      fence + 'json',
+      '{ "@type": "BlogPosting", "headline": "[Título do post]", "datePublished": "[AAAA-MM-DD]",',
+      '  "author": "[nome do autor]", "image": "[url da imagem]", "url": "[url do post]",',
+      '  "description": "[resumo do post]", "keywords": "[palavras-chave]", "section": "[cluster do post]",',
+      '  "dayOfWeek": ["Monday", "Tuesday"] }',
+      fence,
+    ].join('\n'),
+    '11-plano/CONTA-DO-CLIENTE.md': '# Conta do cliente da Acme\n\n' + fence + '\nMeta de receita:   R$__________\n' + fence + '\n',
+  })
+  const r = gapReport(root)
+  assert.ok(!r.toFill.some((f) => f.file === '07-site/DADOS-ESTRUTURADOS.md'))
+  assert.ok(r.toFill.some((f) => f.file === '11-plano/CONTA-DO-CLIENTE.md'))
+})
+
+test('the "Fontes da marca:" registry in the brain file is where a source tag is defined; "para confirmar" is not pending', () => {
+  const root = tree({
+    '10-cerebro/CEREBRO.md': '# Cérebro da marca — Acme\n\nFontes da marca:\n\n- `[CRM]` export do CRM, jan–set/2026\n',
+    '01-icp/ICP.md': '# ICP da Acme\n\nFontes citadas neste arquivo:\n\n- `[CRM]` export do CRM, janeiro a setembro de 2026\n\nCompra quem tem equipe `[CRM]`.\n',
+    '09-dados/DESTAQUES.md': '# Destaques da Acme\n\n`[PROPOSTA]` Corte de 2 vezes a média, para confirmar na revisão.\n',
+  })
+  const graph = extractBrand(root)
+  assert.equal(graph.meta.sources.CRM.file, '10-cerebro/CEREBRO.md')
+  const r = gapReport(root)
+  assert.ok(!r.marks.some((m) => m.file === '09-dados/DESTAQUES.md' && m.kind === 'pendente'))
 })

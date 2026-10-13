@@ -21,6 +21,8 @@ export const SKILL_FOR = [
   [/^05-[^/]+\/(OFFER|OFERTA)\.md$/, 'preencher-oferta'],
   [/^05-[^/]+\//, 'mapear-concorrencia'],
   [/^06-[^/]+\//, 'pesquisar-palavras-chave'],
+  // The schema file is filled from the site and the offer, not from a keyword study.
+  [/^07-[^/]+\/(SCHEMA|DADOS-ESTRUTURADOS)\.md$/, 'fechar-lacunas'],
   [/^07-[^/]+\//, 'pesquisar-palavras-chave'],
   [/^08-[^/]+\/(PROOF-CORPUS|PROVAS)\.md$/, 'registrar-provas'],
   [/^08-[^/]+\/(CALENDAR|CALENDARIO)\.md$/, 'montar-plano'],

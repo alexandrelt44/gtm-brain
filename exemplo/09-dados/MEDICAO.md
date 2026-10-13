@@ -6,6 +6,8 @@ Fontes citadas neste arquivo:
 
 - `[PAINEL]` dados de uso do produto (painel interno da Cadência)
 - `[ENTREVISTAS]` 14 entrevistas com donas de estúdio e gestoras de rede, janeiro a março de 2026
+- `[VENDAS]` RD Station CRM, relatório de funil por origem do negócio, abril a setembro de 2026
+- `[GA4]` exports do GA4 da propriedade cadencia.example, 2026-04-01 a 2026-09-30
 
 ## Como usar este arquivo
 
@@ -56,7 +58,7 @@ Escolha uma métrica norte. Desdobre em métricas menores. Associe cada uma a um
 
 | Etapa | Métrica | Meta | Ferramenta | Responsável |
 | --- | --- | --- | --- | --- |
-| Descoberta | Visitas às páginas que vendem (modalidade, planos e teste grátis) | 3.334 por mês | GA4 | Bruna Alves |
+| Descoberta | Visitas às páginas que vendem (modalidade, `/agenda`, `/cobranca`, `/rede`, `/precos` e `/teste-gratis`) | 3.334 por mês | GA4 | Bruna Alves |
 | Descoberta | Sessões orgânicas no blog | 6.000 por mês | GA4 | Bruna Alves |
 | Descoberta | Impressões de buscas pela marca | Acompanhar, sem meta | Google Search Console | Bruna Alves |
 | Descoberta | Alcance no Instagram (Cadência e Marina) | 120 mil contas por mês | Instagram | Marina Duarte |
@@ -81,8 +83,8 @@ Escreva a definição uma vez. Proteja-a.
 - **Reunião agendada:** evento de agenda aceito pelas duas partes, não apenas um pedido.
 - **Fonte de atribuição:** primeiro toque para métricas de descoberta, último toque para reuniões agendadas, multitoque nas revisões de pipeline.
 - **Ganho:** assinatura ativa nos planos Essencial, Estúdio ou Rede, com o primeiro pagamento recebido (Pix automático ou cartão).
-- **Taxa de fechamento:** estúdios ganhos ÷ leads do mesmo período. Hoje 20%, medida no CRM de abr. a set. de 2026.
-- **Taxa de conversão:** leads ÷ visitas às páginas que vendem. Hoje 2,5%, medida no GA4. O blog fica fora da conta.
+- **Taxa de fechamento:** estúdios ganhos ÷ leads do mesmo período. Hoje 20% (84 ÷ 420), medida no CRM de abr. a set. de 2026 `[VENDAS]`.
+- **Taxa de conversão:** eventos principais (`trial_start`, `call_booked`, `whatsapp_click`) ÷ sessões nas páginas que vendem: `/precos`, `/pilates`, `/yoga`, `/funcional`, `/cobranca`, `/agenda`, `/rede` e `/teste-gratis`. Hoje 2,5% (480 ÷ 19.200), medida no GA4 de abr. a set. de 2026 `[GA4]`. O blog e as landing pages de anúncio ficam fora da conta. Eventos não são pessoas: no mesmo período o CRM contou 420 leads; a conciliação está em `/09-dados/PLANO-DE-MEDICAO.md`.
 
 ## Painéis
 
