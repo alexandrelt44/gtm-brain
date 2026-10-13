@@ -25,6 +25,7 @@ import { extractBrand, listMarkdown } from './extract-brand.mjs'
 import { buildBrain } from './brain-model.mjs'
 import { renderBrainHtml, renderHtml, defaultBrandDir } from './build.mjs'
 import { mergeBack, lineDiff, wrapAuthored } from './md-merge.mjs'
+import { proposalStore } from './propostas.mjs'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 
@@ -240,7 +241,7 @@ function listCsv(root) {
 }
 
 /** Builds the brain once per change of the brand files. */
-function brainCache(marca, opts = {}) {
+export function brainCache(marca, opts = {}) {
   let key = null
   let cached = null
   return () => {
@@ -271,6 +272,7 @@ function main() {
     }
   }
   const editor = createEditor(args)
+  const proposals = proposalStore(args.marca)
   const get = brainCache(args.marca, { issues: args.issues })
   const live = { api: '/api', proof: args.proof, write: args.write, commit: args.commit }
 
@@ -310,6 +312,13 @@ function main() {
       if (req.method === 'POST' && p === '/api/docs/save') {
         const b = await body()
         return send(200, await editor.save(b.file, { by: b.by || 'humano' }))
+      }
+      if (req.method === 'GET' && p === '/api/propostas') return send(200, proposals.list({ status: url.searchParams.get('status') || undefined }))
+      const pm = p.match(/^\/api\/propostas\/([^/]+)\/(aceitar|recusar)$/)
+      if (req.method === 'POST' && pm) {
+        const b = await body()
+        const by = b.by || args.name || 'humano'
+        return send(200, pm[2] === 'aceitar' ? proposals.accept(pm[1], { write: args.write, commit: args.commit, by }) : proposals.reject(pm[1], { by, nota: b.nota }))
       }
       if (req.method === 'GET' && p === '/api/docs') return send(200, Object.values(editor.sessions).map((s) => ({ file: s.file, slug: s.slug, savedAt: s.savedAt || null })))
       send(404, { error: 'not found' })

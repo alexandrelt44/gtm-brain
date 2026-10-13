@@ -1,9 +1,17 @@
 {
   "name": "gtm-brain",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Skills para preencher o cérebro de go-to-market da marca (ICP, voz, oferta, concorrência, provas, palavras-chave, plano) com um agente, a partir das fontes e com o mínimo de perguntas",
   "author": {
     "name": "Alexandre Leite"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "mcpServers": {
+    "gtm-brain": {
+      "command": "node",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/brain/src/mcp.mjs"
+      ]
+    }
+  }
 }

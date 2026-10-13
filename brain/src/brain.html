@@ -194,6 +194,14 @@ details.origin code { font: 11.5px var(--mono); }
 .diffrow i { display: inline-block; width: 42px; color: var(--faint); font-style: normal; }
 .edmsg { margin: 10px 12px; padding: 9px 12px; border-radius: 8px; font-size: 12.5px; }
 .edmsg.bad { background: var(--bad-bg); color: var(--bad); border: 1px solid var(--bad-line); }
+.prop { border: 1px solid var(--line); border-radius: 10px; margin: 0 0 14px; overflow: hidden; }
+.prop .ph { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-bottom: 1px solid var(--line); background: var(--side); }
+.prop .ph .pt { flex: 1; min-width: 0; }
+.prop .ph .pt b { display: block; font-size: 13px; font-weight: 600; }
+.prop .ph .pt span { font-size: 11.5px; color: var(--muted); }
+.prop .pm { padding: 8px 12px; font-size: 12.5px; color: var(--text-2); border-bottom: 1px solid var(--line); }
+.prop .pd { padding: 6px 0; }
+.prop.done { opacity: .7; }
 
 @media (max-width: 900px) {
   .app { grid-template-columns: 1fr; }
@@ -261,6 +269,7 @@ const ICONS = {
   graph: '<circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><circle cx="18" cy="6" r="3"/><path d="M8.6 7.4 15.4 16.6M9 6h6"/>',
   doc: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/>',
   arrow: '<path d="M7 17 17 7M7 7h10v10"/>',
+  inbox: '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>',
   key: '<circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/>',
 };
 const icon = (name, size = 16, color = 'currentColor', sw = 1.8) => `<svg class="ic" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">${ICONS[name] || ICONS.doc}</svg>`;
@@ -329,7 +338,7 @@ const deg = new Map();
 for (const l of links) if (l.type !== 'tree') { deg.set(l.source, (deg.get(l.source) || 0) + 1); deg.set(l.target, (deg.get(l.target) || 0) + 1); }
 
 // ---------------------------------------------------------------- state
-const st = { sel: null, hover: null, q: '', open: new Set(), edit: null };
+const st = { sel: null, hover: null, q: '', open: new Set(), edit: null, props: [] };
 try { const s = JSON.parse(localStorage.getItem('gtm-brain-v2') || 'null'); if (s) st.open = new Set(s.open || []); } catch (e) {}
 const persist = () => { try { localStorage.setItem('gtm-brain-v2', JSON.stringify({ open: [...st.open] })); } catch (e) {} };
 
@@ -344,7 +353,10 @@ function renderNav() {
     return;
   }
   const selCat = st.sel ? catOf(st.sel) : null;
-  let h = `<div class="nrow top ${st.sel === null ? 'sel' : ''}" data-go="root">${icon('graph', 15)}<span class="t">Visão geral do brain</span></div><div class="nlabel">Conhecimento</div>`;
+  const nProps = st.props.filter((p) => p.status === 'pendente').length;
+  let h = `<div class="nrow top ${st.sel === null ? 'sel' : ''}" data-go="root">${icon('graph', 15)}<span class="t">Visão geral do brain</span></div>` +
+    (LIVE ? `<div class="nrow top ${st.sel === 'propostas' ? 'sel' : ''}" data-go="propostas" title="Mudanças propostas por agentes (MCP), para aceitar ou recusar">${icon('inbox', 15)}<span class="t">Propostas</span><span class="n">${nProps || ''}</span></div>` : '') +
+    `<div class="nlabel">Conhecimento</div>`;
   for (const c of BRAIN.categories) {
     const own = (x) => x.groups.reduce((a, g) => a + g.items.length, 0);
     const n = own(c) + BRAIN.categories.filter((x) => x.parent === c.id).reduce((a, x) => a + own(x), 0);
@@ -402,6 +414,7 @@ function renderDoc() {
   if (st.edit) return renderEditor();
   stopPoll();
   const docEl = document.getElementById('doc');
+  if (st.sel === 'propostas') { renderProps(); docEl.scrollTop = 0; return; }
   if (st.sel.startsWith('cat:')) {
     const c = cats.get(st.sel.slice(4));
     const pc = c.parent ? cats.get(c.parent) : null;
@@ -569,18 +582,17 @@ function agentPrompt() {
 O documento está aberto no Proof: ${a.docUrl}
 Ler (markdown + comentários): GET ${a.state}
   Header: Authorization: Bearer ${a.token}
-Propor mudança (a pessoa aceita ou rejeita no editor):
-  POST ${a.ops}
-  {"type":"suggestion.add","by":"ai:<seu-nome>","kind":"replace","quote":"<trecho atual exato>","content":"<texto novo>"}
-Comentar:
+Propor mudança: use a ferramenta brain_propor do MCP do GTM Brain (node brain/src/mcp.mjs --marca <pasta da marca>).
+  A proposta entra na aba Propostas e a pessoa aceita ou recusa; o arquivo só muda no aceite.
+Comentar no documento:
   POST ${a.ops}
   {"type":"comment.add","by":"ai:<seu-nome>","quote":"<trecho>","text":"<comentário>"}
-Regras da marca: preserve selos ([COMPROVADO], [HIPÓTESE], [PROPOSTA]…), tags de fonte (\`[PLAYBOOK §5]\`) e IDs de prova (CS-001). Não invente prova nem número. Prefira sugestão a edição direta.
+Regras da marca: preserve selos ([COMPROVADO], [HIPÓTESE], [PROPOSTA]…), tags de fonte (\`[PLAYBOOK §5]\`) e IDs de prova (CS-001). Não invente prova nem número. Não edite o documento direto.
 Referência da API: ${a.docs}`;
 }
 function renderAgentPane() {
   const pane = document.getElementById('edpane');
-  pane.innerHTML = `<div class="agentbox"><p>Cole isto no seu agente (Claude Code, Codex…). Ele lê o documento e propõe mudanças como <b>sugestões</b>; você aceita ou rejeita no editor, e nada vai para o arquivo até você clicar em <b>Salvar no arquivo</b>.</p>
+  pane.innerHTML = `<div class="agentbox"><p>Cole isto no seu agente (Claude Code, Codex…). Ele lê o documento, comenta aqui e propõe mudanças pelo MCP; as propostas aparecem em <b>Propostas</b>, na barra lateral, e nada vai para o arquivo até você aceitar.</p>
     <p><button class="btn" data-act="copy-agent">Copiar instruções</button> <a href="#" data-act="pane:editor">Voltar ao editor</a></p><pre>${esc(agentPrompt())}</pre></div>`;
 }
 async function saveEdit() {
@@ -592,6 +604,48 @@ async function saveEdit() {
     toast(r.saved ? `Salvo: ${r.changed} linha(s)${r.commit ? ' · commit ' + r.commit : ''}` : 'Nada para salvar');
     await refreshStatus();
   } catch (e) { if (el2) { el2.className = 'edstat bad'; el2.textContent = e.message; } }
+}
+
+// ---------------------------------------------------------------- proposals (agents propose through the MCP server, people decide here)
+async function loadProps() {
+  if (!LIVE) return;
+  try { st.props = await api('/propostas'); } catch (e) { return; }
+  renderNav();
+  if (st.sel === 'propostas' && !st.edit && !document.querySelector('.prop .btn[disabled].busy')) renderProps();
+}
+const when = (iso) => (iso || '').slice(0, 16).replace('T', ' ');
+function renderProps() {
+  const w = document.getElementById('dwrap');
+  const pend = st.props.filter((p) => p.status === 'pendente');
+  const done = st.props.filter((p) => p.status !== 'pendente').reverse().slice(0, 10);
+  const diff = (p) => p.diff.map((r) => r.type === '…' ? '<div class="diffrow gap">⋯</div>' : `<div class="diffrow ${r.type === '+' ? 'add' : r.type === '-' ? 'del' : ''}"><i>${r.line ?? ''}</i>${esc(r.text) || ' '}</div>`).join('');
+  const card = (p) => {
+    const file = `<a href="#" data-file="${esc(p.file)}">${esc(p.file)}</a>`;
+    const head = `<div class="ph"><div class="pt"><b>${esc(p.motivo)}</b><span>${file} · ${esc(p.por)} · ${esc(when(p.criadaEm))}${p.fontes.length ? ' · fontes: ' + p.fontes.map(esc).join(', ') : ''}</span></div>`;
+    if (p.status !== 'pendente') return `<div class="prop done">${head}<span class="pill ${p.status === 'aceita' ? '' : 'warn'}">${esc(p.status)}</span></div><div class="pm">${esc(p.decididaPor || '')} · ${esc(when(p.decididaEm))}${p.commit ? ' · commit ' + esc(p.commit) : ''}${p.nota ? ' · ' + esc(p.nota) : ''}</div></div>`;
+    const acts = `<button class="btn" data-act="prop-reject:${esc(p.id)}">Recusar</button><button class="btn primary" data-act="prop-accept:${esc(p.id)}" ${LIVE.write && p.aplicavel ? '' : 'disabled'} title="${!LIVE.write ? 'Servidor em modo leitura: reinicie com --write' : p.aplicavel ? 'Grava a mudança no arquivo' + (LIVE.commit ? ' e commita' : '') : esc(p.problema)}">Aceitar</button>`;
+    return `<div class="prop" id="prop-${esc(p.id)}">${head}${acts}</div>` + (p.aplicavel ? `<div class="pd">${diff(p)}</div>` : `<div class="edmsg bad">${esc(p.problema)}</div>`) + '</div>';
+  };
+  w.innerHTML = crumbs([{ t: 'Propostas' }]) +
+    `<div class="dicon" style="background:${mix('#6D28D9', 0.88)}">${icon('inbox', 20, '#6D28D9')}</div><h2 class="dtitle">Propostas</h2>` +
+    `<p class="ddesc">Mudanças que agentes propuseram pelo MCP do GTM Brain. O arquivo só muda quando você aceita${LIVE.write ? '' : ' (o servidor está em modo leitura: reinicie com <code>--write</code> para aceitar)'}.</p>` +
+    (pend.length ? pend.map(card).join('') : `<p class="empty">Nenhuma proposta pendente. Conecte um agente ao MCP (<code>node brain/src/mcp.mjs</code>) e peça uma mudança.</p>`) +
+    (done.length ? `<h3 style="margin-top:22px">Decididas</h3>` + done.map(card).join('') : '');
+}
+async function decideProp(kind, id) {
+  const b = document.querySelector(`#prop-${CSS.escape(id)} [data-act^="prop-${kind}"]`);
+  if (b) { b.disabled = true; b.classList.add('busy'); }
+  try {
+    const r = await api(`/propostas/${encodeURIComponent(id)}/${kind === 'accept' ? 'aceitar' : 'recusar'}`, { method: 'POST', body: '{}' });
+    toast(kind === 'accept' ? `Aceita: ${r.file}${r.commit ? ' · commit ' + r.commit : ''}` : 'Proposta recusada');
+    if (kind === 'accept') st.changed = true;
+  } catch (e) { toast(e.message); }
+  if (b) b.classList.remove('busy');
+  await loadProps();
+  if (st.changed && st.sel === 'propostas') {
+    const d = document.querySelector('.ddesc');
+    if (d && !d.querySelector('[data-act="reload"]')) d.insertAdjacentHTML('beforeend', ' <a href="#" data-act="reload">Atualizar o brain ↻</a>');
+  }
 }
 
 // ---------------------------------------------------------------- graph
@@ -711,7 +765,7 @@ function resetWrap() { const w = document.getElementById('dwrap'); w.style.maxWi
 function select(id, { center = true } = {}) {
   if (id === 'root') id = null;
   if (st.edit && id !== st.edit.id) { st.edit = null; resetWrap(); }
-  if (id && !items.has(id) && !(id.startsWith('cat:') && cats.has(id.slice(4)))) return;
+  if (id && id !== 'propostas' && !items.has(id) && !(id.startsWith('cat:') && cats.has(id.slice(4)))) return;
   st.sel = id;
   if (id) {
     const c = catOf(id);
@@ -748,10 +802,14 @@ document.getElementById('dwrap').onclick = (e) => {
     if (a === 'back') { st.edit = null; resetWrap(); renderDoc(); }
     else if (a.startsWith('pane:')) { st.edit.pane = st.edit.pane === a.slice(5) ? 'editor' : a.slice(5); renderEditor(); }
     else if (a === 'save') saveEdit();
+    else if (a.startsWith('prop-accept:')) decideProp('accept', a.slice(12));
+    else if (a.startsWith('prop-reject:')) decideProp('reject', a.slice(12));
     else if (a === 'copy-agent') navigator.clipboard && navigator.clipboard.writeText(agentPrompt()).then(() => toast('Instruções copiadas'));
     else if (a === 'reload') { location.hash = '#i=' + encodeURIComponent(st.sel); location.reload(); }
     return;
   }
+  const pf = e.target.closest('[data-file]');
+  if (pf) { e.preventDefault(); const i = BRAIN.items.find((x) => x.origin && x.origin.file === pf.dataset.file); if (i) select(i.id); return; }
   const fc = e.target.closest('[data-field]');
   if (fc) { const s = document.getElementById('f-' + fc.dataset.field); if (s) { s.scrollIntoView({ behavior: 'smooth', block: 'start' }); s.classList.remove('flash'); void s.offsetWidth; s.classList.add('flash'); } return; }
   const cp = e.target.closest('[data-copy]');
@@ -773,7 +831,7 @@ new ResizeObserver(() => fg.width(el.clientWidth).height(el.clientHeight)).obser
 
 // ---------------------------------------------------------------- boot
 const m = BRAIN.meta;
-if (LIVE) document.getElementById('explorer').href = '/explorer';
+if (LIVE) { document.getElementById('explorer').href = '/explorer'; loadProps(); setInterval(loadProps, 8000); }
 document.getElementById('brandname').textContent = m.brand || '';
 const nRecords = BRAIN.items.filter((i) => i.kind !== 'doc').length;
 const nDocs = BRAIN.items.length - nRecords;

@@ -9,7 +9,8 @@ O **GTM Brain** lê os mesmos arquivos como um banco de dados e mostra a marca d
 - **Fichas por tipo:** personas, ofertas, provas, concorrentes, negócios ganhos e perdidos, palavras-chave, atributos de voz. Cada uma com seus campos e um medidor de "N de M preenchidos".
 - **Ligações:** qual prova sustenta qual oferta, de que fonte veio cada afirmação, o que está pendente e o que se contradiz.
 - **Grafo:** marca → categorias → registros, com nós que você arrasta e reorganiza.
-- **Edição humano + IA:** cada ficha abre o arquivo de origem num editor colaborativo. Agentes propõem mudanças como sugestões, você aceita ou recusa, e o arquivo só muda quando você salva. O que a IA escreveu fica marcado.
+- **Edição humano + IA:** cada ficha abre o arquivo de origem num editor colaborativo. O que a IA escreveu fica marcado, e o arquivo só muda quando você salva.
+- **Conversa com qualquer LLM (MCP):** conecte Claude, Cursor, Codex ou outro cliente MCP e pergunte sobre a marca. O agente busca e cita as fichas com arquivo e linha, e propõe mudanças numa fila: você vê o diff e aceita ou recusa.
 
 Os arquivos continuam sendo a fonte de verdade: markdown no seu repositório, versionado no git, legível sem o GTM Brain.
 
@@ -24,7 +25,7 @@ Os arquivos continuam sendo a fonte de verdade: markdown no seu repositório, ve
 /plugin install gtm-brain@colaborato.rio
 ```
 
-O marketplace `colaborato.rio` é mantido pelo [Colaboratório](https://colaborato.rio). Depois de instalar, peça ao agente "preencher a marca" em qualquer pasta. O passo a passo completo está em [Começar](#começar).
+O marketplace `colaborato.rio` é mantido pelo [Colaboratório](https://colaborato.rio). O plugin traz as skills e o MCP do GTM Brain (passo 5 de [Começar](#começar)). Abra o agente na pasta da sua marca e peça "preencher a marca", ou pergunte qualquer coisa sobre ela. O passo a passo completo está em [Começar](#começar).
 
 ## O que tem aqui
 
@@ -83,7 +84,9 @@ npm run setup:proof           # uma vez: baixa e prepara o editor colaborativo
 npm run dev -- --marca ../marca --write
 ```
 
-Abra http://127.0.0.1:3348. Em qualquer ficha, **Editar com IA** abre o arquivo no editor. **Chamar agente** copia as instruções para colar no seu agente (Claude Code, Codex, ChatGPT…): ele lê o documento e propõe mudanças como sugestões. **Salvar no arquivo** grava só as linhas que mudaram. Com `--commit`, cada salvamento vira um commit.
+Abra http://127.0.0.1:3348. Em qualquer ficha, **Editar com IA** abre o arquivo no editor. **Chamar agente** copia as instruções para colar no seu agente (Claude Code, Codex, ChatGPT…): ele lê e comenta o documento, e propõe mudanças pelo MCP. **Salvar no arquivo** grava só as linhas que mudaram. Com `--commit`, cada salvamento vira um commit.
+
+Na barra lateral, **Propostas** mostra as mudanças que agentes propuseram pelo MCP, com o diff de cada uma. **Aceitar** grava a mudança no arquivo; **Recusar** descarta.
 
 Sem `--write`, o servidor fica em modo leitura: dá para editar e ver as mudanças, mas nada vai para o disco.
 
@@ -106,7 +109,42 @@ Para ver o que falta e qual skill usar em cada arquivo:
 npm run lacunas -- --marca ../marca
 ```
 
-**5. Usar com qualquer agente de IA**
+**5. Conversar com o brain por MCP**
+
+O MCP do GTM Brain deixa qualquer cliente de LLM ler a marca e propor mudanças. Ele roda no seu computador (stdio, sem dependências) e lê a pasta da marca direto do disco. Com o plugin instalado no Claude Code, ele já vem junto. Em outros clientes:
+
+```sh
+claude mcp add gtm-brain -- node /caminho/do/gtm-brain/brain/src/mcp.mjs --marca /caminho/da/marca
+```
+
+No Claude Desktop, Cursor e outros, use a configuração JSON:
+
+```json
+{
+  "mcpServers": {
+    "gtm-brain": {
+      "command": "node",
+      "args": ["/caminho/do/gtm-brain/brain/src/mcp.mjs", "--marca", "/caminho/da/marca"]
+    }
+  }
+}
+```
+
+Sem `--marca`, ele usa `$GTM_BRAIN_MARCA`, depois a pasta em que o agente abriu (se for uma marca) e depois a subpasta `marca/` dela.
+
+| Ferramenta | O que faz |
+| --- | --- |
+| `brain_visao_geral` | Marca, categorias, estado das 11 camadas, propostas pendentes e próximo passo |
+| `brain_buscar` | Busca fichas por palavras e devolve o id de cada uma |
+| `brain_registro` | Abre uma ficha: markdown de origem com arquivo e linhas, campos que faltam, ligações e quem a cita |
+| `brain_arquivo` | Lê um arquivo da marca como está no disco, ou lista os arquivos |
+| `brain_lacunas` | O que falta preencher e qual skill usar |
+| `brain_propor` | Propõe trocar um trecho de um arquivo. Não grava: a proposta entra na fila |
+| `brain_propostas` | Lista as propostas e o estado de cada uma |
+
+As propostas ficam em `.gtm-brain/propostas/`, dentro da pasta da marca e fora do git. Você aceita ou recusa em **Propostas**, no GTM Brain ao vivo (passo 3, com `--write` para gravar). O agente nunca grava direto no arquivo.
+
+**6. Usar com qualquer agente de IA, sem MCP**
 
 Cole `10-cerebro/CEREBRO.md` como system prompt e siga a ordem de carga que ele indica. Com o servidor rodando, `GET /api/brain` devolve todas as fichas em JSON.
 

@@ -9,6 +9,7 @@ Se a pessoa quer preencher, completar ou revisar a marca, use as skills de `skil
 1. Comece por [`skills/gtm-brain/SKILL.md`](skills/gtm-brain/SKILL.md), o orquestrador.
 2. Leia [`skills/gtm-brain/referencias/regras.md`](skills/gtm-brain/referencias/regras.md). Valem para todas as skills.
 3. Para saber o que falta e qual skill usar: `cd brain && node src/lacunas.mjs --marca <pasta da marca>`.
+4. Se o MCP do GTM Brain estiver conectado (ferramentas `brain_*`), use-o para ler a marca. Para mudar um arquivo que a pessoa não pediu para você editar, use `brain_propor`: a mudança entra na fila e a pessoa aceita ou recusa no GTM Brain.
 
 | Skill | Preenche |
 | --- | --- |

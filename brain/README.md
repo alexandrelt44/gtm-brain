@@ -12,6 +12,7 @@ npm run dev -- --marca ../marca           # editor (porta 4000) + GTM Brain ao v
 npm run dev -- --marca ../marca --write   # grava as edições nos arquivos
 npm run dev -- --marca ../marca --commit  # grava e faz um commit por salvamento (a pasta precisa ser um repo git)
 npm run lacunas -- --marca ../marca       # o que falta preencher, em ordem, e qual skill usar
+npm run mcp -- --marca ../marca           # servidor MCP (stdio) para clientes de LLM: ler a marca e propor mudanças
 npm run setup:proof                       # uma vez: baixa o Proof SDK numa versão fixa e prepara o editor
 npm test                                  # testes com fixtures sintéticas
 ```
@@ -42,6 +43,15 @@ Opções do build e do servidor:
 | `GET /api/docs/status?file=` | Se há mudanças não salvas e quantas linhas |
 | `GET /api/docs/diff?file=` | O diff contra o arquivo |
 | `POST /api/docs/save {file}` | Grava (só com `--write`) |
+| `GET /api/propostas?status=` | As propostas de mudança dos agentes, com o diff das pendentes |
+| `POST /api/propostas/:id/aceitar` | Aplica a proposta no arquivo (só com `--write`; com `--commit`, faz um commit) |
+| `POST /api/propostas/:id/recusar {nota}` | Recusa a proposta |
+
+## MCP
+
+`src/mcp.mjs` é um servidor MCP por stdio, sem dependências. Ferramentas: `brain_visao_geral`, `brain_buscar`, `brain_registro`, `brain_arquivo`, `brain_lacunas`, `brain_propor` e `brain_propostas`. Ele lê a pasta da marca a cada chamada, então vê as mudanças sem reiniciar.
+
+Os agentes não gravam direto. `brain_propor` guarda a proposta em `<marca>/.gtm-brain/propostas/<id>.json`, uma pasta com o próprio `.gitignore`. A pessoa decide em **Propostas**, no servidor ao vivo. O trecho atual precisa aparecer uma vez só no arquivo. Se o arquivo mudar e o trecho sumir, a proposta para de aplicar e nada é gravado.
 
 ## Garantias da gravação
 
@@ -57,6 +67,7 @@ Opções do build e do servidor:
 - `src/md.mjs`, `src/md-merge.mjs`: markdown como dados, e a gravação sem reformatar
 - `src/lacunas.mjs`: o relatório de lacunas que as skills de `../skills/` usam
 - `src/server.mjs`: servidor ao vivo e sessões arquivo ↔ documento do editor
+- `src/mcp.mjs`, `src/propostas.mjs`: o servidor MCP e a fila de propostas
 - `src/brain.html`, `src/viewer.html`: o GTM Brain e o explorador técnico
 - `proof-skin/`: tradução e visual do editor, injetados por `scripts/proof.sh`
 - `scripts/`: instalação e inicialização do editor e do ambiente de desenvolvimento

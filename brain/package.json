@@ -1,12 +1,13 @@
 {
   "name": "gtm-brain",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "GTM Brain: o cérebro de go-to-market da marca em markdown, com grafo, fichas e edição humano + IA",
   "type": "module",
   "scripts": {
     "build": "node src/build.mjs",
     "lacunas": "node src/lacunas.mjs",
+    "mcp": "node src/mcp.mjs",
     "test": "node --test test/*.test.mjs",
     "setup:proof": "bash scripts/setup-proof.sh",
     "proof": "bash scripts/proof.sh",
